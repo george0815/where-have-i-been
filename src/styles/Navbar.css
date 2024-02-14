@@ -1,0 +1,49 @@
+nav{
+    background-color: #000000;
+    color: white;
+    height: 100px;
+    width: 100vw;
+    display: flex;
+}
+
+nav > img{
+    height: 70%;
+    align-self: center;
+    padding-left: 30px;
+}
+
+.logo{
+    align-self: center;
+    padding-left: 50px;
+    width: 310px;
+    margin-top: 0;
+    font-family: 'Koh Santepheap';
+    font-size:xx-large;
+}
+
+.navButtonContainer{
+    align-self: center;
+    margin-left: auto;
+    padding-right: 40px;
+}
+
+.navButton:hover{
+    transform: scale(1.1);
+}
+
+
+
+.navButton{
+    text-align: center;
+    border-radius: 9999em;    
+    border: none;
+    color: white;
+    font-family: "IBM Plex Sans Hebrew";
+    height: 50px;
+    margin-left: 15px;
+    padding: 13px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-style: normal;
+    background-color: #272727;
+}
