@@ -19,12 +19,14 @@ nav > img{
     margin-top: 0;
     font-family: 'Koh Santepheap';
     font-size:xx-large;
+    min-width: 360px;
 }
 
 .navButtonContainer{
     align-self: center;
     margin-left: auto;
     padding-right: 40px;
+    min-width: fit-content;
 }
 
 .navButton:hover{

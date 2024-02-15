@@ -1,26 +1,19 @@
-import { useState, useRef, useEffect, React } from 'react'; //React
-import backgrounds from './backgrounds'; //Gets array of background photos
+import { useState, React } from 'react'; //React
+import Background from './Background'; //Gets array of background photos
+
 //CSS
 import '../styles/Mainpage.css';
-import '../styles/fonts.css';
+import '../styles/Fonts.css';
 import '../styles/Navbar.css';
 
 
 //main page
 export default function Mainpage() {
 
-  const [currentSlide, setCurrentSlide] = useState(0) // set currrent slide index
-  let sliderInterval = useRef() // interval ref
+  const [currentCaption, setCurrentCaption] = useState("Phuket, Thailand") // sets caption at the bottom
 
-
-  useEffect(() => {
-
-    // every 7 seconds will switch the background img to the next one in the array
-    sliderInterval = setInterval(() => { setCurrentSlide((currentSlide + 1) % backgrounds.length); }, 7000);
-    return () => {clearInterval(sliderInterval)}
-
-  })
-
+  //sets captions
+  function setCaption(cap) { setCurrentCaption(cap);}
 
   return (
 
@@ -33,20 +26,14 @@ export default function Mainpage() {
             <br/><br/><br/><br/><br/><br/>
             <p>Login or <button>create an album as a guest</button></p>
         </p>
-        {/*cycles through 4 images for the background pic by setting the classname*/}
-        {backgrounds.map((image, index) => (
-            <img
-              id={index}
-              key={index}
-              className={index === currentSlide ? 'image active' : 'image'}
-              src={image.src}
-              style={{
-                zIndex: `-${index+1}`
-              }}
-            />
-          ))  }
-        {/*caption for background*/}
-        <p className="backgroundCaption">{backgrounds[currentSlide].name}</p>
+        
+        
+        {/*background*/}
+        <Background setCurrentCaption={setCaption} isMain={true}/>
+   
+
+        {/*background caption*/}
+        <p className="backgroundCaption">{currentCaption}</p>
       </div>
 
   );

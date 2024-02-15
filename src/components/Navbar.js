@@ -3,7 +3,7 @@ import logo from '../images/logo.svg'; //gets globe logo
 import {countries} from "countries-list"; //gets list of every country (used for title)
 //CSS
 import '../styles/Navbar.css';
-import '../styles/fonts.css';
+import '../styles/Fonts.css';
 
 
 
