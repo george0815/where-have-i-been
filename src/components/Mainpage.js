@@ -1,5 +1,5 @@
 import { useState, React } from 'react'; //React
-import Background from './Background'; //Gets array of background photos
+import Background from './Background'; //Gets background
 
 //CSS
 import '../styles/Mainpage.css';

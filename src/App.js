@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 import Navbar from './components/Navbar';
 import Mainpage from './components/Mainpage';
-import Loginpage from './components/Mainpage';
+import Loginpage from './components/Loginpage';
 
 
 
@@ -10,8 +10,7 @@ import Loginpage from './components/Mainpage';
 function App() {
   return (
     <div className="App">
-      <Navbar/>
-      <Mainpage/>
+      <Loginpage/>
     </div>
   );
 }
