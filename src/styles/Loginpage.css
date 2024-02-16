@@ -4,7 +4,7 @@
     justify-content: center;
     justify-items: center;
 
-    background-color: rgba(39, 39, 39, 0.888);
+    background-color: #141414cf;
     color: white;
     font-family: "IBM Plex Sans Hebrew";
     font-weight: 500;
@@ -21,19 +21,35 @@
     border-radius: 6em;
 }
 input{
-    margin-left: 30px;
-    margin-right: 30px;
+    
     border-radius: 1em;
     border: none;
-    justify-self: start;
-
+    justify-self: center;
+    min-width: 400px;
+    margin-top: 10px;
     min-height: 30px;
     height: 6vh;
 }
 img{
     opacity: .05;
 }
-label{
-    justify-self: start;
+.inputContainer{
+    display: grid;
+    justify-content: start;
+    justify-items: start;
+}
 
+.noPassText > button, .noPassText{
+    background: none;
+    border: none;
+    color: white;
+    font-family: "IBM Plex Sans Hebrew";
+    font-weight: 500;
+    font-size: medium;
+    
+    margin-bottom: 10px;
+
+}
+.noPassText > button{
+    border-bottom: white solid 2px;
 }

@@ -25,21 +25,25 @@ export default function Loginpage() {
         <div className="loginContainer">
             {/* logo*/}
             <img src={logo} alt="Site logo - a silhouette of a globe"/>
+            <div className='inputContainer'>
+              <label for="email">Email</label>
+              <input
+                type="text"
+                placeholder="email"
+                name="email"
+              />      
+            </div>      
+            <div className='inputContainer'>
 
-            <label for="email">Email</label>
-            <input
-              type="text"
-              placeholder="email"
-              name="email"
-            />            
-            <label for="Password">Password</label>
-            <input
-              type="text"
-              placeholder="password"
-              name="password"
-            />
-            <button>Reset password</button>
-            <button>Login</button>
+              <label for="Password">Password</label>
+              <input
+                type="text"
+                placeholder="password"
+                name="password"
+              />
+            </div>      
+            <button className='navButton'>Login</button>
+            <p className='noPassText'>No account? <button>Sign up here</button></p>
 
         </div>
        
