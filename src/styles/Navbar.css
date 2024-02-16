@@ -4,22 +4,23 @@ nav{
     height: 100px;
     width: 100vw;
     display: flex;
+    opacity: 1;
+    z-index: 12;
+
 }
 
 nav > img{
     height: 70%;
     align-self: center;
-    padding-left: 30px;
 }
 
 .logo{
     align-self: center;
     padding-left: 50px;
-    width: 310px;
-    margin-top: 0;
+    width: 330px;
     font-family: 'Koh Santepheap';
     font-size:xx-large;
-    min-width: 360px;
+    min-width: 330px;
 }
 
 .navButtonContainer{

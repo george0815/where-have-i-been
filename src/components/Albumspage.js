@@ -1,0 +1,52 @@
+import { useState, useRef, useEffect, React } from 'react'; //React
+import Background from './Background'; //Gets background
+import albumsObj from './Testalbums'; //gets globe logo
+
+//CSS
+import '../styles/Fonts.css';
+import '../styles/Navbar.css';
+import '../styles/Albumspage.css';
+
+
+
+
+//login page
+export default function Albumspage() {
+
+  console.log(albumsObj);
+  
+  const albumThumbnails = albumsObj.map((album, index) => (
+    <button
+      id={index}
+      key={album.name}
+      className="albumButton"
+      src={album.img} 
+    > <img src={album.img}/> </button>
+  ))
+  console.log(albumThumbnails);
+
+
+
+  return (
+
+       //Holds all elements in the main page
+       <div className="albumPageContainer">
+
+       {/*main div that hold all the login promps and buttons*/}
+        <div className="albumContainer">
+
+            {/* albums*/}
+            {albumThumbnails}
+        
+        </div>
+       
+       
+       {/*background*/}
+        <Background isMain={false}/>
+  
+
+       
+     </div>
+
+  );
+}

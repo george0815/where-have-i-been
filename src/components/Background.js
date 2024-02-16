@@ -24,7 +24,6 @@ export default function Background(props){
 
 
   useEffect(() => {
-    console.log(props.sliderInterval);
 
     // every 7 seconds will switch the background img to the next one in the array
     sliderInterval = setInterval(() => { 

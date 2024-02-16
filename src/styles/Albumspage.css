@@ -1,0 +1,30 @@
+.albumContainer{
+    justify-items: center;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat( auto-fit, 250px );
+    grid-template-rows: max-content;
+    column-gap: 2%;   
+    row-gap: 3%; 
+    margin-top: 50px;
+}
+.albumPageContainer{
+    background-color: rgb(0, 0, 0);
+    z-index: 10;
+}
+.albumButton > img, .albumButton{
+    border: none;
+    background: none;
+    border-radius: 10%;
+    min-height: 250px;
+    object-fit: cover;
+    max-width: 250px;
+    z-index: 0;
+    opacity: 1.0;
+}
+.active {
+    opacity: .75;
+}
+.albumButton:hover{
+    transform: scale(1.1);
+}
