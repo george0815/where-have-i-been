@@ -21,7 +21,20 @@ export default function Albumspage() {
       key={album.name}
       className="albumButton"
       src={album.img} 
-    > <img src={album.img}/> </button>
+    > <div className='tooltiptext'>
+        <br/>
+        <p>{album.name}</p>
+        <p>{album.location} - {album.date.from} to {album.date.to}</p>
+        <br/>        
+
+        <p>{album.description}</p>
+        <br/>     
+        <nav className='tagContainer'>
+        {album.tags.map((tag) => (<div className='tag'> {tag}</div>))}
+        </nav>
+      </div>
+      <img src={album.img}/> 
+    </button>
   ))
   console.log(albumThumbnails);
 

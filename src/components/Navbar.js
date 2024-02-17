@@ -65,7 +65,7 @@ useEffect(() => {
 
   return (
     //whole navbar
-    <nav>
+    <nav className='mainNav'>
       {/* title*/}
       <div className="logo">{country}</div>
       {/* logo*/}

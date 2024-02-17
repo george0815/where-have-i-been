@@ -1,4 +1,4 @@
-nav{
+.mainNav{
     background-color: #000000;
     color: white;
     height: 100px;
@@ -9,7 +9,7 @@ nav{
 
 }
 
-nav > img{
+.mainNav > img{
     height: 70%;
     align-self: center;
 }

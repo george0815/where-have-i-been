@@ -12,97 +12,101 @@ const albumsObj =
 [
     {
         img: rio,
-        name: "album1",
-        caption: "test object",
-        location: "usa",
-        description: "this is a test",
+        name: "Rio Trip",
+        location: "Rio, Brazil",
+        date: {from: "02/17/2021", to: "02/17/2021"},
+        description: "I went to Rio to see ADCC in person.",
         tags: [
-            "test",
-            "test2"
+            "South America",
+            "Trip"
         ],
         ai: false
     },
     {
         img: cameroon,
-        name: "album1",
-        caption: "test object",
-        location: "usa",
-        description: "this is a test",
+        name: "Cameroon Trip",
+        location: "Cameroon, Africa",
+        date: {from: "02/17/2021", to: "02/17/2021"},
+        description: "I went to Cameroon to see Ngannou fight for the title.",
         tags: [
-            "test",
-            "test2"
+            "Africa",
+            "UFC"
         ],
         ai: false
     },
     {
         img: germany,
-        name: "album1",
-        caption: "test object",
-        location: "usa",
-        description: "this is a test",
+        name: "Germany Trip",
+        location: "Germany",
+        date: {from: "02/17/2021", to: "02/17/2021"},
+        description: "I went to Germany because I want to see some places that appeared in Monster",
         tags: [
-            "test",
-            "test2"
+            "Monster",
+            "Europe"
         ],
         ai: false
     },
     {
         img: italy,
-        name: "album1",
-        caption: "test object",
-        location: "usa",
-        description: "this is a test",
+        name: "Italy Trip",
+        location: "Italy",
+        date: {from: "02/17/2021", to: "02/17/2021"},
+        description: "I went to Italy because I'm 1/4 Italian so I was interested",
         tags: [
-            "test",
-            "test2"
+            "Italy",
+            "Europe"
         ],
         ai: false
     },
     {
         img: phuket,
-        name: "album1",
-        caption: "test object",
-        location: "usa",
-        description: "this is a test",
+        name: "Phuket Trip",
+        location: "Phuket, Thailand",
+        date: {from: "02/17/2021", to: "02/17/2021"},
+        description: "I went to Phuket because I wanted to do Muay Thai",
         tags: [
-            "test",
-            "test2"
+            "Muay Thai",
+            "Asia"
         ],
         ai: false
     },
     {
         img: prague,
-        name: "album1",
-        caption: "test object",
-        location: "usa",
-        description: "this is a test",
+        name: "Prague Trip",
+        location: "Prague, Czech Republic",
+        date: {from: "02/17/2021", to: "02/17/2021"},
+        description: "I went to Prague because I want to see some places that appeared in Monster",
         tags: [
-            "test",
-            "test2"
+            "Monster",
+            "Czech"
         ],
         ai: false
     },
     {
         img: qatar,
-        name: "album1",
-        caption: "test object",
-        location: "usa",
-        description: "this is a test",
+        name: "Qatar Trip",
+        location: "Qatar, UAE",
+        date: {from: "02/17/2021", to: "02/17/2021"},
+        description: "I went to Qatar to see a boxing fight.",
         tags: [
-            "test",
-            "test2"
+            "Boxing",
+            "Middle East"
         ],
         ai: false
     },
     {
         img: chicago,
-        name: "album1",
-        caption: "test object",
-        location: "usa",
-        description: "this is a test",
+        name: "Chicago Trip",
+        location: "Chicago, USA",
+        date: {from: "02/17/2021", to: "02/17/2021"},
+        description: "I visited my uncle in chicago this past winter.",
         tags: [
-            "test",
-            "test2"
+            "Uncle",
+            "City",
+            "USA",
+            "America",
+            "Family",
+            "Wind"
         ],
         ai: false
     }
