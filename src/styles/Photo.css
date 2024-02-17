@@ -1,0 +1,162 @@
+.active {
+    opacity: .5;
+}
+.mainPhotoContainer{
+    padding-top: 30px;
+    background-color: #272727;
+    z-index: 10;
+    width: 100%;
+    color: white;
+    justify-content: center;
+}
+
+.mainPhotoContainer, .captionContainer{
+    display: flex;
+}
+.captionContainer{
+    padding-top: 10px ;
+}
+
+.photo, .photo > img{
+    height: 500px;
+    width: 1000px;
+    align-self: center;
+    background-color: red;
+    position: relative;
+}
+.caption{
+    font-family: 'Koh Santepheap';
+    font-size:xx-large;
+    margin: 0;
+
+}
+.dateline{
+    margin-left: 20px;
+    text-align: center;
+    font-size: medium;
+
+}
+
+.fullscreenButton:hover, .arrow:hover{
+    transform: scale(1.1);
+}
+.tooltiptext {
+    visibility: hidden;
+    font-size: larger;
+    width: 100%;
+    height: 25%;
+    color:white;
+    display: grid;
+    grid-template-rows: 60% 40%;
+    
+    font-family: 'Koh Santepheap';
+    background-color: rgba(0, 0, 0, 0.75);
+    text-align: center;
+    bottom: 0%;
+    position: absolute;
+    z-index: 1;
+  }
+  .tooltiptext > p{
+    width: 95%;
+    font-size: .9em;
+    margin: 5px 10px;
+    text-align: left;
+
+  }
+
+  @keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+.tag{
+    border-radius: 99em;
+    background-color: #000000;
+    padding:5px 8px;
+
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 7px;
+    font-size: smaller;
+}
+
+.tagContainer{
+    padding-top: 2px;
+    gap: 10px;
+
+    justify-content: left;
+    align-content: center;
+    justify-items: left;
+    width: fit-content;
+    padding-left: 10px;
+    padding-bottom: 5px;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@keyframes fadeOutOpacity {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+    /* Show the tooltip text when mouse is over the block */
+    .photo:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+        animation-name: fadeInOpacity;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in;
+        animation-duration: .4s;
+    
+      }
+      .photo:not(:hover) .tooltiptext {
+        visibility: visible;
+        opacity: 0;
+        animation-name: fadeOutOpacity;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in;
+        animation-duration: .4s;
+    
+      }
+
+.arrow{
+    height: fit-content;
+    align-self: center;
+    font-size: 2em;
+    text-align: center;
+    border-radius: 9999em;    
+    border: none;
+    color: white;
+    background-color: #000000;
+    padding:  4px 15px;
+    margin: 0px 30px
+
+
+
+}
+.fullscreenButton{
+    text-align: center;
+    border-radius: 9999em;    
+    border: none;
+    color: white;
+    font-family: "IBM Plex Sans Hebrew";
+    height: 50px;
+    margin-left: 15px;
+    padding: 13px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-style: normal;
+    background-color: #000000;
+}
+.fullscreenButton{
+    margin-left: auto;
+}
