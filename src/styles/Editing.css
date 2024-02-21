@@ -1,0 +1,117 @@
+button:hover{
+    transform: scale(1.1);
+}
+.editingContainer{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    gap: 10px;
+
+    background-color: #141414f3;
+    color: white;
+    font-family: "IBM Plex Sans Hebrew";
+    font-weight: 500;
+    width: max-content;
+    padding: 25px 35px;
+    height: auto;
+    min-height: 200px;
+    margin: 0 auto;
+    margin-top: 50px;
+    align-self: center;
+    position: relative;
+
+    border-radius: 3em;
+}
+.saveButton{
+    position: absolute;
+    bottom: 20px;
+    right: 35px;
+    height: auto !important;
+    font-size: large !important;
+
+    padding:10px 16px !important;
+}
+.location{
+    margin-left: 25px;
+}
+
+.editingContainer > div{
+    display: flex;
+    min-width: 100%;
+} 
+.tagsEditing{
+    display: grid !important;
+}
+input, .descriptionInput{
+    resize: none;
+    font-family: "IBM Plex Sans Hebrew";
+    font-weight: 500;
+    border-radius: .8em;
+    border: none;
+    min-width: 100%;
+    margin-top: 3px;
+    min-height: 35px;
+    height: auto;
+    padding-left: 5px;
+    font-size: 1em;
+}
+
+.inputContainerEditing{
+    display: grid;
+
+    width: 100%;
+}
+.addTagRow{
+    display: flex;
+}
+.tagsContainerEditing{
+    padding-top: 2px;
+    max-width: 50%;
+   justify-items: left;
+    width: fit-content;
+    padding-left: 10px;
+    padding-bottom: 5px;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+.tagInput{
+    min-width: 30%;
+    min-height: 25px;
+
+}
+.tag {
+    border-radius: 99em;
+    background-color: #272727;
+    padding:5px 8px;
+
+    justify-self: left;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 10px;
+    font-size: smaller;
+}
+.addTag, .saveButton{
+    border: none;
+    color: white;
+    font-family: "IBM Plex Sans Hebrew";
+    padding: 0 9px;
+    font-size: smaller;
+    height: 100%;
+    align-self: center;
+    margin-left: 10px;
+
+    border-radius: 99em;
+    background-color: #272727;
+    font-weight: 500;
+}
+
+.dateAndTime{
+    min-width: 70% !important;
+    max-width: 70% !important;
+
+}
+

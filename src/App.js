@@ -5,7 +5,9 @@ import React from 'react';import Navbar from './components/Navbar';
 //import Loginpage from './components/Loginpage';
 //import Albumspage from './components/Albumspage';
 //import Picturespage from './components/Picturespage';
-import Photo from './components/Photo';
+//import Photo from './components/Photo';
+import Editing from './components/Editing';
+
 
 
 
@@ -16,7 +18,7 @@ function App() {
   return (
     <div className="App">
       <Navbar/>
-      <Photo/>
+      <Editing/>
     </div>
   );
 }
