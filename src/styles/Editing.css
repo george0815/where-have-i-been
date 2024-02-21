@@ -1,6 +1,9 @@
 button:hover{
     transform: scale(1.1);
 }
+.dateInputContainer{
+    display: flex;
+}
 .editingContainer{
     display: grid;
     align-items: center;
@@ -80,6 +83,12 @@ input, .descriptionInput{
     min-width: 30%;
     min-height: 25px;
 
+}
+.dateInputContainer > input{
+min-width: 45% !important;
+}
+.toDate{
+    margin-left: auto;
 }
 .tag {
     border-radius: 99em;

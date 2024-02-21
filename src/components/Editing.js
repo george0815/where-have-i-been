@@ -23,6 +23,7 @@ export default function Editing() {
   */
  let state = 0
  let saveButtonText = ""
+ let isAlbum = false;
 
  switch(state){
   case 0:
@@ -75,18 +76,31 @@ export default function Editing() {
               </div>
             </div> 
             {/* Date and time*/}
-
             <div className='dateTime'>
-            <div className='inputContainerEditing'>
-
+<div className='inputContainerEditing'>
               <label for="dateAndTime">Date and Time</label>
+              <div className='dateInputContainer'>
               <input
                 className='dateAndTime'
                 type="text"
-                placeholder="date and time"
+               placeholder = {isAlbum ? "from" : "date and time"}
                 name="dateAndTime"
               />    
+              { isAlbum &&
+
+              <input
+                  type="text"
+                  placeholder="to"
+                  name="toDate"
+                  className='toDate'
+                />  
+              } 
+              </div>
              </div>
+
+
+
+             
             </div>           
             {/* Description */}
             <div className='description'>
