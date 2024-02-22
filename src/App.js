@@ -16,6 +16,8 @@ function App() {
       <Navbar/>
       <Routes>
           <Route path="/" element={<Mainpage/>}/>
+          <Route path="editing" element={<Editing/>}/>
+          <Route path="albums" element={<Albumspage/>}/>
           <Route path="album" element={<Picturespage/>}/>
           <Route path="photo" element={<Photo/>}/>
           <Route path="login" element={<Loginpage/>}/>
