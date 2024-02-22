@@ -1,4 +1,4 @@
-.active {
+.mainPhotoContainer .active {
     opacity: .5;
 }
 .mainPhotoContainer{
@@ -40,7 +40,7 @@
 .fullscreenButton:hover, .arrow:hover{
     transform: scale(1.1);
 }
-.tooltiptext {
+.mainPhotoContainer .tooltiptext {
     visibility: hidden;
     font-size: larger;
     width: 100%;
@@ -56,7 +56,7 @@
     position: absolute;
     z-index: 1;
   }
-  .tooltiptext > p{
+  .mainPhotoContainer .tooltiptext > p{
     width: 95%;
     font-size: .9em;
     margin: 5px 10px;
@@ -72,7 +72,7 @@
 		opacity: 1;
 	}
 }
-.tag{
+.mainPhotoContainer .tag{
     border-radius: 99em;
     background-color: #000000;
     padding:5px 8px;
@@ -85,7 +85,7 @@
     font-size: smaller;
 }
 
-.tagContainer{
+.mainPhotoContainer .tagContainer{
     padding-top: 2px;
     gap: 10px;
 

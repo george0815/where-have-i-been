@@ -1,20 +1,27 @@
 import './App.css';
-import React from 'react';import Navbar from './components/Navbar';
-
-//import Mainpage from './components/Mainpage';
-//import Loginpage from './components/Loginpage';
-//import Albumspage from './components/Albumspage';
-//import Picturespage from './components/Picturespage';
-//import Photo from './components/Photo';
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Navbar from './components/Navbar';
+import Mainpage from './components/Mainpage';
+import Loginpage from './components/Loginpage';
+import Albumspage from './components/Albumspage';
+import Picturespage from './components/Picturespage';
+import Photo from './components/Photo';
 import Editing from './components/Editing';
 
 
 function App() {
   return (
-    <div className="App">
+    <BrowserRouter>
       <Navbar/>
-      <Editing/>
-    </div>
+      <Routes>
+          <Route path="/" element={<Mainpage/>}/>
+          <Route path="album" element={<Picturespage/>}/>
+          <Route path="photo" element={<Photo/>}/>
+          <Route path="login" element={<Loginpage/>}/>
+      </Routes>
+    </BrowserRouter>
+
   );
 }
 

@@ -20,7 +20,7 @@
 
     border-radius: 6em;
 }
-input{
+.loginPageContainer input{
     
     border-radius: 1em;
     border: none;
@@ -30,16 +30,16 @@ input{
     min-height: 30px;
     height: 6vh;
 }
-img{
+.loginPageContainer .logoImg{
     opacity: .05;
 }
-.inputContainer{
+.loginPageContainer .inputContainer{
     display: grid;
     justify-content: start;
     justify-items: start;
 }
 
-.noPassText > button, .noPassText{
+.loginPageContainer .noPassText > button, .noPassText{
     background: none;
     border: none;
     color: white;
@@ -51,5 +51,9 @@ img{
 
 }
 .noPassText > button{
-    border-bottom: white solid 2px;
+    border-bottom: white solid 2px !important;
 }
+.noPassText > button:hover{
+    transform: scale(1.02) !important;
+}
+

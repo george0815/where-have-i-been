@@ -16,8 +16,10 @@ export default function Mainpage() {
 
   return (
 
+
       //Holds all elements in the main page
       <div className="mainPageContainer">
+
         {/*Holds all the text in the main page, except for picture caption at the bottom left*/}
         <p className="mainTextContainer">A free, online photo album
             <br/>

@@ -21,7 +21,7 @@ export default function Loginpage() {
        {/*main div that hold all the login promps and buttons*/}
         <div className="loginContainer">
             {/* logo*/}
-            <img src={logo} alt="Site logo - a silhouette of a globe"/>
+            <img src={logo} className="logoImg" alt="Site logo - a silhouette of a globe"/>
 
              {/*Email prompt*/}
             <div className='inputContainer'>
