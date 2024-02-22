@@ -1,17 +1,47 @@
+/************************CONTAINERS**************************/
+ 
 .pictureContainer{
     
-    padding-top: 50px;
-    justify-items: center;
-    justify-content: center;
-    display: grid;
-    grid-template-columns: repeat( auto-fit, 250px );
-    grid-template-rows: repeat( auto-fit, 250px );
-    column-gap: 2%;   
-    row-gap: 4%; 
-    overflow-x: hidden;
+  padding-top: 50px;
+  justify-items: center;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat( auto-fit, 250px );
+  grid-template-rows: repeat( auto-fit, 250px );
+  column-gap: 2%;   
+  row-gap: 4%; 
+  overflow-x: hidden;
 
-    overflow-y: scroll;
+  overflow-y: scroll;
 }
+
+
+.picturePageContainer{
+  background-color: rgb(0, 0, 0);
+  z-index: 10;
+}
+
+/**************************BUTTONS**************************/
+
+.pictureButton > img, .pictureButton{
+  border: none;
+  height: fit-content;
+  max-width: 250px;
+  background: none;
+  border-radius: 10%;
+  margin: 0%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 1.0;
+}
+.pictureButton{
+  position: relative;
+  display: flex;
+flex-direction: column;
+
+}
+
+/**************************SCROLLBAR**************************/
 
 .picturePageContainer ::-webkit-scrollbar {   width: 40px; } 
 .picturePageContainer ::-webkit-scrollbar-thumb {   
@@ -24,29 +54,89 @@
     
     background-color: rgba(111, 110, 110, 0.5);;  
 }
-  
-  
-.picturePageContainer{
-    background-color: rgb(0, 0, 0);
-    z-index: 10;
+
+/**************************TOOLTIP**************************/
+
+
+/* Tooltip for blocks*/
+.tooltiptextpic {
+    
+
+  visibility: hidden;
+  border-radius: 10%;
+  font-size: larger;
+  width: 100%;
+  color:white;
+  height: 100%;
+  margin: 0%;
+  padding: 0%;
+  max-width: 350px;
+  object-fit: cover;
+  font-family: 'Koh Santepheap';
+  background-color: rgba(0, 0, 0, 0.75);
+  text-align: center;
+  position: absolute;
+  z-index: 1;
 }
-.pictureButton > img, .pictureButton{
-    border: none;
-    height: fit-content;
-    max-width: 250px;
-    background: none;
-    border-radius: 10%;
-    margin: 0%;
-    object-fit: cover;
-    z-index: 0;
-    opacity: 1.0;
-}
-.pictureButton{
-    position: relative;
-    display: flex;
-  flex-direction: column;
+.tooltiptextpic > p{
+  width: 95%;
+  margin: 0px 5px;
 
 }
+
+/* Show the tooltip text when mouse is over the block */
+.pictureButton:hover .tooltiptextpic {
+  visibility: visible;
+  opacity: 1;
+animation-name: fadeInOpacity;
+animation-iteration-count: 1;
+animation-timing-function: ease-in;
+animation-duration: .4s;
+
+}
+.pictureButton:not(:hover) .tooltiptextpic {
+  visibility: visible;
+  opacity: 0;
+animation-name: fadeOutOpacity;
+animation-iteration-count: 1;
+animation-timing-function: ease-in;
+animation-duration: .4s;
+
+}
+
+
+/**************************TAG**************************/
+
+.picturePageContainer .tag{
+  border-radius: 99em;
+  background-color: #5b5b5b;
+  padding:5px 7px;
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-top: 7px;
+  font-size: smaller;
+}
+
+
+.picturePageContainer .tagContainer{
+  padding-top: 2px;
+  
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  width: 100%;
+
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+/**************************EFFECTS**************************/
+
+
 .picturePageContainer .active {
     opacity: .5;
 }
@@ -54,89 +144,14 @@
     transform: scale(1.05);
 }
 
-/* Tooltip for blocks*/
-.tooltiptextpic {
-    
-
-    visibility: hidden;
-    border-radius: 10%;
-    font-size: larger;
-    width: 100%;
-    color:white;
-    height: 100%;
-    margin: 0%;
-    padding: 0%;
-    max-width: 350px;
-    object-fit: cover;
-    font-family: 'Koh Santepheap';
-    background-color: rgba(0, 0, 0, 0.75);
-    text-align: center;
-    position: absolute;
-    z-index: 1;
-  }
-  .tooltiptextpic > p{
-    width: 95%;
-    margin: 0px 5px;
-
-  }
-  
-  /* Show the tooltip text when mouse is over the block */
-  .pictureButton:hover .tooltiptextpic {
-    visibility: visible;
-    opacity: 1;
-	animation-name: fadeInOpacity;
-	animation-iteration-count: 1;
-	animation-timing-function: ease-in;
-	animation-duration: .4s;
-
-  }
-  .pictureButton:not(:hover) .tooltiptextpic {
-    visibility: visible;
-    opacity: 0;
-	animation-name: fadeOutOpacity;
-	animation-iteration-count: 1;
-	animation-timing-function: ease-in;
-	animation-duration: .4s;
-
-  }
- .picturePageContainer .tag{
-    border-radius: 99em;
-    background-color: #5b5b5b;
-    padding:5px 7px;
-    width: max-content;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    margin-top: 7px;
-    font-size: smaller;
-}
-  @keyframes fadeInOpacity {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
+/*Keyframes for tooltip fade in and fade out animations*/
+@keyframes fadeInOpacity {
+	0% {opacity: 0;}
+	100% {	opacity: 1;}
 }
 
 @keyframes fadeOutOpacity {
-	0% {
-		opacity: 1;
-	}
-	100% {
-		opacity: 0;
-	}
+	0% {opacity: 1;}
+	100% {opacity: 0;}
 }
 
-.picturePageContainer .tagContainer{
-    padding-top: 2px;
-    
-    justify-content: center;
-    align-content: center;
-    justify-items: center;
-    width: 100%;
-
-
-    display: flex;
-    flex-wrap: wrap;
-}

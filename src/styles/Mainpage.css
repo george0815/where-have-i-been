@@ -1,3 +1,5 @@
+/************************CONTAINERS**************************/
+
 .mainPageContainer {
     background-size: cover;
     overflow: hidden;
@@ -6,12 +8,6 @@
     min-height: 450px;
 }
 
-.mainPageContainer br {
-    display: block; /* makes it have a width */
-    content: ""; /* clears default height */
-    margin-top: 0; /* change this to whatever height you want it */
- }
- 
 .mainTextContainer {
     position: absolute;
     top: 0px;
@@ -22,16 +18,9 @@
     min-width: 630px;
 }
 
-.mainTextContainer > span{
-    font-size: .7em;
-    display: block;
-    margin-top: 10px;
-}
 
-.mainTextContainer > p{
-    font-size: .4em;
-    margin-top: 70px;
-}
+/**************************BUTTONS**************************/
+
 
 .mainTextContainer > p > button{
     text-align: center;
@@ -47,6 +36,15 @@
     font-style: normal;
     background-color: #272727;
 }
+
+
+
+.mainTextContainer > p > button:hover{
+    transform: scale(1.05);
+}
+
+
+/**************************MISC**************************/
 
 .mainPageContainer > img{
     display: block;
@@ -65,7 +63,22 @@
     font-size: 1em;
 }
 
-.mainTextContainer > p > button:hover{
-    transform: scale(1.05);
+
+.mainPageContainer br {
+    display: block; /* makes it have a width */
+    content: ""; /* clears default height */
+    margin-top: 0; /* change this to whatever height you want it */
+ }
+ 
+
+
+.mainTextContainer > span{
+    font-size: .7em;
+    display: block;
+    margin-top: 10px;
 }
 
+.mainTextContainer > p{
+    font-size: .4em;
+    margin-top: 70px;
+}

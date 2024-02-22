@@ -1,3 +1,6 @@
+/************************CONTAINERS**************************/
+
+
 .mainNav{
     background-color: #000000;
     color: white;
@@ -9,26 +12,15 @@
 
 }
 
-.mainNav > img{
-    height: 70%;
-    align-self: center;
-}
-
-.logo{
-    align-self: center;
-    padding-left: 50px;
-    width: 330px;
-    font-family: 'Koh Santepheap';
-    font-size:xx-large;
-    min-width: 330px;
-}
-
 .navButtonContainer{
     align-self: center;
     margin-left: auto;
     padding-right: 40px;
     min-width: fit-content;
 }
+
+/**************************BUTTONS**************************/
+
 
 .navButton:hover{
     transform: scale(1.1);
@@ -50,3 +42,24 @@
     font-style: normal;
     background-color: #272727;
 }
+
+
+
+/**************************MISC**************************/
+
+.mainNav > img{
+    height: 70%;
+    align-self: center;
+}
+
+.logo{
+    align-self: center;
+    padding-left: 50px;
+    width: 330px;
+    font-family: 'Koh Santepheap';
+    font-size:xx-large;
+    min-width: 330px;
+}
+
+
+

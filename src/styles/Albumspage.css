@@ -1,3 +1,12 @@
+
+/************************CONTAINERS**************************/
+ 
+/*Container for entire page*/
+.albumPageContainer{
+    background-color: rgb(0, 0, 0);
+    z-index: 10;
+}
+
 /*Main container*/
 .albumContainer{
     padding-top: 50px;
@@ -12,21 +21,23 @@
     overflow-y: scroll;
 }
 
-/*Handles Scrollbar*/
-.albumPageContainer ::-webkit-scrollbar {   width: 40px; } 
-.albumPageContainer ::-webkit-scrollbar-thumb {   
-    border: 12px solid rgba(0, 0, 0, 0);   
-    background-clip: padding-box;   
-    -webkit-border-radius: 20px;   
-    background-color: rgba(0, 0, 0, 0.0);;  
+/*Tags container*/
+.albumPageContainer .tagContainer{
+    padding-top: 2px;
+    
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
 }
-.albumPageContainer  ::-webkit-scrollbar-thumb:hover { background-color: rgba(111, 110, 110, 0.5);;  }
-  
-  
-.albumPageContainer{
-    background-color: rgb(0, 0, 0);
-    z-index: 10;
-}
+
+
+/**************************BUTTONS**************************/
+
+
 .albumButton > img, .albumButton{
     border: none;
     background: none;
@@ -39,13 +50,23 @@
     position: relative;
     opacity: 1.0;
 }
-.albumPageContainer .active {
-    opacity: .5;
-}
-.albumButton:hover{
-    transform: scale(1.05);
-}
 
+/**************************SCROLLBAR**************************/
+
+
+.albumPageContainer ::-webkit-scrollbar {   width: 40px; } 
+.albumPageContainer ::-webkit-scrollbar-thumb {   
+    border: 12px solid rgba(0, 0, 0, 0);   
+    background-clip: padding-box;   
+    -webkit-border-radius: 20px;   
+    background-color: rgba(0, 0, 0, 0.0);;  
+}
+.albumPageContainer  ::-webkit-scrollbar-thumb:hover { background-color: rgba(111, 110, 110, 0.5);;  }
+  
+
+
+/**************************TOOLTIP**************************/
+  
 /* Tooltip for blocks*/
 .albumPageContainer  .tooltiptext {
     visibility: hidden;
@@ -86,6 +107,10 @@
 	animation-duration: .4s;
 
   }
+
+/**************************TAG**************************/
+
+
   .albumPageContainer .tag{
     border-radius: 99em;
     background-color: #5b5b5b;
@@ -98,19 +123,16 @@
     font-size: smaller;
 }
 
+/**************************EFFECTS**************************/
 
-.albumPageContainer .tagContainer{
-    padding-top: 2px;
-    
-    justify-content: center;
-    align-content: center;
-    justify-items: center;
-    width: 100%;
 
-    display: flex;
-    flex-wrap: wrap;
+
+.albumPageContainer .active {
+    opacity: .5;
 }
-
+.albumButton:hover{
+    transform: scale(1.05);
+}
 
 /*Keyframes for tooltip fade in and fade out animations*/
 @keyframes fadeInOpacity {

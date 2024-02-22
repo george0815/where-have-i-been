@@ -1,3 +1,6 @@
+/************************CONTAINERS**************************/
+
+
 .loginContainer{
     display: grid;
     align-items: center;
@@ -20,24 +23,16 @@
 
     border-radius: 6em;
 }
-.loginPageContainer input{
-    
-    border-radius: 1em;
-    border: none;
-    justify-self: center;
-    min-width: 400px;
-    margin-top: 10px;
-    min-height: 30px;
-    height: 6vh;
-}
-.loginPageContainer .logoImg{
-    opacity: .05;
-}
+
 .loginPageContainer .inputContainer{
     display: grid;
     justify-content: start;
     justify-items: start;
 }
+
+
+
+/**************************BUTTONS**************************/
 
 .loginPageContainer .noPassText > button, .noPassText{
     background: none;
@@ -56,4 +51,24 @@
 .noPassText > button:hover{
     transform: scale(1.02) !important;
 }
+
+
+/**************************MISC**************************/
+
+
+
+.loginPageContainer input{
+    
+    border-radius: 1em;
+    border: none;
+    justify-self: center;
+    min-width: 400px;
+    margin-top: 10px;
+    min-height: 30px;
+    height: 6vh;
+}
+.loginPageContainer .logoImg{
+    opacity: .05;
+}
+
 

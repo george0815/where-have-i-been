@@ -1,6 +1,12 @@
-.mainPhotoContainer .active {
-    opacity: .5;
+/************************CONTAINERS**************************/
+
+.mainPhotoContainer, .captionContainer{
+    display: flex;
 }
+.captionContainer{
+    padding-top: 10px ;
+}
+
 .mainPhotoContainer{
     padding-top: 30px;
     background-color: #272727;
@@ -10,36 +16,39 @@
     justify-content: center;
 }
 
-.mainPhotoContainer, .captionContainer{
-    display: flex;
-}
-.captionContainer{
-    padding-top: 10px ;
-}
+/**************************BUTTONS**************************/
 
-.photo, .photo > img{
-    height: 500px;
-    width: 1000px;
+.arrow{
+    height: fit-content;
     align-self: center;
-    background-color: red;
-    position: relative;
-}
-.caption{
-    font-family: 'Koh Santepheap';
-    font-size:xx-large;
-    margin: 0;
-
-}
-.dateline{
-    margin-left: 20px;
+    font-size: 2em;
     text-align: center;
-    font-size: medium;
-
+    border-radius: 9999em;    
+    border: none;
+    color: white;
+    background-color: #000000;
+    padding:  4px 15px;
+    margin: 0px 30px
+}
+.fullscreenButton{
+    text-align: center;
+    border-radius: 9999em;    
+    border: none;
+    color: white;
+    font-family: "IBM Plex Sans Hebrew";
+    height: 50px;
+    margin-left: 15px;
+    padding: 13px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-style: normal;
+    background-color: #000000;
+    margin-left: auto;
 }
 
-.fullscreenButton:hover, .arrow:hover{
-    transform: scale(1.1);
-}
+
+/**************************TOOLTIP**************************/
+
 .mainPhotoContainer .tooltiptext {
     visibility: hidden;
     font-size: larger;
@@ -64,7 +73,28 @@
 
   }
 
- 
+
+  /* Show the tooltip text when mouse is over the block */
+.photo:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: .4s;
+}
+
+.photo:not(:hover) .tooltiptext {
+    visibility: visible;
+    opacity: 0;
+    animation-name: fadeOutOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: .4s;
+}
+
+/**************************TAG**************************/
+
 .mainPhotoContainer .tag{
     border-radius: 99em;
     background-color: #000000;
@@ -93,56 +123,17 @@
     flex-wrap: wrap;
 }
 
+/**************************EFFECTS**************************/
 
-/* Show the tooltip text when mouse is over the block */
-.photo:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-    animation-name: fadeInOpacity;
-    animation-iteration-count: 1;
-    animation-timing-function: ease-in;
-    animation-duration: .4s;
+
+.mainPhotoContainer .active {
+    opacity: .5;
 }
 
-.photo:not(:hover) .tooltiptext {
-    visibility: visible;
-    opacity: 0;
-    animation-name: fadeOutOpacity;
-    animation-iteration-count: 1;
-    animation-timing-function: ease-in;
-    animation-duration: .4s;
-}
 
-.arrow{
-    height: fit-content;
-    align-self: center;
-    font-size: 2em;
-    text-align: center;
-    border-radius: 9999em;    
-    border: none;
-    color: white;
-    background-color: #000000;
-    padding:  4px 15px;
-    margin: 0px 30px
+.fullscreenButton:hover, .arrow:hover{
+    transform: scale(1.1);
 }
-.fullscreenButton{
-    text-align: center;
-    border-radius: 9999em;    
-    border: none;
-    color: white;
-    font-family: "IBM Plex Sans Hebrew";
-    height: 50px;
-    margin-left: 15px;
-    padding: 13px;
-    font-size: 1.2rem;
-    font-weight: 500;
-    font-style: normal;
-    background-color: #000000;
-}
-.fullscreenButton{
-    margin-left: auto;
-}
-
 
 /*Keyframes for tooltip fade in and fade out animations*/
 @keyframes fadeInOpacity {
@@ -153,4 +144,27 @@
 @keyframes fadeOutOpacity {
 	0% {opacity: 1;}
 	100% {opacity: 0;}
+}
+
+/**************************MISC**************************/
+
+
+.photo, .photo > img{
+    height: 500px;
+    width: 1000px;
+    align-self: center;
+    background-color: red;
+    position: relative;
+}
+.caption{
+    font-family: 'Koh Santepheap';
+    font-size:xx-large;
+    margin: 0;
+
+}
+.dateline{
+    margin-left: 20px;
+    text-align: center;
+    font-size: medium;
+
 }
