@@ -1,6 +1,5 @@
 import { useState, React } from 'react'; //React
 import Background from './Background'; //Gets background
-
 //CSS
 import '../styles/Mainpage.css';
 import '../styles/Fonts.css';

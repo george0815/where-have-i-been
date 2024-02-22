@@ -1,7 +1,6 @@
-import { useState, useRef, useEffect, React } from 'react'; //React
+import {React } from 'react'; //React
 import Background from './Background'; //Gets background
 import albumsObj from './Testalbums'; //gets globe logo
-
 //CSS
 import '../styles/Fonts.css';
 import '../styles/Navbar.css';
@@ -10,18 +9,20 @@ import '../styles/Albumspage.css';
 
 
 
-//login page
+//Alubums page
 export default function Albumspage() {
 
-  console.log(albumsObj);
-  
+  //creates each album button from data, it pulls data from a database if the user is signed in
+  //or localstorage if the user doens't have an account   
   const albumThumbnails = albumsObj.map((album, index) => (
     <button
       id={index}
       key={album.name}
       className="albumButton"
-      src={album.img} 
-    > <div className='tooltiptext'>
+      src={album.img}         
+    > 
+     {/*Contains all the text that shows when the user hovers over the album button*/}
+      <div className='tooltiptext'>
         <br/>
         <p>{album.name}</p>
         <p>{album.location} - {album.date.from} to {album.date.to}</p>
@@ -33,10 +34,9 @@ export default function Albumspage() {
         {album.tags.map((tag) => (<div className='tag'> {tag}</div>))}
         </nav>
       </div>
-      <img src={album.img}/> 
+      <img src={album.img} alt={album.description}/> 
     </button>
   ))
-  console.log(albumThumbnails);
 
 
 
@@ -52,13 +52,10 @@ export default function Albumspage() {
             {albumThumbnails}
         
         </div>
-       
-       
+            
        {/*background*/}
         <Background isMain={false}/>
-  
-
-       
+    
      </div>
 
   );

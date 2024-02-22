@@ -9,11 +9,6 @@ import React from 'react';import Navbar from './components/Navbar';
 import Editing from './components/Editing';
 
 
-
-
-
-
-
 function App() {
   return (
     <div className="App">

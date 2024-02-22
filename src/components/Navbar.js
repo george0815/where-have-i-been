@@ -7,8 +7,6 @@ import '../styles/Fonts.css';
 
 
 
-
-
 //navbar, used in every page except the login page
 export default function Navbar() {
 
@@ -18,7 +16,6 @@ export default function Navbar() {
 
   //initiates title
   const [country, setCurrentCountry] = useState("Where have I been?") // set currrent slide index
-
 
   //sets the title to a random countries name every 100ms up to i times
   function showCountries(i) {
@@ -39,15 +36,14 @@ export default function Navbar() {
         if(i == 20){setCurrentCountry("Where have I been?"); 
       }
     }, i * 100);
-}
+  }
 
-useEffect(() => {
 
-    //every 15 seconds set the title to a series of random countrys' names
+  //every 15 seconds set the title to a series of random countrys' names
+  useEffect(() => {
     titleTextInterval = setInterval(() => {for(let i = 0; i <= 20; i++){ showCountries(i);}}, 15000);
     return () => {  clearInterval(titleTextInterval)}
-
-})
+  })
 
   //Just for testing purposes, will be replaced with proper variables from props later
   const [page, setPage] = useState(0);

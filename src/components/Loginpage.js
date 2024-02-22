@@ -1,7 +1,6 @@
-import { useState, useRef, useEffect, React } from 'react'; //React
+import {React } from 'react'; //React
 import Background from './Background'; //Gets background
 import logo from '../images/logo.svg'; //gets globe logo
-
 //CSS
 import '../styles/Mainpage.css';
 import '../styles/Fonts.css';
@@ -14,8 +13,6 @@ import '../styles/Navbar.css';
 export default function Loginpage() {
 
   
-
-
   return (
 
        //Holds all elements in the main page
@@ -25,6 +22,8 @@ export default function Loginpage() {
         <div className="loginContainer">
             {/* logo*/}
             <img src={logo} alt="Site logo - a silhouette of a globe"/>
+
+             {/*Email prompt*/}
             <div className='inputContainer'>
               <label for="email">Email</label>
               <input
@@ -32,7 +31,8 @@ export default function Loginpage() {
                 placeholder="email"
                 name="email"
               />      
-            </div>      
+            </div>
+            {/*Password prompt*/}      
             <div className='inputContainer'>
 
               <label for="Password">Password</label>
@@ -42,6 +42,7 @@ export default function Loginpage() {
                 name="password"
               />
             </div>      
+            {/*login and forgot password buttons*/}   
             <button className='navButton'>Login</button>
             <p className='noPassText'>No account? <button>Sign up here</button></p>
 

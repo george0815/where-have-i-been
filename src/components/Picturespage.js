@@ -1,39 +1,38 @@
-import { useState, useRef, useEffect, React } from 'react'; //React
+import {React} from 'react'; //React
 import Background from './Background'; //Gets background
 import albumsObj from './Testalbums'; //gets globe logo
-
 //CSS
 import '../styles/Fonts.css';
 import '../styles/Navbar.css';
 import '../styles/Picturespage.css';
 
 
-
+ 
 
 //login page
 export default function Picturespage() {
 
-  console.log(albumsObj);
-  
+  //creates each picture button from data, it pulls data from a database if the user is signed in
+  //or localstorage if the user doens't have an account     
   const albumThumbnails = albumsObj.map((album, index) => (
+    
     <button
       id={index}
       key={album.name}
       className="pictureButton"
-    > <div className='tooltiptextpic'>
+    > 
+      {/*Contains all the text that shows when the user hovers over the photo button*/}
+      <div className='tooltiptextpic'>
         <br/>
         <p>{album.name}</p>
         <br/>        
-
         <p>{album.location} - {album.date.from}</p>
-
-       
       </div>
+      {/*actual photo*/}
       <img src={album.img}/> 
 
     </button>
   ))
-  console.log(albumThumbnails);
 
 
 

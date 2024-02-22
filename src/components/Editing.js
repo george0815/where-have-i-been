@@ -1,7 +1,5 @@
-import { useState, useRef, useEffect, React } from 'react'; //React
+import {React } from 'react'; //React
 import Background from './Background'; //Gets background
-import logo from '../images/logo.svg'; //gets globe logo
-
 //CSS
 import '../styles/Mainpage.css';
 import '../styles/Fonts.css';
@@ -38,13 +36,7 @@ export default function Editing() {
   
   default:
     saveButtonText = "Add"
-
-
-    
-
  }
-
-
 
 
 
@@ -55,8 +47,10 @@ export default function Editing() {
 
        {/*main div that hold all the login promps and buttons*/}
         <div className="editingContainer">
+
             {/* Caption and Location*/}
             <div className='captionLocation'>
+               {/* Caption*/}
               <div className='inputContainerEditing'>
                 <label for="caption">Caption</label>
                 <input
@@ -66,6 +60,7 @@ export default function Editing() {
                   "caption"
                 />    
               </div>
+               {/*Location*/}
               <div className='inputContainerEditing location' >
                 <label for="location">Location</label>
                 <input
@@ -75,36 +70,38 @@ export default function Editing() {
                 />  
               </div>
             </div> 
+
+
             {/* Date and time*/}
             <div className='dateTime'>
-<div className='inputContainerEditing'>
-              <label for="dateAndTime">Date and Time</label>
-              <div className='dateInputContainer'>
-              <input
-                className='dateAndTime'
-                type="text"
-               placeholder = {isAlbum ? "from" : "date and time"}
-                name="dateAndTime"
-              />    
-              { isAlbum &&
+      
+                <div className='inputContainerEditing'>
+                  <label for="dateAndTime">Date and Time</label>
+                  <div className='dateInputContainer'>
 
-              <input
-                  type="text"
-                  placeholder="to"
-                  name="toDate"
-                  className='toDate'
-                />  
-              } 
-              </div>
-             </div>
+                    {/*If the user is currently adding or editing an
+                    album, a second input box is displayed so they can enter a range of dates*/}
+                    <input
+                      className='dateAndTime'
+                      type="text"
+                      placeholder = {isAlbum ? "from" : "date and time"}
+                      name="dateAndTime"
+                    />    
+                    
+                    { isAlbum && <input
+                      type="text"
+                      placeholder="to"
+                      name="toDate"
+                      className='toDate'
+                    />  
+                    } 
+                  </div>
+                </div>
+            </div>     
 
-
-
-             
-            </div>           
             {/* Description */}
             <div className='description'>
-            <div className='inputContainerEditing'>
+              <div className='inputContainerEditing'>
 
                 <label for="description">Description</label>
                 <textarea
@@ -114,27 +111,33 @@ export default function Editing() {
                   className='descriptionInput'
                 />   
               </div>  
-            </div>     
+            </div>  
+
+
             {/*Tags and button*/}
             <div className='tagsEditing'>
 
+              {/*Contains the input and button to add a new tag*/}
               <div className='inputTagContainer'>
-              <div className='inputContainerEditing'>
 
-                <label for="tagInput">Tags</label>
-                <div className='addTagRow'>
-                <input
-                  type="text"
-                  placeholder="tag name"
-                  name="tagInput"
-                  className='tagInput'
-                />   
-                <button className='addTag'>Add tag</button>
+                <div className='inputContainerEditing'>
 
-                </div>
+                  <label for="tagInput">Tags</label>
+                  <div className='addTagRow'>
+                    <input
+                      type="text"
+                      placeholder="tag name"
+                      name="tagInput"
+                      className='tagInput'
+                    />   
+                    <button className='addTag'>Add tag</button>
+                  </div>
+
                 </div>   
 
               </div>   
+
+              {/*Contains actual tags*/}
               <div className='tagsContainerEditing'> 
                 <div className='tag'>Street</div>
                 <div className='tag'>Dusk</div>
@@ -145,11 +148,7 @@ export default function Editing() {
             </div>     
                
             {/*Save Button*/}
-            <button className='saveButton'>
-
-           {saveButtonText}
-
-            </button>
+            <button className='saveButton'>{saveButtonText}</button>
 
 
         </div>
