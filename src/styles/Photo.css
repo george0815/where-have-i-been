@@ -16,6 +16,21 @@
     justify-content: center;
 }
 
+.fullscreenPhotoContainer{
+    visibility: hidden;
+    background-color: #272727e8;
+    position: absolute;
+    display: grid;
+    top: 0%;
+    left: 0%;
+    z-index: 5;
+    height: 100vh;
+    width: 100vw;
+    transition: opacity 1s ease;
+    opacity: 0;
+
+}
+
 /**************************BUTTONS**************************/
 
 .arrow{
@@ -125,6 +140,8 @@
 
 /**************************EFFECTS**************************/
 
+/*Current active image*/
+.activeFullscreen { opacity: 1; visibility: visible;}
 
 .mainPhotoContainer .active {
     opacity: .5;
@@ -153,8 +170,8 @@
     height: 500px;
     width: 1000px;
     align-self: center;
-    background-color: red;
     position: relative;
+    object-fit: cover;
 }
 .caption{
     font-family: 'Koh Santepheap';
@@ -168,3 +185,9 @@
     font-size: medium;
 
 }
+.fullscreenPhoto{
+    object-fit: contain;
+    align-self: center;
+    justify-self: center;
+}
+

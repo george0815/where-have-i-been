@@ -14,17 +14,24 @@ export default function Photo() {
 
   //displays image at maximim size while not going over either the viewport width or height
   function onClickFullscreen(){
-
+    setFullscreen(true);
   }
 
   //sets up current photo state
   const [currentPhoto, setCurrentPhoto] = useState(JSON.parse(sessionStorage.getItem("currentPhoto"))); 
+
+  //sets up state for fullscreen
+  const [fullScreen, setFullscreen] = useState(false); 
 
  
   return (
 
       //Holds all elements in the photo page
       <div className="mainPhotoContainer">
+
+        <div className={fullScreen ? 'fullscreenPhotoContainer activeFullscreen' : 'fullscreenPhotoContainer'}>  
+            <img src={currentPhoto.img} className="fullscreenPhoto"/>
+        </div>
 
         {/*left arrow*/}
         <button className='arrow'>↩</button>
@@ -55,7 +62,7 @@ export default function Photo() {
             {/*Holds the caption, date and time, and fullscreen button*/}
             <div className='captionContainer'>
                 <p className='caption'>{currentPhoto.name}     <span className='dateline'>{currentPhoto.location} - {currentPhoto.date}</span></p>
-                <button className='fullscreenButton'>Fullscreen</button>
+                <button onClick={onClickFullscreen} className='fullscreenButton'>Fullscreen</button>
             </div>
 
         </div>
