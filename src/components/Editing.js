@@ -14,14 +14,23 @@ export default function Editing(props) {
   function onClickSave(){
 
     //make new temp album object from localstorage albums object
-    let tempAlbum = JSON.parse(localStorage.getItem("albums"));
+    let tempAlbums = JSON.parse(localStorage.getItem("albums"));
 
     //cycle throught it and find album with Id that matches current album
+    tempAlbums.forEach((album) => {
     
 
-    //replace only changed data
+      if(album.id == props.currentAlbum.id){
+        //replace data with data from inputs
+
+      }
+    
+    });
+
 
     //overwrite albums object in local storage
+    localStorage.setItem('albums', JSON.stringify(tempAlbums));
+
 
     //call some sort of function that hides the editing component again and resets currentalbum state
 
