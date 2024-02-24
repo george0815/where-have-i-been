@@ -1,6 +1,7 @@
 import {React, useEffect, useState} from 'react'; //React
 import Background from './Background'; //Gets background
 import {Link} from 'react-router-dom'; //gets link from react router
+import Navbar from './Navbar';
 //CSS
 import '../styles/Fonts.css';
 import '../styles/Navbar.css';
@@ -52,24 +53,28 @@ export default function Picturespage() {
 
   return (
 
-       //Holds all elements in the main page
-       <div className="picturePageContainer">
+    <div className='componentContainer'>
 
-       {/*main div that hold all the login promps and buttons*/}
-        <div className="pictureContainer">
+      <Navbar/>
 
-            {/* albums*/}
-            {albumThumbnails}
-        
-        </div>
-       
-       
-       {/*background*/}
-        <Background isMain={false}/>
-  
+      {/*Holds all elements in the main page*/}
+      <div className="picturePageContainer">
 
+            {/*main div that hold all the login promps and buttons*/}
+            <div className="pictureContainer">
+
+                {/* albums*/}
+                {albumThumbnails}
+            
+            </div>
        
-     </div>
+            {/*background*/}
+            <Background isMain={false}/>
+
+      </div>
+
+    </div>
+
 
   );
 }

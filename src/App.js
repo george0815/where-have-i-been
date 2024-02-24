@@ -29,7 +29,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navbar/>
       <Routes>
           {/*If user has albums, render albums page, if not, redner main page */}
           <Route path="/" element={(albums.length > 0) ? <Albumspage albums={albums}/> : <Mainpage/> }/>

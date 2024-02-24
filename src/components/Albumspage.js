@@ -1,6 +1,7 @@
 import {React } from 'react'; //React
 import Background from './Background'; //Gets background
 import {Link} from 'react-router-dom'; //gets link from react router
+import Navbar from './Navbar';
 //CSS
 import '../styles/Fonts.css';
 import '../styles/Navbar.css';
@@ -55,21 +56,26 @@ export default function Albumspage(props) {
 
   return (
 
-       //Holds all elements in the main page
+    <div className='componentContainer'>
+
+      <Navbar/>
+
+       {/*Holds all elements in the main page*/}
        <div className="albumPageContainer">
 
-       {/*main div that hold all the login promps and buttons*/}
-        <div className="albumContainer">
+        {/*main div that hold all the login promps and buttons*/}
+          <div className="albumContainer">
 
-            {/* albums*/}
-            {albumThumbnails}
-        
-        </div>
-            
-       {/*background*/}
+              {/* albums*/}
+              {albumThumbnails}
+          
+          </div>
+              
+        {/*background*/}
         <Background isMain={false}/>
     
-     </div>
+      </div>
+    </div>
 
   );
 }

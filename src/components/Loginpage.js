@@ -1,6 +1,7 @@
 import {React } from 'react'; //React
 import Background from './Background'; //Gets background
 import logo from '../images/logo.svg'; //gets globe logo
+import Navbar from './Navbar';
 //CSS
 import '../styles/Mainpage.css';
 import '../styles/Fonts.css';
@@ -15,46 +16,50 @@ export default function Loginpage() {
   
   return (
 
-       //Holds all elements in the main page
+    <div className='componentContainer'>
+
+      <Navbar/>
+
+       {/*Holds all elements in the main page*/}
        <div className="loginPageContainer">
 
-       {/*main div that hold all the login promps and buttons*/}
-        <div className="loginContainer">
-            {/* logo*/}
-            <img src={logo} className="logoImg" alt="Site logo - a silhouette of a globe"/>
+            {/*main div that hold all the login promps and buttons*/}
+            <div className="loginContainer">
+                {/* logo*/}
+                <img src={logo} className="logoImg" alt="Site logo - a silhouette of a globe"/>
 
-             {/*Email prompt*/}
-            <div className='inputContainer'>
-              <label for="email">Email</label>
-              <input
-                type="text"
-                placeholder="email"
-                name="email"
-              />      
+                {/*Email prompt*/}
+                <div className='inputContainer'>
+                  <label for="email">Email</label>
+                  <input
+                    type="text"
+                    placeholder="email"
+                    name="email"
+                  />      
+                </div>
+                {/*Password prompt*/}      
+                <div className='inputContainer'>
+
+                  <label for="Password">Password</label>
+                  <input
+                    type="text"
+                    placeholder="password"
+                    name="password"
+                  />
+                </div>      
+                {/*login and forgot password buttons*/}   
+                <button className='navButton'>Login</button>
+                <p className='noPassText'>No account? <button>Sign up here</button></p>
+
             </div>
-            {/*Password prompt*/}      
-            <div className='inputContainer'>
-
-              <label for="Password">Password</label>
-              <input
-                type="text"
-                placeholder="password"
-                name="password"
-              />
-            </div>      
-            {/*login and forgot password buttons*/}   
-            <button className='navButton'>Login</button>
-            <p className='noPassText'>No account? <button>Sign up here</button></p>
-
+      
+            {/*background*/}
+            <Background isMain={false}/>
+       
         </div>
-       
-       
-       {/*background*/}
-       <Background isMain={false}/>
-  
-
-       
+        
      </div>
+
 
   );
 }
