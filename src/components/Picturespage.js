@@ -2,6 +2,7 @@ import {React, useEffect, useState} from 'react'; //React
 import Background from './Background'; //Gets background
 import {Link} from 'react-router-dom'; //gets link from react router
 import Navbar from './Navbar';
+import Editing from './Editing';
 //CSS
 import '../styles/Fonts.css';
 import '../styles/Navbar.css';
@@ -24,9 +25,19 @@ export default function Picturespage() {
   }
 
 
+  //displays editing component
+  function onClickEdit(){
+    setcurrentlyEditing(true);
+    console.log("fewfewfew");
+  }
+
+  //sets up state for fullscreen
+  const [currentlyEditing, setcurrentlyEditing] = useState(false); 
+
+
   //creates each picture button from data, it pulls data from a database if the user is signed in
   //or localstorage if the user doens't have an account     
-  const albumThumbnails = currentAlbum.photos.map((photo, index) => (
+  const photoThumbnails = currentAlbum.photos.map((photo, index) => (
     
     <Link to="../photo" onClick={() => {onclickPhoto(index)}}>
       <button
@@ -53,18 +64,23 @@ export default function Picturespage() {
 
   return (
 
-    <div className='componentContainer'>
+    <div className='componentContainer transparentBackground'>
 
-      <Navbar/>
+      <Navbar page={1} onClickEdit={onClickEdit}/>
 
       {/*Holds all elements in the main page*/}
       <div className="picturePageContainer">
+
+            {/*Contains fullscreen version of photo*/}
+            <div className={currentlyEditing ? 'editingContainer activeEditing' : 'editingContainer'}>  
+                  <Editing/>
+            </div>
 
             {/*main div that hold all the login promps and buttons*/}
             <div className="pictureContainer">
 
                 {/* albums*/}
-                {albumThumbnails}
+                {photoThumbnails}
             
             </div>
        

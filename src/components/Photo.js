@@ -27,9 +27,9 @@ export default function Photo() {
  
   return (
 
-    <div className='componentContainer'>
+    <div className='componentContainer transparentBackground'>
 
-        <Navbar/>
+        <Navbar page={3}/>
 
         {/*Holds all elements in the photo page*/}
         <div className="mainPhotoContainer">

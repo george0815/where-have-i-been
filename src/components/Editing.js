@@ -1,5 +1,4 @@
 import {React } from 'react'; //React
-import Background from './Background'; //Gets background
 //CSS
 import '../styles/Mainpage.css';
 import '../styles/Fonts.css';
@@ -9,43 +8,16 @@ import '../styles/Navbar.css';
 
 
 //login page
-export default function Editing() {
+export default function Editing(props) {
 
   
-  /**
-   * Emulates state, will fix when connecting all the pages together
-   * Add album = 0
-   * Edit album = 1
-   * Add photo = 2
-   * Edit photo = 3
-  */
- let state = 0
- let saveButtonText = ""
- let isAlbum = false;
 
- switch(state){
-  case 0:
-    saveButtonText = "Create"
-    break;
-  case 1 || 3:
-    saveButtonText = "Save"
-    break;
-  case 2:
-    saveButtonText = "Add"
-    break;
-  
-  default:
-    saveButtonText = "Add"
- }
-
+  let isAlbum = props.isAlbum;
 
 
   return (
 
-       //Holds all elements in the main page
-       <div className="editingPageContainer">
-
-       {/*main div that hold all the login promps and buttons*/}
+        //main div that hold all the login promps and buttons
         <div className="editingContainer">
 
             {/* Caption and Location*/}
@@ -148,18 +120,12 @@ export default function Editing() {
             </div>     
                
             {/*Save Button*/}
-            <button className='saveButton'>{saveButtonText}</button>
+            <button className='saveButton'>{props.saveButtonText}</button>
 
 
         </div>
        
-       
-       {/*background*/}
-       <Background isMain={false}/>
-  
-
-       
-     </div>
+    
 
   );
 }

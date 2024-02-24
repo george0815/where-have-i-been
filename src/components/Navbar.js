@@ -8,7 +8,7 @@ import '../styles/Fonts.css';
 
 
 //navbar, used in every page except the login page
-export default function Navbar() {
+export default function Navbar(props) {
 
 
   //used for cycling through countries for the title text
@@ -46,7 +46,7 @@ export default function Navbar() {
   })
 
   //Just for testing purposes, will be replaced with proper variables from props later
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(props.page);
   const [loggedIn, setloggedIn] = useState(false);
 
   /**
@@ -56,7 +56,6 @@ export default function Navbar() {
    * 3 = individual photo
    * 4 = login page
    */
-
 
 
   return (
@@ -69,9 +68,9 @@ export default function Navbar() {
 
       {/*Holds all buttons */}
       <div className="navButtonContainer">
-       {page == 0 && <button className="navButton">New album</button>}
+       {page == 2 && <button className="navButton">New album</button>}
         {page == 1 && <button className="navButton">Add photo</button>}
-        {(page == 1 || page == 3) && <button className="navButton">Edit</button>}
+        {(page == 1 || page == 3) && <button onClick={props.onClickEdit} className="navButton">Edit</button>}
         {(page == 1 || page == 2) && <button className="navButton">Sort</button>}
         {(page == 1 || page == 3) && <button className="navButton">Download</button>}
         <button className="navButton">Language</button>

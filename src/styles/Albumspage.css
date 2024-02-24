@@ -35,6 +35,8 @@
 }
 
 
+
+
 /**************************BUTTONS**************************/
 
 
@@ -126,7 +128,6 @@
 /**************************EFFECTS**************************/
 
 
-
 .albumPageContainer .active {
     opacity: .5;
 }
@@ -143,4 +144,4 @@
 @keyframes fadeOutOpacity {
 	0% {opacity: 1;}
 	100% {opacity: 0;}
-}
+} 

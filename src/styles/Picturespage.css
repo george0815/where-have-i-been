@@ -21,6 +21,22 @@
   z-index: 10;
 }
 
+
+.editingContainer{
+  visibility: hidden;
+  background-color: #272727e8;
+  position: absolute;
+  display: grid;
+  top: 0%;
+  left: 0%;
+  z-index: 5;
+  height: 100vh;
+  width: 100vw;
+  transition: opacity 1s ease;
+  opacity: 0;
+
+}
+
 /**************************BUTTONS**************************/
 
 .pictureButton > img, .pictureButton{
@@ -136,6 +152,8 @@ animation-duration: .4s;
 
 /**************************EFFECTS**************************/
 
+/*Current active image*/
+.activeEditing { opacity: 1; visibility: visible;}
 
 .picturePageContainer .active {
     opacity: .5;

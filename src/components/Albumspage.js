@@ -1,4 +1,4 @@
-import {React } from 'react'; //React
+import {React, useState } from 'react'; //React
 import Background from './Background'; //Gets background
 import {Link} from 'react-router-dom'; //gets link from react router
 import Navbar from './Navbar';
@@ -6,19 +6,21 @@ import Navbar from './Navbar';
 import '../styles/Fonts.css';
 import '../styles/Navbar.css';
 import '../styles/Albumspage.css';
-import albumsObj from './Testalbums';
 
 
-//handles album button functionality,
-//onclick pass clicked album into session storage
-function onclickAlbum(index){
-  //sets clicked album
-  sessionStorage.setItem("currentAlbum", JSON.stringify(albumsObj[index]));
-}
 
 
 //Alubums page
 export default function Albumspage(props) {
+
+
+  //handles album button functionality,
+  //onclick pass clicked album into session storage
+  function onclickAlbum(index){
+    //sets clicked album
+    sessionStorage.setItem("currentAlbum", JSON.stringify(albumsObj[index]));
+  }
+
 
   let albumsObj = props.albums;
 
@@ -56,9 +58,9 @@ export default function Albumspage(props) {
 
   return (
 
-    <div className='componentContainer'>
+    <div className='componentContainer transparentBackground'>
 
-      <Navbar/>
+      <Navbar page={2} />
 
        {/*Holds all elements in the main page*/}
        <div className="albumPageContainer">
