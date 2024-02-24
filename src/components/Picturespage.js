@@ -28,11 +28,15 @@ export default function Picturespage() {
   //displays editing component
   function onClickEdit(){
     setcurrentlyEditing(true);
-    console.log("fewfewfew");
   }
 
-  //sets up state for fullscreen
+
+  //sets up state for whether the user is currently editing
   const [currentlyEditing, setcurrentlyEditing] = useState(false); 
+
+
+
+  
 
 
   //creates each picture button from data, it pulls data from a database if the user is signed in
@@ -72,8 +76,8 @@ export default function Picturespage() {
       <div className="picturePageContainer">
 
             {/*Contains fullscreen version of photo*/}
-            <div className={currentlyEditing ? 'editingContainer activeEditing' : 'editingContainer'}>  
-                  <Editing/>
+            <div className={currentlyEditing ? 'editingComponentContainer activeEditing' : 'editingComponentContainer'}>  
+                  <Editing saveButtonText="Save" isAlbum={true} adding={false} currentAlbum={currentAlbum}/>
             </div>
 
             {/*main div that hold all the login promps and buttons*/}

@@ -17,6 +17,7 @@ const albumsObj = [
     ai: false,
     date: {from: "06/17/2021", to: "10/17/2021"},
     description: "Some photos from various trips",
+    id: "g543g45ygb3j56",
     img: rio,
 
 

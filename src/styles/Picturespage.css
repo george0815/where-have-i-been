@@ -22,9 +22,9 @@
 }
 
 
-.editingContainer{
+.editingComponentContainer{
   visibility: hidden;
-  background-color: #272727e8;
+  background-color: #272727af;
   position: absolute;
   display: grid;
   top: 0%;

@@ -10,9 +10,33 @@ import '../styles/Navbar.css';
 //login page
 export default function Editing(props) {
 
-  
+  //handles save functionality
+  function onClickSave(){
 
-  let isAlbum = props.isAlbum;
+    //make new temp album object from localstorage albums object
+    let tempAlbum = JSON.parse(localStorage.getItem("albums"));
+
+    //cycle throught it and find album with Id that matches current album
+    
+
+    //replace only changed data
+
+    //overwrite albums object in local storage
+
+    //call some sort of function that hides the editing component again and resets currentalbum state
+
+  }
+
+  //handles adding tag
+  function onClickAddTag(){
+
+    //create state for tag from album prop
+  
+    //simply add tag
+
+  }
+
+
 
 
   return (
@@ -56,11 +80,11 @@ export default function Editing(props) {
                     <input
                       className='dateAndTime'
                       type="text"
-                      placeholder = {isAlbum ? "from" : "date and time"}
+                      placeholder = {props.isAlbum ? "from" : "date and time"}
                       name="dateAndTime"
                     />    
                     
-                    { isAlbum && <input
+                    { props.isAlbum && <input
                       type="text"
                       placeholder="to"
                       name="toDate"
@@ -78,7 +102,7 @@ export default function Editing(props) {
                 <label for="description">Description</label>
                 <textarea
                   rows={6}
-                  placeholder="What inspired you to take this photo?"
+                  placeholder= {props.isAlbum ? "What kinds of pictures are in this album?" : "What inspired you to take this photo?"}
                   name="description"
                   className='descriptionInput'
                 />   
@@ -110,13 +134,7 @@ export default function Editing(props) {
               </div>   
 
               {/*Contains actual tags*/}
-              <div className='tagsContainerEditing'> 
-                <div className='tag'>Street</div>
-                <div className='tag'>Dusk</div>
-                <div className='tag'>Shops</div>
-                <div className='tag'>Dusseldorf</div>
-                <div className='tag'>Walk</div>
-              </div>
+              <div className='tagsContainerEditing'> </div>
             </div>     
                
             {/*Save Button*/}
