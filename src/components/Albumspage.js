@@ -1,4 +1,4 @@
-import {React, useState } from 'react'; //React
+import {React, useState, useEffect } from 'react'; //React
 import Background from './Background'; //Gets background
 import {Link} from 'react-router-dom'; //gets link from react router
 import Navbar from './Navbar';
@@ -22,7 +22,11 @@ export default function Albumspage(props) {
   }
 
 
-  let albumsObj = props.albums;
+
+  //sets up albums state
+  const [albumsObj, setAlbumsObj] = useState(JSON.parse(localStorage.getItem("albums"))); 
+
+ 
 
   //creates each album button from data, it pulls data from a database if the user is signed in
   //or localstorage if the user doens't have an account   

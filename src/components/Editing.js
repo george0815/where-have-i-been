@@ -1,4 +1,4 @@
-import {React } from 'react'; //React
+import {React, useState } from 'react'; //React
 //CSS
 import '../styles/Mainpage.css';
 import '../styles/Fonts.css';
@@ -9,6 +9,38 @@ import '../styles/Navbar.css';
 
 //login page
 export default function Editing(props) {
+
+
+  //sets up tag state
+  const [tags, setTags] = useState(props.currentAlbum.tags); 
+
+
+  //sets up album state
+  const [input, setInput] = useState(
+
+    {
+      description: props.currentAlbum.description,
+      location: props.currentAlbum.location,
+      toDate: props.currentAlbum.date.to,
+      fromDate: props.currentAlbum.date.from,
+      name: props.currentAlbum.name
+    }
+
+  ); 
+
+  function onInputChange(e){
+      setInput( prevInput => {
+        
+        return {
+          ...prevInput,
+          [e.target.name]: e.target.value
+        }
+
+      })
+    
+  }
+
+
 
   //handles save functionality
   function onClickSave(){
@@ -22,7 +54,11 @@ export default function Editing(props) {
 
       if(album.id == props.currentAlbum.id){
         //replace data with data from inputs
-
+        album.name = document.getElementById("caption").value;
+        album.location = document.getElementById("location").value;
+        album.date.from = document.getElementById("fromDate").value;
+        album.date.to = document.getElementById("toDate").value;
+        album.description = document.getElementById("description").value;
       }
     
     });
@@ -32,16 +68,25 @@ export default function Editing(props) {
     localStorage.setItem('albums', JSON.stringify(tempAlbums));
 
 
+
+
     //call some sort of function that hides the editing component again and resets currentalbum state
+    props.onEditExit();
+
 
   }
 
   //handles adding tag
   function onClickAddTag(){
-
-    //create state for tag from album prop
   
+    let tempTags = tags
+    tempTags.push(document.getElementsByClassName("tagInput")[0].value)
+    console.log(tempTags);
+
     //simply add tag
+    setTags((tempTags) => [...tempTags]);
+    console.log(tags);
+
 
   }
 
@@ -57,12 +102,15 @@ export default function Editing(props) {
             <div className='captionLocation'>
                {/* Caption*/}
               <div className='inputContainerEditing'>
-                <label for="caption">Caption</label>
+                <label for="name">Caption</label>
                 <input
                   type="text"
                   placeholder="caption"
-                  name=
-                  "caption"
+                  name="name"
+                  id="caption"
+                  value={input.name}
+                  onChange={onInputChange}
+
                 />    
               </div>
                {/*Location*/}
@@ -72,6 +120,10 @@ export default function Editing(props) {
                   type="text"
                   placeholder="location"
                   name="location"
+                  id="location"
+                  value={input.location}
+                  onChange={(e) => {onInputChange(e)}}
+
                 />  
               </div>
             </div> 
@@ -90,7 +142,11 @@ export default function Editing(props) {
                       className='dateAndTime'
                       type="text"
                       placeholder = {props.isAlbum ? "from" : "date and time"}
-                      name="dateAndTime"
+                      name="fromDate"
+                      id="fromDate"
+                      value={input.fromDate}
+                      onChange={onInputChange}
+
                     />    
                     
                     { props.isAlbum && <input
@@ -98,6 +154,9 @@ export default function Editing(props) {
                       placeholder="to"
                       name="toDate"
                       className='toDate'
+                      id="toDate"
+                      value={input.toDate}
+                      onChange={onInputChange}
                     />  
                     } 
                   </div>
@@ -114,6 +173,9 @@ export default function Editing(props) {
                   placeholder= {props.isAlbum ? "What kinds of pictures are in this album?" : "What inspired you to take this photo?"}
                   name="description"
                   className='descriptionInput'
+                  id="description"
+                  value={input.description}
+                  onChange={onInputChange}
                 />   
               </div>  
             </div>  
@@ -135,7 +197,7 @@ export default function Editing(props) {
                       name="tagInput"
                       className='tagInput'
                     />   
-                    <button className='addTag'>Add tag</button>
+                    <button className='addTag' onClick={onClickAddTag}>Add tag</button>
                   </div>
 
                 </div>   
@@ -143,11 +205,11 @@ export default function Editing(props) {
               </div>   
 
               {/*Contains actual tags*/}
-              <div className='tagsContainerEditing'> </div>
+              <div className='tagsContainerEditing'> {tags.map((tag) => (<div key={tag} className='tag'> {tag}</div>))}</div>
             </div>     
                
             {/*Save Button*/}
-            <button className='saveButton'>{props.saveButtonText}</button>
+            <button className='saveButton' onClick={onClickSave}>{props.saveButtonText}</button>
 
 
         </div>

@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
     //pushes test datalocal to storage
-    localStorage.setItem('albums', JSON.stringify(albumsObj));
+    //localStorage.setItem('albums', JSON.stringify(albumsObj));
 
     //sets state
     setAlbums(JSON.parse(localStorage.getItem("albums")));
@@ -31,7 +31,7 @@ function App() {
     <BrowserRouter>
       <Routes>
           {/*If user has albums, render albums page, if not, redner main page */}
-          <Route path="/" element={(albums.length > 0) ? <Albumspage albums={albums}/> : <Mainpage/> }/>
+          <Route path="/" element={(albums.length > 0) ? <Albumspage/> : <Mainpage/> }/>
           <Route path="main" element={<Mainpage/>}/>
           <Route path="editing" element={<Editing/>}/>
           <Route path="albums" element={<Albumspage/>}/>

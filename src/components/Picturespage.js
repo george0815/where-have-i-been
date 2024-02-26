@@ -30,6 +30,11 @@ export default function Picturespage() {
     setcurrentlyEditing(true);
   }
 
+  //hides editing component and refreshes state
+  function onEditExit(){
+    setcurrentlyEditing(false);
+  }
+
 
   //sets up state for whether the user is currently editing
   const [currentlyEditing, setcurrentlyEditing] = useState(false); 
@@ -77,7 +82,7 @@ export default function Picturespage() {
 
             {/*Contains fullscreen version of photo*/}
             <div className={currentlyEditing ? 'editingComponentContainer activeEditing' : 'editingComponentContainer'}>  
-                  <Editing saveButtonText="Save" isAlbum={true} adding={false} currentAlbum={currentAlbum}/>
+                  <Editing saveButtonText="Save" isAlbum={true} adding={false} onEditExit={onEditExit} currentAlbum={currentAlbum}/>
             </div>
 
             {/*main div that hold all the login promps and buttons*/}
