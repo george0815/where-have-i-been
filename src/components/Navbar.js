@@ -1,10 +1,9 @@
-import { useState, useRef, useEffect, React } from 'react'; //React
+import { useState, useEffect, React } from 'react'; //React
 import logo from '../images/logo.svg'; //gets globe logo
 import {countries} from "countries-list"; //gets list of every country (used for title)
 //CSS
 import '../styles/Navbar.css';
 import '../styles/Fonts.css';
-
 
 
 //navbar, used in every page except the login page
@@ -50,9 +49,6 @@ export default function Navbar(props) {
   }
 
 
-  //used for cycling through countries for the title text
-  let titleTextInterval = useRef();
-
   //used for showing search tags input
   const [showTagInput, setShowTagInput] = useState(false)
 
@@ -76,7 +72,7 @@ export default function Navbar(props) {
       }
 
       //set the title back to normal
-        if(i == 20){setCurrentCountry("Where have I been?"); 
+        if(i === 20){setCurrentCountry("Where have I been?"); 
       }
     }, i * 100);
   }
@@ -84,13 +80,10 @@ export default function Navbar(props) {
 
   //every 15 seconds set the title to a series of random countrys' names
   useEffect(() => {
-    titleTextInterval = setInterval(() => {for(let i = 0; i <= 20; i++){ showCountries(i);}}, 15000);
+    let titleTextInterval = setInterval(() => {for(let i = 0; i <= 20; i++){ showCountries(i);}}, 15000);
     return () => {  clearInterval(titleTextInterval)}
   })
 
-  //Just for testing purposes, will be replaced with proper variables from props later
-  const [page, setPage] = useState(props.page);
-  const [loggedIn, setloggedIn] = useState(false);
 
   /**
    * 0 = Main page
@@ -111,25 +104,25 @@ export default function Navbar(props) {
 
       {/*Holds all buttons */}
       <div className="navButtonContainer">
-       {page == 2 && <button className="navButton">New album</button>}
-        {page == 1 && <button className="navButton">Add photo</button>}
-        {(page == 1 || page == 3) && <button onClick={props.onClickEdit} className="navButton">Edit</button>}
-        {(page == 1 || page == 2) && <select className="navButton sort" onChange={(e) => {onClickSort(e)}}>
+        {props.page === 2 && <button className="navButton">New album</button>}
+        {props.page === 1 && <button className="navButton">Add photo</button>}
+        {(props.page === 1 || props.page === 3) && <button onClick={props.onClickEdit} className="navButton">Edit</button>}
+        {(props.page === 1 || props.page === 2) && <select className="navButton sort" onChange={(e) => {onClickSort(e)}}>
           <option defaultValue="Sort by...">Sort by...</option>
           <option>date</option>
           <hr/>
           <option>caption</option>
           <hr/>
-          <option>description</option>
+          <option>description</option> 
           <hr/>
           <option>location</option>
           <hr/>
           <option>tags</option>
         </select>}
         {showTagInput && <input onChange={(e) => {onTagInputChange(e)}} placeholder='Enter tag'/>}
-        {(page == 1 || page == 3) && <button className="navButton">Download</button>}
+        {(props.page === 1 || props.page === 3) && <button className="navButton">Download</button>}
         <button className="navButton">Language</button>
-        {!loggedIn && <button className="navButton">Login</button>}
+        {!props.loggedIn && <button className="navButton">Login</button>}
       </div>
 
     </nav>

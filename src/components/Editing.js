@@ -52,7 +52,7 @@ export default function Editing(props) {
     tempAlbums.forEach((album) => {
     
 
-      if(album.id == props.currentAlbum.id){
+      if(album.id === props.currentAlbum.id){
         //replace data with data from inputs
         album.name = document.getElementById("caption").value;
         album.location = document.getElementById("location").value;
