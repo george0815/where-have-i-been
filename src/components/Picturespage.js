@@ -1,4 +1,4 @@
-import {React, useEffect, useState} from 'react'; //React
+import {React, useState} from 'react'; //React
 import Background from './Background'; //Gets background
 import {Link} from 'react-router-dom'; //gets link from react router
 import Navbar from './Navbar';
@@ -48,10 +48,10 @@ export default function Picturespage() {
   //or localstorage if the user doens't have an account     
   const photoThumbnails = currentAlbum.photos.map((photo, index) => (
     
-    <Link to="../photo" onClick={() => {onclickPhoto(index)}}>
+    <Link to="../photo" key={photo.name}onClick={() => {onclickPhoto(index)}}>
       <button
         id={index}
-        key={photo.name}
+        
         className="pictureButton"
       > 
         {/*Contains all the text that shows when the user hovers over the photo button*/}

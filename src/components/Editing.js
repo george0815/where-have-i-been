@@ -102,7 +102,7 @@ export default function Editing(props) {
             <div className='captionLocation'>
                {/* Caption*/}
               <div className='inputContainerEditing'>
-                <label for="name">Caption</label>
+                <label htmlFor="name">Caption</label>
                 <input
                   type="text"
                   placeholder="caption"
@@ -115,7 +115,7 @@ export default function Editing(props) {
               </div>
                {/*Location*/}
               <div className='inputContainerEditing location' >
-                <label for="location">Location</label>
+                <label htmlFor="location">Location</label>
                 <input
                   type="text"
                   placeholder="location"
@@ -133,7 +133,7 @@ export default function Editing(props) {
             <div className='dateTime'>
       
                 <div className='inputContainerEditing'>
-                  <label for="dateAndTime">Date and Time</label>
+                  <label htmlFor="dateAndTime">Date and Time</label>
                   <div className='dateInputContainer'>
 
                     {/*If the user is currently adding or editing an
@@ -167,7 +167,7 @@ export default function Editing(props) {
             <div className='description'>
               <div className='inputContainerEditing'>
 
-                <label for="description">Description</label>
+                <label htmlFor="description">Description</label>
                 <textarea
                   rows={6}
                   placeholder= {props.isAlbum ? "What kinds of pictures are in this album?" : "What inspired you to take this photo?"}
@@ -189,7 +189,7 @@ export default function Editing(props) {
 
                 <div className='inputContainerEditing'>
 
-                  <label for="tagInput">Tags</label>
+                  <label htmlFor="tagInput">Tags</label>
                   <div className='addTagRow'>
                     <input
                       type="text"
@@ -199,7 +199,7 @@ export default function Editing(props) {
                     />   
                     <button className='addTag' onClick={onClickAddTag}>Add tag</button>
                   </div>
-
+ 
                 </div>   
 
               </div>   

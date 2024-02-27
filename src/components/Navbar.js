@@ -11,6 +11,25 @@ import '../styles/Fonts.css';
 export default function Navbar(props) {
 
 
+  //handles sorting
+  function onClickSort(evt) {
+
+    //take parameter
+
+    //get current album from prop
+
+
+
+
+    console.log("fewf");
+    if (evt.target.value === "caption") {
+    }
+    evt.target.value = "Sort by..."
+  }
+
+
+
+
   //used for cycling through countries for the title text
   let titleTextInterval = useRef();
 
@@ -71,7 +90,14 @@ export default function Navbar(props) {
        {page == 2 && <button className="navButton">New album</button>}
         {page == 1 && <button className="navButton">Add photo</button>}
         {(page == 1 || page == 3) && <button onClick={props.onClickEdit} className="navButton">Edit</button>}
-        {(page == 1 || page == 2) && <button className="navButton">Sort</button>}
+        {(page == 1 || page == 2) && <select className="navButton sort" onChange={(e) => {onClickSort(e)}}>
+          <option defaultValue="Sort by...">Sort by...</option>
+          <option>date</option>
+          <option>caption</option>
+          <option>description</option>
+          <option>location</option>
+          <option>tags</option>
+        </select>}
         {(page == 1 || page == 3) && <button className="navButton">Download</button>}
         <button className="navButton">Language</button>
         {!loggedIn && <button className="navButton">Login</button>}

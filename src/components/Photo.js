@@ -1,6 +1,5 @@
 import {React, useState} from 'react'; //React
 import Background from './Background'; //Gets background
-import germany from '../images/test/germany.jpg';
 import Navbar from './Navbar';
 //CSS
 import '../styles/Fonts.css';

@@ -2,7 +2,6 @@ import './App.css';
 import { useState, useEffect, React } from 'react'; //React
 import { BrowserRouter, Route, Routes } from 'react-router-dom' //React Router
 //Components
-import Navbar from './components/Navbar';
 import Mainpage from './components/Mainpage';
 import Loginpage from './components/Loginpage';
 import Albumspage from './components/Albumspage';
