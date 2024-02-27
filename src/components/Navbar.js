@@ -13,32 +13,69 @@ export default function Navbar(props) {
   //handles sorting
   function onClickSort(evt) {
 
-    //take parameter
+    //make new temp album object from localstorage albums object
+    let tempAlbums = JSON.parse(localStorage.getItem("albums"));
 
-    //get current album from prop
 
+    //sorts albums
     switch(evt.target.value) {
       case "date":
           setShowTagInput(false)
+          tempAlbums = tempAlbums.sort(stringSort('dateFrom'));
+          console.log(tempAlbums);
         break;
       case "caption":
           setShowTagInput(false)
+          tempAlbums = tempAlbums.sort(stringSort('name'));
+          console.log(tempAlbums);
         break;
       case "description":
           setShowTagInput(false)
+          tempAlbums = tempAlbums.sort(stringSort('description'));
+          console.log(tempAlbums);
         break;
       case "location":
           setShowTagInput(false)
+          tempAlbums = tempAlbums.sort(stringSort('location'));
+          console.log(tempAlbums);
+
         break;
-      case "tags":
+      case "tag":
           setShowTagInput(true)
           break;
       default:
           setShowTagInput(false)
       }
 
-    
+    //reset the select value to always show sort
     evt.target.value = "Sort by..."
+
+
+
+
+    //saves to local storage and refreshes albums
+    localStorage.setItem('albums', JSON.stringify(tempAlbums));
+    props.updateAlbums(); 
+
+  }
+
+
+
+
+  //function used to sort by descripton, name and location
+  function stringSort(prop) {
+
+    return function (a, b){
+      const stringA = a[prop].toUpperCase(); // ignore upper and lowercase
+      const stringB = b[prop].toUpperCase(); // ignore upper and lowercase
+        
+      //sort in an ascending order
+      if (stringA < stringB) {return -1;}
+      if (stringA > stringB) {return 1;}
+    
+      // names must be equal
+      return 0;
+    }
   }
 
 
@@ -117,7 +154,7 @@ export default function Navbar(props) {
           <hr/>
           <option>location</option>
           <hr/>
-          <option>tags</option>
+          <option>tag</option>
         </select>}
         {showTagInput && <input onChange={(e) => {onTagInputChange(e)}} placeholder='Enter tag'/>}
         {(props.page === 1 || props.page === 3) && <button className="navButton">Download</button>}

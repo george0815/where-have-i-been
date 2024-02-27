@@ -17,8 +17,11 @@ export default function Mainpage() {
 
   return (
 
+    <div className='componentContainer'>
 
-      //Holds all elements in the main page
+      <Navbar page={0}/>
+
+      {/*Holds all elements in the main page*/}
       <div className="mainPageContainer">
 
         {/*Holds all the text in the main page, except for picture caption at the bottom left*/}
@@ -37,6 +40,8 @@ export default function Mainpage() {
         {/*background caption*/}
         <p className="backgroundCaption">{currentCaption}</p>
       </div>
+    </div>
+
 
   );
 }

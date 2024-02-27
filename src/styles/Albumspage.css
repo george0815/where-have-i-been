@@ -10,6 +10,7 @@
 /*Main container*/
 .albumContainer{
     padding-top: 50px;
+    padding-bottom: 50px;
     justify-items: center;
     justify-content: center;
     display: grid;

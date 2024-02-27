@@ -21,8 +21,8 @@ export default function Editing(props) {
     {
       description: props.currentAlbum.description,
       location: props.currentAlbum.location,
-      toDate: props.currentAlbum.date.to,
-      fromDate: props.currentAlbum.date.from,
+      toDate: props.currentAlbum.dateTo,
+      fromDate: props.currentAlbum.dateFrom,
       name: props.currentAlbum.name
     }
 
@@ -56,8 +56,8 @@ export default function Editing(props) {
         //replace data with data from inputs
         album.name = document.getElementById("caption").value;
         album.location = document.getElementById("location").value;
-        album.date.from = document.getElementById("fromDate").value;
-        album.date.to = document.getElementById("toDate").value;
+        album.dateFrom = document.getElementById("fromDate").value;
+        album.dateTo = document.getElementById("toDate").value;
         album.description = document.getElementById("description").value;
       }
     

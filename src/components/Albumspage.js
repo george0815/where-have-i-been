@@ -22,41 +22,20 @@ export default function Albumspage(props) {
   }
 
 
-
   //sets up albums state
   const [albumsObj, setAlbumsObj] = useState(JSON.parse(localStorage.getItem("albums"))); 
 
- 
 
-  //creates each album button from data, it pulls data from a database if the user is signed in
-  //or localstorage if the user doens't have an account   
-  const albumThumbnails = albumsObj.map((album, index) => (
+  //used to update ablums after sorting, gets passed to navbar
+  function updateAlbums(){
 
-    //redirects to album
-    <Link to="album" onClick={() => { onclickAlbum(index)}}>
-      <button
-        key={album.name}
-        className="albumButton"
-        src={album.img}         
-      > 
-      {/*Contains all the text that shows when the user hovers over the album button*/}
-        <div className='tooltiptext'>
-          <br/>
-          <p>{album.name}</p>
-          <p>{album.location} - {album.date.from} to {album.date.to}</p>
-          <br/>        
+    let temp = albumsObj;
+    temp = JSON.parse(localStorage.getItem("albums"));
+    console.log(temp);
+    setAlbumsObj(temp);
+    console.log(albumsObj);
 
-          <p>{album.description}</p>
-          <br/>     
-          <nav className='tagContainer'>
-          {album.tags.map((tag) => (<div className='tag'> {tag}</div>))}
-          </nav>
-        </div>
-        <img src={album.img} alt={album.description}/> 
-      </button>
-    </Link>
-
-  ))
+  }
 
 
 
@@ -64,7 +43,7 @@ export default function Albumspage(props) {
 
     <div className='componentContainer transparentBackground'>
 
-      <Navbar page={2} />
+      <Navbar updateAlbums={updateAlbums} page={2} />
 
        {/*Holds all elements in the main page*/}
        <div className="albumPageContainer">
@@ -72,8 +51,35 @@ export default function Albumspage(props) {
         {/*main div that hold all the login promps and buttons*/}
           <div className="albumContainer">
 
-              {/* albums*/}
-              {albumThumbnails}
+              {/* albums
+              creates each album button from data, it pulls data from a database if the user is signed in
+              or localstorage if the user doens't have an account  */} 
+              {albumsObj.map((album, index) => (
+
+                //redirects to album
+                <Link to="album" key={index} onClick={() => { onclickAlbum(index)}}>
+                  <button
+                    key={album.name}
+                    className="albumButton"
+                    src={album.img}         
+                  > 
+                  {/*Contains all the text that shows when the user hovers over the album button*/}
+                    <div className='tooltiptext'>
+                      <br/>
+                      <p>{album.name}</p>
+                      <p>{album.location} - {album.dateFrom} to {album.dateTo}</p>
+                      <br/>        
+                      <p>{album.description}</p>
+                      <br/>     
+                      <nav className='tagContainer'>
+                      {album.tags.map((tag) => (<div className='tag'> {tag}</div>))}
+                      </nav>
+                    </div>
+                    <img src={album.img} alt={album.description}/> 
+                  </button>
+                </Link>
+
+                ))}
           
           </div>
               
