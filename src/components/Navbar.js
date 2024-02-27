@@ -18,20 +18,44 @@ export default function Navbar(props) {
 
     //get current album from prop
 
+    switch(evt.target.value) {
+      case "date":
+          setShowTagInput(false)
+        break;
+      case "caption":
+          setShowTagInput(false)
+        break;
+      case "description":
+          setShowTagInput(false)
+        break;
+      case "location":
+          setShowTagInput(false)
+        break;
+      case "tags":
+          setShowTagInput(true)
+          break;
+      default:
+          setShowTagInput(false)
+      }
 
-
-
-    console.log("fewf");
-    if (evt.target.value === "caption") {
-    }
+    
     evt.target.value = "Sort by..."
   }
 
 
+  //onchange for tag input, sorts photo/album by tag
+  function onTagInputChange(e){
+    
+  
+  }
 
 
   //used for cycling through countries for the title text
   let titleTextInterval = useRef();
+
+  //used for showing search tags input
+  const [showTagInput, setShowTagInput] = useState(false)
+
 
   //initiates title
   const [country, setCurrentCountry] = useState("Where have I been?") // set currrent slide index
@@ -93,11 +117,16 @@ export default function Navbar(props) {
         {(page == 1 || page == 2) && <select className="navButton sort" onChange={(e) => {onClickSort(e)}}>
           <option defaultValue="Sort by...">Sort by...</option>
           <option>date</option>
+          <hr/>
           <option>caption</option>
+          <hr/>
           <option>description</option>
+          <hr/>
           <option>location</option>
+          <hr/>
           <option>tags</option>
         </select>}
+        {showTagInput && <input onChange={(e) => {onTagInputChange(e)}} placeholder='Enter tag'/>}
         {(page == 1 || page == 3) && <button className="navButton">Download</button>}
         <button className="navButton">Language</button>
         {!loggedIn && <button className="navButton">Login</button>}

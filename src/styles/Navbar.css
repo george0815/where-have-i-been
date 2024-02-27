@@ -72,3 +72,17 @@
 select::-ms-expand {
     display: none;
 }
+
+
+.mainNav input{
+    font-family: "IBM Plex Sans Hebrew";
+    height: auto;
+    width: 100px;
+    border-radius: 9999em;    
+    padding: 13px;
+    margin-left: 15px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-style: normal;
+    border: none;
+}
