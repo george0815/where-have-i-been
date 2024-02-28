@@ -38,12 +38,19 @@ export default function Albumspage(props) {
   }
 
 
+  //search tag, tag the user wants to filter by
+  const [searchTag, setSearchTag] = useState("")
+
+  //sets search tag
+  //function setSearchTag(tag){ setSearchTag(tag) }
+
+
 
   return (
 
     <div className='componentContainer transparentBackground'>
 
-      <Navbar updateAlbums={updateAlbums} page={2} />
+      <Navbar   function setSearchTag={setSearchTag} updateAlbums={updateAlbums} page={2} />
 
        {/*Holds all elements in the main page*/}
        <div className="albumPageContainer">
@@ -57,7 +64,7 @@ export default function Albumspage(props) {
               {albumsObj.map((album, index) => (
 
                 //redirects to album
-                <Link to="album" key={index} onClick={() => { onclickAlbum(index)}}>
+                (album.tags.some(tg => tg.includes(searchTag)) && searchTag != "" || (searchTag === "")) && <Link to="album" key={index} onClick={() => { onclickAlbum(index)}}>
                   <button
                     key={album.name}
                     className="albumButton"

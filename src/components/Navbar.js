@@ -42,6 +42,15 @@ export default function Navbar(props) {
         break;
       case "tag":
           setShowTagInput(true)
+
+
+          //conditionally render albums thumbnails depending on if the tag is found in that albums tags array
+
+          //on input change listener, update search tag state
+
+          
+
+
           break;
       default:
           setShowTagInput(false)
@@ -49,8 +58,6 @@ export default function Navbar(props) {
 
     //reset the select value to always show sort
     evt.target.value = "Sort by..."
-
-
 
 
     //saves to local storage and refreshes albums
@@ -80,10 +87,7 @@ export default function Navbar(props) {
 
 
   //onchange for tag input, sorts photo/album by tag
-  function onTagInputChange(e){
-    
-  
-  }
+  function onTagInputChange(e){    props.setSearchTag(e.target.value); }
 
 
   //used for showing search tags input
