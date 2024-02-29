@@ -19,21 +19,15 @@ export default function Picturespage() {
 
   //handles photo button functionality,
   //onclick pass clicked photo into session storage
-  function onclickPhoto(index){
-    //sets clicked album
-    sessionStorage.setItem("currentPhoto", JSON.stringify(currentAlbum.photos[index]));
-  }
+  function onclickPhoto(index){sessionStorage.setItem("currentPhoto", JSON.stringify(currentAlbum.photos[index]));}
 
 
   //displays editing component
-  function onClickEdit(){
-    setcurrentlyEditing(true);
+  function onClickEdit(){ setcurrentlyEditing(true);
   }
 
   //hides editing component and refreshes state
-  function onEditExit(){
-    setcurrentlyEditing(false);
-  }
+  function onEditExit(){ setcurrentlyEditing(false);}
 
 
   //sets up state for whether the user is currently editing
@@ -41,41 +35,24 @@ export default function Picturespage() {
 
 
 
-  
+  //used to update pictures after sorting, gets passed to navbar
+  function updatePictures(){
+    let temp = currentAlbum;
+    temp = JSON.parse(sessionStorage.getItem("currentAlbum")); 
+    setCurrentAlbum(temp);
+  }
 
 
-  //creates each picture button from data, it pulls data from a database if the user is signed in
-  //or localstorage if the user doens't have an account     
-  const photoThumbnails = currentAlbum.photos.map((photo, index) => (
-    
-    <Link to="../photo" key={photo.name}onClick={() => {onclickPhoto(index)}}>
-      <button
-        id={index}
-        
-        className="pictureButton"
-      > 
-        {/*Contains all the text that shows when the user hovers over the photo button*/}
-        <div className='tooltiptextpic'>
-          <br/>
-          <p>{photo.name}</p>
-          <br/>        
-          <p>{photo.date}</p>
-          <br/>        
-          <p>{photo.description}</p>
-        </div>
-        {/*actual photo*/}
-        <img src={photo.img}/> 
+  //search tag, tag the user wants to filter by
+  const [searchTagPictures, setSearchTagPictures] = useState("")
 
-      </button>
-    </Link>
-  ))
   
 
   return (
 
     <div className='componentContainer transparentBackground'>
 
-      <Navbar page={1} onClickEdit={onClickEdit}/>
+      <Navbar page={1} setSearchTag={setSearchTagPictures} updatePictures={updatePictures} onClickEdit={onClickEdit}/>
 
       {/*Holds all elements in the main page*/}
       <div className="picturePageContainer">
@@ -88,8 +65,31 @@ export default function Picturespage() {
             {/*main div that hold all the login promps and buttons*/}
             <div className="pictureContainer">
 
-                {/* albums*/}
-                {photoThumbnails}
+                {/*creates each picture button from data, it pulls data from a database if the user is signed in
+                or localstorage if the user doens't have an account    */}
+                {currentAlbum.photos.map((photo, index) => (
+    
+                  <Link to="../photo" key={photo.name}onClick={() => {onclickPhoto(index)}}>
+                    <button
+                      id={index}
+                      
+                      className="pictureButton"
+                    > 
+                      {/*Contains all the text that shows when the user hovers over the photo button*/}
+                      <div className='tooltiptextpic'>
+                        <br/>
+                        <p>{photo.name}</p>
+                        <br/>        
+                        <p>{photo.date}</p>
+                        <br/>        
+                        <p>{photo.description}</p>
+                      </div>
+                      {/*actual photo*/}
+                      <img src={photo.img}/> 
+
+                    </button>
+                  </Link>
+                ))}
             
             </div>
        

@@ -16,10 +16,7 @@ export default function Albumspage(props) {
 
   //handles album button functionality,
   //onclick pass clicked album into session storage
-  function onclickAlbum(index){
-    //sets clicked album
-    sessionStorage.setItem("currentAlbum", JSON.stringify(albumsObj[index]));
-  }
+  function onclickAlbum(index){  sessionStorage.setItem("currentAlbum", JSON.stringify(albumsObj[index])); }
 
 
   //sets up albums state
@@ -28,29 +25,21 @@ export default function Albumspage(props) {
 
   //used to update ablums after sorting, gets passed to navbar
   function updateAlbums(){
-
     let temp = albumsObj;
     temp = JSON.parse(localStorage.getItem("albums"));
-    console.log(temp);
     setAlbumsObj(temp);
-    console.log(albumsObj);
-
   }
 
 
   //search tag, tag the user wants to filter by
   const [searchTag, setSearchTag] = useState("")
 
-  //sets search tag
-  //function setSearchTag(tag){ setSearchTag(tag) }
-
-
 
   return (
 
     <div className='componentContainer transparentBackground'>
 
-      <Navbar   function setSearchTag={setSearchTag} updateAlbums={updateAlbums} page={2} />
+      <Navbar setSearchTag={setSearchTag} updateAlbums={updateAlbums} page={2} />
 
        {/*Holds all elements in the main page*/}
        <div className="albumPageContainer">

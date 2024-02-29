@@ -17,6 +17,16 @@ export default function Navbar(props) {
     let tempAlbums = JSON.parse(localStorage.getItem("albums"));
 
 
+    /*sorting pictures
+    create currentAbum variable and pass it into this function
+    if isPicture is true, then go through albums array until you find current album
+    use same sort algorithim on the photos array in that album
+    save albums object to local storage and current album to session storage and refresh pictures page
+    add in conditional rendering to pictures page
+    
+    */
+
+
     //sorts albums
     switch(evt.target.value) {
       case "date":
@@ -42,15 +52,6 @@ export default function Navbar(props) {
         break;
       case "tag":
           setShowTagInput(true)
-
-
-          //conditionally render albums thumbnails depending on if the tag is found in that albums tags array
-
-          //on input change listener, update search tag state
-
-          
-
-
           break;
       default:
           setShowTagInput(false)
