@@ -15,11 +15,11 @@ const albumsObj = [
 //-----------------------------------------------------------------//
 {
 
-    name: "Trips",
+    caption: "Trips",
     location: "cround the world",
     tags: ["europe", "america", "germany", "summer"],
     ai: false,
-    dateFrom: "06/17/2021", 
+    date: "06/17/2021", 
     dateTo: "10/17/2021",
     description: "Some photos from various trips",
     id: "g543g45ygb3j56",
@@ -29,7 +29,7 @@ const albumsObj = [
     photos: [
     {
         img: rio,
-        name: "Rio Trip",
+        caption: "Rio Trip",
         location: "Rio, Brazil",
         date: "02/17/2021",
         description: "I went to Rio to see ADCC in person.",
@@ -40,7 +40,7 @@ const albumsObj = [
     },
     {
         img: cameroon,
-        name: "Cameroon Trip",
+        caption: "Cameroon Trip",
         location: "Cameroon, Africa",
         date: "02/17/2021",
         description: "I went to Cameroon to see Ngannou fight for the title.",
@@ -51,7 +51,7 @@ const albumsObj = [
     },
     {
         img: germany,
-        name: "Germany Trip",
+        caption: "Germany Trip",
         location: "Germany",
         date: "02/17/2021",
         description: "I went to Germany because I want to see some places that appeared in Monster",
@@ -62,7 +62,7 @@ const albumsObj = [
     },
     {
         img: italy,
-        name: "Italy Trip",
+        caption: "Italy Trip",
         location: "Italy",
         date: "02/17/2021",
         description: "I went to Italy because I'm 1/4 Italian so I was interested",
@@ -73,7 +73,7 @@ const albumsObj = [
     },
     {
         img: phuket,
-        name: "Phuket Trip",
+        caption: "Phuket Trip",
         location: "Phuket, Thailand",
         date: "02/17/2021",
         description: "I went to Phuket because I wanted to do Muay Thai",
@@ -84,7 +84,7 @@ const albumsObj = [
     },
     {
         img: prague,
-        name: "Prague Trip",
+        caption: "Prague Trip",
         location: "Prague, Czech Republic",
         date: "02/17/2021",
         description: "I went to Prague because I want to see some places that appeared in Monster",
@@ -95,7 +95,7 @@ const albumsObj = [
     },
     {
         img: qatar,
-        name: "Qatar Trip",
+        caption: "Qatar Trip",
         location: "Qatar, UAE",
         date: "02/17/2021",
         description: "I went to Qatar to see a boxing fight.",
@@ -106,7 +106,7 @@ const albumsObj = [
     },
     {
         img: chicago,
-        name: "Chicago Trip",
+        caption: "Chicago Trip",
         location: "Chicago, USA",
         date: "02/17/2021",
         description: "I visited my uncle in chicago this past winter.",
@@ -129,21 +129,21 @@ const albumsObj = [
 
 {
 
-    name: "urips",
+    caption: "urips",
     location: "bround the world",
     tags: ["plane", "russa", "brazil", "winter"],
     ai: false,
-    dateFrom: "07/17/2021", 
+    date: "07/17/2021", 
     dateTo: "11/17/2021",
     description: "tome photos from various trips",
-    id: "g543g45ygb3j56",
+    id: "ybteh6h5h5eh65",
     img: qatar,
 
 
     photos: [
     {
         img: rio,
-        name: "Rio Trip",
+        caption: "Rio Trip",
         location: "Rio, Brazil",
         date: "02/17/2021",
         description: "I went to Rio to see ADCC in person.",
@@ -154,7 +154,7 @@ const albumsObj = [
     },
     {
         img: cameroon,
-        name: "Cameroon Trip",
+        caption: "Cameroon Trip",
         location: "Cameroon, Africa",
         date: "02/17/2021",
         description: "I went to Cameroon to see Ngannou fight for the title.",
@@ -165,7 +165,7 @@ const albumsObj = [
     },
     {
         img: germany,
-        name: "Germany Trip",
+        caption: "Germany Trip",
         location: "Germany",
         date: "02/17/2021",
         description: "I went to Germany because I want to see some places that appeared in Monster",
@@ -176,7 +176,7 @@ const albumsObj = [
     },
     {
         img: italy,
-        name: "Italy Trip",
+        caption: "Italy Trip",
         location: "Italy",
         date: "02/17/2021",
         description: "I went to Italy because I'm 1/4 Italian so I was interested",
@@ -187,7 +187,7 @@ const albumsObj = [
     },
     {
         img: phuket,
-        name: "Phuket Trip",
+        caption: "Phuket Trip",
         location: "Phuket, Thailand",
         date: "02/17/2021",
         description: "I went to Phuket because I wanted to do Muay Thai",
@@ -198,7 +198,7 @@ const albumsObj = [
     },
     {
         img: prague,
-        name: "Prague Trip",
+        caption: "Prague Trip",
         location: "Prague, Czech Republic",
         date: "02/17/2021",
         description: "I went to Prague because I want to see some places that appeared in Monster",
@@ -209,7 +209,7 @@ const albumsObj = [
     },
     {
         img: qatar,
-        name: "Qatar Trip",
+        caption: "Qatar Trip",
         location: "Qatar, UAE",
         date: "02/17/2021",
         description: "I went to Qatar to see a boxing fight.",
@@ -220,7 +220,7 @@ const albumsObj = [
     },
     {
         img: chicago,
-        name: "Chicago Trip",
+        caption: "Chicago Trip",
         location: "Chicago, USA",
         date: "02/17/2021",
         description: "I visited my uncle in chicago this past winter.",
@@ -244,21 +244,21 @@ const albumsObj = [
 
 {
 
-    name: "xrips",
+    caption: "xrips",
     location: "around the world",
     tags: ["Trigistan", "asia", "africa", "spring"],
     ai: false,
-    dateFrom: "08/17/2021", 
+    date: "08/17/2021", 
     dateTo: "12/17/2021",
     description: "zome photos from various trips",
-    id: "g543g45ygb3j56",
+    id: "hytehwg554h5w4",
     img: phuket,
 
 
     photos: [
     {
         img: rio,
-        name: "Rio Trip",
+        caption: "Rio Trip",
         location: "Rio, Brazil",
         date: "02/17/2021",
         description: "I went to Rio to see ADCC in person.",
@@ -269,7 +269,7 @@ const albumsObj = [
     },
     {
         img: cameroon,
-        name: "Cameroon Trip",
+        caption: "Cameroon Trip",
         location: "Cameroon, Africa",
         date: "02/17/2021",
         description: "I went to Cameroon to see Ngannou fight for the title.",
@@ -280,7 +280,7 @@ const albumsObj = [
     },
     {
         img: germany,
-        name: "Germany Trip",
+        caption: "Germany Trip",
         location: "Germany",
         date: "02/17/2021",
         description: "I went to Germany because I want to see some places that appeared in Monster",
@@ -291,7 +291,7 @@ const albumsObj = [
     },
     {
         img: italy,
-        name: "Italy Trip",
+        caption: "Italy Trip",
         location: "Italy",
         date: "02/17/2021",
         description: "I went to Italy because I'm 1/4 Italian so I was interested",
@@ -302,7 +302,7 @@ const albumsObj = [
     },
     {
         img: phuket,
-        name: "Phuket Trip",
+        caption: "Phuket Trip",
         location: "Phuket, Thailand",
         date: "02/17/2021",
         description: "I went to Phuket because I wanted to do Muay Thai",
@@ -313,7 +313,7 @@ const albumsObj = [
     },
     {
         img: prague,
-        name: "Prague Trip",
+        caption: "Prague Trip",
         location: "Prague, Czech Republic",
         date: "02/17/2021",
         description: "I went to Prague because I want to see some places that appeared in Monster",
@@ -324,7 +324,7 @@ const albumsObj = [
     },
     {
         img: qatar,
-        name: "Qatar Trip",
+        caption: "Qatar Trip",
         location: "Qatar, UAE",
         date: "02/17/2021",
         description: "I went to Qatar to see a boxing fight.",
@@ -335,7 +335,7 @@ const albumsObj = [
     },
     {
         img: chicago,
-        name: "Chicago Trip",
+        caption: "Chicago Trip",
         location: "Chicago, USA",
         date: "02/17/2021",
         description: "I visited my uncle in chicago this past winter.",

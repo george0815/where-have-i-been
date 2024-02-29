@@ -17,53 +17,50 @@ export default function Navbar(props) {
     let tempAlbums = JSON.parse(localStorage.getItem("albums"));
 
 
-    /*sorting pictures
-    create currentAbum variable and pass it into this function
-    if isPicture is true, then go through albums array until you find current album
-    use same sort algorithim on the photos array in that album
-    save albums object to local storage and current album to session storage and refresh pictures page
-    add in conditional rendering to pictures page
-    
-    */
+    //sorts albums if user is on albums page
+    if(props.page === 2){
+      if(evt.target.value != "tag") {
+        setShowTagInput(false)
+        tempAlbums = tempAlbums.sort(stringSort(evt.target.value));
+      }     
+      else{setShowTagInput(true)}
 
 
-    //sorts albums
-    switch(evt.target.value) {
-      case "date":
-          setShowTagInput(false)
-          tempAlbums = tempAlbums.sort(stringSort('dateFrom'));
-          console.log(tempAlbums);
-        break;
-      case "caption":
-          setShowTagInput(false)
-          tempAlbums = tempAlbums.sort(stringSort('name'));
-          console.log(tempAlbums);
-        break;
-      case "description":
-          setShowTagInput(false)
-          tempAlbums = tempAlbums.sort(stringSort('description'));
-          console.log(tempAlbums);
-        break;
-      case "location":
-          setShowTagInput(false)
-          tempAlbums = tempAlbums.sort(stringSort('location'));
-          console.log(tempAlbums);
+      //saves to local storage and refreshes albums
+      localStorage.setItem('albums', JSON.stringify(tempAlbums));
+      props.updateAlbums(); 
+    }
 
-        break;
-      case "tag":
-          setShowTagInput(true)
-          break;
-      default:
-          setShowTagInput(false)
+
+    //sorts photos if user is on a page or an individual album
+    else if(props.page === 1){
+
+      let index = tempAlbums.findIndex(album => {return JSON.parse(sessionStorage.getItem("currentAlbum")).id === album.id});
+
+      //sort the photo array for that album and update temp albums
+      if(evt.target.value != "tag") {
+        setShowTagInput(false)
+        tempAlbums.photos = tempAlbums[index].photos.sort(stringSort(evt.target.value));
+        console.log(tempAlbums);
       }
+      else{setShowTagInput(true)}
+
+      //set currentAlbum in session storage
+      sessionStorage.setItem("currentAlbum", JSON.stringify(tempAlbums[index]));
+      localStorage.setItem('albums', JSON.stringify(tempAlbums));
+
+      //call function to reset pictures page
+      props.updatePictures();
+
+
+    }
+         
 
     //reset the select value to always show sort
     evt.target.value = "Sort by..."
 
 
-    //saves to local storage and refreshes albums
-    localStorage.setItem('albums', JSON.stringify(tempAlbums));
-    props.updateAlbums(); 
+    
 
   }
 
@@ -88,7 +85,7 @@ export default function Navbar(props) {
 
 
   //onchange for tag input, sorts photo/album by tag
-  function onTagInputChange(e){    props.setSearchTag(e.target.value); }
+  function onTagInputChange(e){props.setSearchTag(e.target.value); }
 
 
   //used for showing search tags input

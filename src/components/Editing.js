@@ -22,8 +22,8 @@ export default function Editing(props) {
       description: props.currentAlbum.description,
       location: props.currentAlbum.location,
       toDate: props.currentAlbum.dateTo,
-      fromDate: props.currentAlbum.dateFrom,
-      name: props.currentAlbum.name
+      fromDate: props.currentAlbum.date,
+      caption: props.currentAlbum.caption
     }
 
   ); 
@@ -33,7 +33,7 @@ export default function Editing(props) {
         
         return {
           ...prevInput,
-          [e.target.name]: e.target.value
+          [e.target.caption]: e.target.value
         }
 
       })
@@ -54,9 +54,9 @@ export default function Editing(props) {
 
       if(album.id === props.currentAlbum.id){
         //replace data with data from inputs
-        album.name = document.getElementById("caption").value;
+        album.caption = document.getElementById("caption").value;
         album.location = document.getElementById("location").value;
-        album.dateFrom = document.getElementById("fromDate").value;
+        album.date = document.getElementById("fromDate").value;
         album.dateTo = document.getElementById("toDate").value;
         album.description = document.getElementById("description").value;
       }
@@ -108,7 +108,7 @@ export default function Editing(props) {
                   placeholder="caption"
                   name="name"
                   id="caption"
-                  value={input.name}
+                  value={input.caption}
                   onChange={onInputChange}
 
                 />    

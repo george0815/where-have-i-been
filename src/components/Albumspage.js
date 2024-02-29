@@ -55,15 +55,15 @@ export default function Albumspage(props) {
                 //redirects to album
                 (album.tags.some(tg => tg.includes(searchTag)) && searchTag != "" || (searchTag === "")) && <Link to="album" key={index} onClick={() => { onclickAlbum(index)}}>
                   <button
-                    key={album.name}
+                    key={album.caption}
                     className="albumButton"
                     src={album.img}         
                   > 
                   {/*Contains all the text that shows when the user hovers over the album button*/}
                     <div className='tooltiptext'>
                       <br/>
-                      <p>{album.name}</p>
-                      <p>{album.location} - {album.dateFrom} to {album.dateTo}</p>
+                      <p>{album.caption}</p>
+                      <p>{album.location} - {album.date} to {album.dateTo}</p>
                       <br/>        
                       <p>{album.description}</p>
                       <br/>     

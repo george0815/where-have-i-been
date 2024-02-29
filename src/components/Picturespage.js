@@ -69,7 +69,7 @@ export default function Picturespage() {
                 or localstorage if the user doens't have an account    */}
                 {currentAlbum.photos.map((photo, index) => (
     
-                  <Link to="../photo" key={photo.name}onClick={() => {onclickPhoto(index)}}>
+                  (photo.tags.some(tg => tg.includes(searchTagPictures)) && searchTagPictures != "" || (searchTagPictures === "")) && <Link to="../photo" key={photo.caption}onClick={() => {onclickPhoto(index)}}>
                     <button
                       id={index}
                       
@@ -78,7 +78,7 @@ export default function Picturespage() {
                       {/*Contains all the text that shows when the user hovers over the photo button*/}
                       <div className='tooltiptextpic'>
                         <br/>
-                        <p>{photo.name}</p>
+                        <p>{photo.caption}</p>
                         <br/>        
                         <p>{photo.date}</p>
                         <br/>        

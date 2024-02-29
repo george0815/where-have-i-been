@@ -66,7 +66,7 @@ export default function Photo() {
 
                 {/*Holds the caption, date and time, and fullscreen button*/}
                 <div className='captionContainer'>
-                    <p className='caption'>{currentPhoto.name}     <span className='dateline'>{currentPhoto.location} - {currentPhoto.date}</span></p>
+                    <p className='caption'>{currentPhoto.caption}     <span className='dateline'>{currentPhoto.location} - {currentPhoto.date}</span></p>
                     <button onClick={onClickFullscreen} className='fullscreenButton'>Fullscreen</button>
                 </div>
 
