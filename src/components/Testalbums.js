@@ -131,7 +131,7 @@ const albumsObj = [
 
     name: "urips",
     location: "bround the world",
-    tags: ["europe", "america", "germany", "summer"],
+    tags: ["plane", "russa", "brazil", "winter"],
     ai: false,
     dateFrom: "07/17/2021", 
     dateTo: "11/17/2021",
@@ -246,7 +246,7 @@ const albumsObj = [
 
     name: "xrips",
     location: "around the world",
-    tags: ["europe", "america", "germany", "summer"],
+    tags: ["Trigistan", "asia", "africa", "spring"],
     ai: false,
     dateFrom: "08/17/2021", 
     dateTo: "12/17/2021",
