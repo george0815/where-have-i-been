@@ -10,6 +10,25 @@ import '../styles/Fonts.css';
 export default function Navbar(props) {
 
 
+  //handles removing
+  function remove(){
+
+     //make new temp album object from localstorage albums object
+     let tempAlbums = JSON.parse(localStorage.getItem("albums"));
+
+     let index = tempAlbums.findIndex(album => {return JSON.parse(sessionStorage.getItem("currentAlbum")).id === album.id});
+
+     if(props.page === 2){
+      tempAlbums.splice(tempAlbums.findIndex(index, 1)); // 2nd parameter means remove one item only
+     }
+     else if(props.page === 1){
+    //  tempAlbums[index].photos.splice(tempAlbums.findIndex(album => {return JSON.parse(sessionStorage.getItem("currentAlbum")).id === album.id}));
+     }
+
+
+  }
+
+
   //handles sorting
   function onClickSort(evt) {
 
@@ -19,7 +38,7 @@ export default function Navbar(props) {
 
     //sorts albums if user is on albums page
     if(props.page === 2){
-      if(evt.target.value != "tag") {
+      if(evt.target.value !== "tag") {
         setShowTagInput(false)
         tempAlbums = tempAlbums.sort(stringSort(evt.target.value));
       }     
@@ -38,9 +57,9 @@ export default function Navbar(props) {
       let index = tempAlbums.findIndex(album => {return JSON.parse(sessionStorage.getItem("currentAlbum")).id === album.id});
 
       //sort the photo array for that album and update temp albums
-      if(evt.target.value != "tag") {
+      if(evt.target.value !== "tag") {
         setShowTagInput(false)
-        tempAlbums.photos = tempAlbums[index].photos.sort(stringSort(evt.target.value));
+        tempAlbums[index].photos = tempAlbums[index].photos.sort(stringSort(evt.target.value));
         console.log(tempAlbums);
       }
       else{setShowTagInput(true)}
@@ -145,6 +164,7 @@ export default function Navbar(props) {
       <div className="navButtonContainer">
         {props.page === 2 && <button className="navButton">New album</button>}
         {props.page === 1 && <button className="navButton">Add photo</button>}
+        {(props.page === 1 || props.page === 3) && <button  onClick={remove} className="navButton">Remove</button>}
         {(props.page === 1 || props.page === 3) && <button onClick={props.onClickEdit} className="navButton">Edit</button>}
         {(props.page === 1 || props.page === 2) && <select className="navButton sort" onChange={(e) => {onClickSort(e)}}>
           <option defaultValue="Sort by...">Sort by...</option>
