@@ -1,6 +1,8 @@
 import { useState, useEffect, React } from 'react'; //React
 import logo from '../images/logo.svg'; //gets globe logo
 import {countries} from "countries-list"; //gets list of every country (used for title)
+import { useNavigate } from "react-router-dom";
+
 //CSS
 import '../styles/Navbar.css';
 import '../styles/Fonts.css';
@@ -9,21 +11,43 @@ import '../styles/Fonts.css';
 //navbar, used in every page except the login page
 export default function Navbar(props) {
 
+  const navigate = useNavigate();
+
 
   //handles removing
   function remove(){
 
-     //make new temp album object from localstorage albums object
-     let tempAlbums = JSON.parse(localStorage.getItem("albums"));
+     //add alert 
+    if (window.confirm( + (props.page === 1) ? "Are you sure you want to delete this album?" : "Are you sure you want to delete this photo?")) {
+      //make new temp album object from localstorage albums object
+      let tempAlbums = JSON.parse(localStorage.getItem("albums"));
 
-     let index = tempAlbums.findIndex(album => {return JSON.parse(sessionStorage.getItem("currentAlbum")).id === album.id});
+      let index = tempAlbums.findIndex(album => {return JSON.parse(sessionStorage.getItem("currentAlbum")).id === album.id});
 
-     if(props.page === 2){
-      tempAlbums.splice(tempAlbums.findIndex(index, 1)); // 2nd parameter means remove one item only
-     }
-     else if(props.page === 1){
-    //  tempAlbums[index].photos.splice(tempAlbums.findIndex(album => {return JSON.parse(sessionStorage.getItem("currentAlbum")).id === album.id}));
-     }
+
+
+      //if user is deleting album
+      if(props.page === 1){
+        tempAlbums.splice(index, 1); // 2nd parameter means remove one item only
+        localStorage.setItem('albums', JSON.stringify(tempAlbums));
+        navigate("/");
+      }
+      //if user is deleting photo
+      else if(props.page === 3){
+        tempAlbums[index].photos.splice(tempAlbums[index].photos.findIndex(photo => {return JSON.parse(sessionStorage.getItem("currentPhoto")).id === photo.id}), 1);
+        sessionStorage.setItem("currentAlbum", JSON.stringify(tempAlbums[index]));
+        console.log(tempAlbums[index]);
+        localStorage.setItem('albums', JSON.stringify(tempAlbums));
+        //navigate("../album", { relative: "album" });
+        navigate("/album");
+
+      }
+
+
+      //set storage and redirect
+    } 
+
+     
 
 
   }

@@ -33,6 +33,7 @@ const albumsObj = [
         location: "Rio, Brazil",
         date: "02/17/2021",
         description: "I went to Rio to see ADCC in person.",
+        id: "g543gehf34ihf4un",
         tags: [
             "South America",
             "Trip"
@@ -44,6 +45,7 @@ const albumsObj = [
         location: "Cameroon, Africa",
         date: "02/17/2021",
         description: "I went to Cameroon to see Ngannou fight for the title.",
+        id: "g543g45ygbfenwignhgniore",
         tags: [
             "Africa",
             "UFC"
@@ -55,6 +57,7 @@ const albumsObj = [
         location: "Germany",
         date: "02/17/2021",
         description: "I went to Germany because I want to see some places that appeared in Monster",
+        id: "g543g45ygb3j5fweniofiowe",
         tags: [
             "Monster",
             "Europe"
@@ -66,6 +69,7 @@ const albumsObj = [
         location: "Italy",
         date: "02/17/2021",
         description: "I went to Italy because I'm 1/4 Italian so I was interested",
+        id: "g543g45ygb3fbuwbfw56",
         tags: [
             "Italy",
             "Europe"
@@ -77,6 +81,7 @@ const albumsObj = [
         location: "Phuket, Thailand",
         date: "02/17/2021",
         description: "I went to Phuket because I wanted to do Muay Thai",
+        id: "nfwiofnwepiew",
         tags: [
             "Muay Thai",
             "Asia"
@@ -88,6 +93,7 @@ const albumsObj = [
         location: "Prague, Czech Republic",
         date: "02/17/2021",
         description: "I went to Prague because I want to see some places that appeared in Monster",
+        id: "mfpowenif",
         tags: [
             "Monster",
             "Czech"
@@ -99,6 +105,7 @@ const albumsObj = [
         location: "Qatar, UAE",
         date: "02/17/2021",
         description: "I went to Qatar to see a boxing fight.",
+        id: "ofewoweiwefie",
         tags: [
             "Boxing",
             "Middle East"
@@ -110,6 +117,7 @@ const albumsObj = [
         location: "Chicago, USA",
         date: "02/17/2021",
         description: "I visited my uncle in chicago this past winter.",
+        id: "ngiowie]ewfvp",
         tags: [
             "Uncle",
             "City",
@@ -141,98 +149,106 @@ const albumsObj = [
 
 
     photos: [
-    {
-        img: rio,
-        caption: "Rio Trip",
-        location: "Rio, Brazil",
-        date: "02/17/2021",
-        description: "I went to Rio to see ADCC in person.",
-        tags: [
-            "South America",
-            "Trip"
-        ],
-    },
-    {
-        img: cameroon,
-        caption: "Cameroon Trip",
-        location: "Cameroon, Africa",
-        date: "02/17/2021",
-        description: "I went to Cameroon to see Ngannou fight for the title.",
-        tags: [
-            "Africa",
-            "UFC"
-        ],
-    },
-    {
-        img: germany,
-        caption: "Germany Trip",
-        location: "Germany",
-        date: "02/17/2021",
-        description: "I went to Germany because I want to see some places that appeared in Monster",
-        tags: [
-            "Monster",
-            "Europe"
-        ],
-    },
-    {
-        img: italy,
-        caption: "Italy Trip",
-        location: "Italy",
-        date: "02/17/2021",
-        description: "I went to Italy because I'm 1/4 Italian so I was interested",
-        tags: [
-            "Italy",
-            "Europe"
-        ],
-    },
-    {
-        img: phuket,
-        caption: "Phuket Trip",
-        location: "Phuket, Thailand",
-        date: "02/17/2021",
-        description: "I went to Phuket because I wanted to do Muay Thai",
-        tags: [
-            "Muay Thai",
-            "Asia"
-        ],
-    },
-    {
-        img: prague,
-        caption: "Prague Trip",
-        location: "Prague, Czech Republic",
-        date: "02/17/2021",
-        description: "I went to Prague because I want to see some places that appeared in Monster",
-        tags: [
-            "Monster",
-            "Czech"
-        ],
-    },
-    {
-        img: qatar,
-        caption: "Qatar Trip",
-        location: "Qatar, UAE",
-        date: "02/17/2021",
-        description: "I went to Qatar to see a boxing fight.",
-        tags: [
-            "Boxing",
-            "Middle East"
-        ],
-    },
-    {
-        img: chicago,
-        caption: "Chicago Trip",
-        location: "Chicago, USA",
-        date: "02/17/2021",
-        description: "I visited my uncle in chicago this past winter.",
-        tags: [
-            "Uncle",
-            "City",
-            "USA",
-            "America",
-            "Family",
-            "Wind"
-        ],
-    }
+        {
+            img: rio,
+            caption: "Rio Trip",
+            location: "Rio, Brazil",
+            date: "02/17/2021",
+            description: "I went to Rio to see ADCC in person.",
+            id: "g543gehf34ihf4un",
+            tags: [
+                "South America",
+                "Trip"
+            ],
+        },
+        {
+            img: cameroon,
+            caption: "Cameroon Trip",
+            location: "Cameroon, Africa",
+            date: "02/17/2021",
+            description: "I went to Cameroon to see Ngannou fight for the title.",
+            id: "g543g45ygbfenwignhgniore",
+            tags: [
+                "Africa",
+                "UFC"
+            ],
+        },
+        {
+            img: germany,
+            caption: "Germany Trip",
+            location: "Germany",
+            date: "02/17/2021",
+            description: "I went to Germany because I want to see some places that appeared in Monster",
+            id: "g543g45ygb3j5fweniofiowe",
+            tags: [
+                "Monster",
+                "Europe"
+            ],
+        },
+        {
+            img: italy,
+            caption: "Italy Trip",
+            location: "Italy",
+            date: "02/17/2021",
+            description: "I went to Italy because I'm 1/4 Italian so I was interested",
+            id: "g543g45ygb3fbuwbfw56",
+            tags: [
+                "Italy",
+                "Europe"
+            ],
+        },
+        {
+            img: phuket,
+            caption: "Phuket Trip",
+            location: "Phuket, Thailand",
+            date: "02/17/2021",
+            description: "I went to Phuket because I wanted to do Muay Thai",
+            id: "nfwiofnwepiew",
+            tags: [
+                "Muay Thai",
+                "Asia"
+            ],
+        },
+        {
+            img: prague,
+            caption: "Prague Trip",
+            location: "Prague, Czech Republic",
+            date: "02/17/2021",
+            description: "I went to Prague because I want to see some places that appeared in Monster",
+            id: "mfpowenif",
+            tags: [
+                "Monster",
+                "Czech"
+            ],
+        },
+        {
+            img: qatar,
+            caption: "Qatar Trip",
+            location: "Qatar, UAE",
+            date: "02/17/2021",
+            description: "I went to Qatar to see a boxing fight.",
+            id: "ofewoweiwefie",
+            tags: [
+                "Boxing",
+                "Middle East"
+            ],
+        },
+        {
+            img: chicago,
+            caption: "Chicago Trip",
+            location: "Chicago, USA",
+            date: "02/17/2021",
+            description: "I visited my uncle in chicago this past winter.",
+            id: "ngiowie]ewfvp",
+            tags: [
+                "Uncle",
+                "City",
+                "USA",
+                "America",
+                "Family",
+                "Wind"
+            ],
+        }
     ]
 },
 
@@ -256,98 +272,106 @@ const albumsObj = [
 
 
     photos: [
-    {
-        img: rio,
-        caption: "Rio Trip",
-        location: "Rio, Brazil",
-        date: "02/17/2021",
-        description: "I went to Rio to see ADCC in person.",
-        tags: [
-            "South America",
-            "Trip"
-        ],
-    },
-    {
-        img: cameroon,
-        caption: "Cameroon Trip",
-        location: "Cameroon, Africa",
-        date: "02/17/2021",
-        description: "I went to Cameroon to see Ngannou fight for the title.",
-        tags: [
-            "Africa",
-            "UFC"
-        ],
-    },
-    {
-        img: germany,
-        caption: "Germany Trip",
-        location: "Germany",
-        date: "02/17/2021",
-        description: "I went to Germany because I want to see some places that appeared in Monster",
-        tags: [
-            "Monster",
-            "Europe"
-        ],
-    },
-    {
-        img: italy,
-        caption: "Italy Trip",
-        location: "Italy",
-        date: "02/17/2021",
-        description: "I went to Italy because I'm 1/4 Italian so I was interested",
-        tags: [
-            "Italy",
-            "Europe"
-        ],
-    },
-    {
-        img: phuket,
-        caption: "Phuket Trip",
-        location: "Phuket, Thailand",
-        date: "02/17/2021",
-        description: "I went to Phuket because I wanted to do Muay Thai",
-        tags: [
-            "Muay Thai",
-            "Asia"
-        ],
-    },
-    {
-        img: prague,
-        caption: "Prague Trip",
-        location: "Prague, Czech Republic",
-        date: "02/17/2021",
-        description: "I went to Prague because I want to see some places that appeared in Monster",
-        tags: [
-            "Monster",
-            "Czech"
-        ],
-    },
-    {
-        img: qatar,
-        caption: "Qatar Trip",
-        location: "Qatar, UAE",
-        date: "02/17/2021",
-        description: "I went to Qatar to see a boxing fight.",
-        tags: [
-            "Boxing",
-            "Middle East"
-        ],
-    },
-    {
-        img: chicago,
-        caption: "Chicago Trip",
-        location: "Chicago, USA",
-        date: "02/17/2021",
-        description: "I visited my uncle in chicago this past winter.",
-        tags: [
-            "Uncle",
-            "City",
-            "USA",
-            "America",
-            "Family",
-            "Wind"
-        ],
-    }
+        {
+            img: rio,
+            caption: "Rio Trip",
+            location: "Rio, Brazil",
+            date: "02/17/2021",
+            description: "I went to Rio to see ADCC in person.",
+            id: "g543gehf34ihf4un",
+            tags: [
+                "South America",
+                "Trip"
+            ],
+        },
+        {
+            img: cameroon,
+            caption: "Cameroon Trip",
+            location: "Cameroon, Africa",
+            date: "02/17/2021",
+            description: "I went to Cameroon to see Ngannou fight for the title.",
+            id: "g543g45ygbfenwignhgniore",
+            tags: [
+                "Africa",
+                "UFC"
+            ],
+        },
+        {
+            img: germany,
+            caption: "Germany Trip",
+            location: "Germany",
+            date: "02/17/2021",
+            description: "I went to Germany because I want to see some places that appeared in Monster",
+            id: "g543g45ygb3j5fweniofiowe",
+            tags: [
+                "Monster",
+                "Europe"
+            ],
+        },
+        {
+            img: italy,
+            caption: "Italy Trip",
+            location: "Italy",
+            date: "02/17/2021",
+            description: "I went to Italy because I'm 1/4 Italian so I was interested",
+            id: "g543g45ygb3fbuwbfw56",
+            tags: [
+                "Italy",
+                "Europe"
+            ],
+        },
+        {
+            img: phuket,
+            caption: "Phuket Trip",
+            location: "Phuket, Thailand",
+            date: "02/17/2021",
+            description: "I went to Phuket because I wanted to do Muay Thai",
+            id: "nfwiofnwepiew",
+            tags: [
+                "Muay Thai",
+                "Asia"
+            ],
+        },
+        {
+            img: prague,
+            caption: "Prague Trip",
+            location: "Prague, Czech Republic",
+            date: "02/17/2021",
+            description: "I went to Prague because I want to see some places that appeared in Monster",
+            id: "mfpowenif",
+            tags: [
+                "Monster",
+                "Czech"
+            ],
+        },
+        {
+            img: qatar,
+            caption: "Qatar Trip",
+            location: "Qatar, UAE",
+            date: "02/17/2021",
+            description: "I went to Qatar to see a boxing fight.",
+            id: "ofewoweiwefie",
+            tags: [
+                "Boxing",
+                "Middle East"
+            ],
+        },
+        {
+            img: chicago,
+            caption: "Chicago Trip",
+            location: "Chicago, USA",
+            date: "02/17/2021",
+            description: "I visited my uncle in chicago this past winter.",
+            id: "ngiowie]ewfvp",
+            tags: [
+                "Uncle",
+                "City",
+                "USA",
+                "America",
+                "Family",
+                "Wind"
+            ],
+        }
     ]
 }
 
