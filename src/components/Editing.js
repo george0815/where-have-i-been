@@ -33,13 +33,25 @@ export default function Editing(props) {
         
         return {
           ...prevInput,
-          [e.target.caption]: e.target.value
+          [e.target.name]: e.target.value
         }
 
       })
     
   }
 
+ 
+  function removeTag(e){
+
+    let tempTags = tags
+
+   tempTags.splice(tempTags.findIndex(tag => {return e.target.value === tag}, 1)); // 2nd parameter means remove one item only
+
+
+    //simply add tag
+    setTags((tempTags) => [...tempTags]);
+
+  }
 
 
   //handles save functionality
@@ -81,13 +93,9 @@ export default function Editing(props) {
   
     let tempTags = tags
     tempTags.push(document.getElementsByClassName("tagInput")[0].value)
-    console.log(tempTags);
 
     //simply add tag
     setTags((tempTags) => [...tempTags]);
-    console.log(tags);
-
-
   }
 
 
@@ -106,7 +114,7 @@ export default function Editing(props) {
                 <input
                   type="text"
                   placeholder="caption"
-                  name="name"
+                  name="caption"
                   id="caption"
                   value={input.caption}
                   onChange={onInputChange}
@@ -189,7 +197,7 @@ export default function Editing(props) {
 
                 <div className='inputContainerEditing'>
 
-                  <label htmlFor="tagInput">Tags</label>
+                  <label title="Tags can be used to search for a given photo or album. To remove a tag, just click on it's button." htmlFor="tagInput">Tags</label>
                   <div className='addTagRow'>
                     <input
                       type="text"
@@ -205,11 +213,14 @@ export default function Editing(props) {
               </div>   
 
               {/*Contains actual tags*/}
-              <div className='tagsContainerEditing'> {tags.map((tag) => (<div key={tag} className='tag'> {tag}</div>))}</div>
+              <div className='tagsContainerEditing'> {tags.map((tag) => (<button onClick={(e) => {removeTag(e)}} key={tag} className='tag'> {tag}</button>))}</div>
             </div>     
                
             {/*Save Button*/}
-            <button className='saveButton' onClick={onClickSave}>{props.saveButtonText}</button>
+            <button className='saveButton' onClick={onClickSave}>
+                {props.saveButtonText}
+                {props.adding && <input className="fileInput" type="file" multiple />}
+            </button>
 
 
         </div>
