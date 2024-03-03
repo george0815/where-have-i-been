@@ -1,6 +1,7 @@
 import {React, useState} from 'react'; //React
 import Background from './Background'; //Gets background
 import Navbar from './Navbar';
+import Editing from './Editing';
 //CSS
 import '../styles/Fonts.css';
 import '../styles/Navbar.css';
@@ -23,15 +24,31 @@ export default function Photo() {
   //sets up state for fullscreen
   const [fullScreen, setFullscreen] = useState(false); 
 
+
+  //displays editing component
+  function onClickEdit(){ setcurrentlyEditing(true);}
+
+  //hides editing component and refreshes state
+  function onEditExit(){ setcurrentlyEditing(false);}
+  
+  
+  //sets up state for whether the user is currently editing
+  const [currentlyEditing, setcurrentlyEditing] = useState(false); 
+
  
   return (
 
     <div className='componentContainer transparentBackground'>
 
-        <Navbar page={3}/>
+        <Navbar page={3} onClickEdit={onClickEdit}/>
 
         {/*Holds all elements in the photo page*/}
         <div className="mainPhotoContainer">
+
+             {/*Contains fullscreen version of photo*/}
+             <div className={currentlyEditing ? 'editingComponentContainer activeEditing' : 'editingComponentContainer'}>  
+                  <Editing saveButtonText="Save" setCurrentPhoto={setCurrentPhoto} isAlbum={false} adding={false} onEditExit={onEditExit} currentPhoto={currentPhoto} />
+            </div>
 
             {/*Contains fullscreen version of photo*/}
             <div className={fullScreen ? 'fullscreenPhotoContainer activeFullscreen' : 'fullscreenPhotoContainer'}>  

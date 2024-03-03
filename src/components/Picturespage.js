@@ -23,8 +23,7 @@ export default function Picturespage() {
 
 
   //displays editing component
-  function onClickEdit(){ setcurrentlyEditing(true);
-  }
+  function onClickEdit(){ setcurrentlyEditing(true);}
 
   //hides editing component and refreshes state
   function onEditExit(){ setcurrentlyEditing(false);}

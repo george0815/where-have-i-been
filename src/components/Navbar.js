@@ -36,15 +36,10 @@ export default function Navbar(props) {
       else if(props.page === 3){
         tempAlbums[index].photos.splice(tempAlbums[index].photos.findIndex(photo => {return JSON.parse(sessionStorage.getItem("currentPhoto")).id === photo.id}), 1);
         sessionStorage.setItem("currentAlbum", JSON.stringify(tempAlbums[index]));
-        console.log(tempAlbums[index]);
         localStorage.setItem('albums', JSON.stringify(tempAlbums));
-        //navigate("../album", { relative: "album" });
         navigate("/album");
-
       }
 
-
-      //set storage and redirect
     } 
 
      
