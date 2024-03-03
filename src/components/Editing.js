@@ -10,11 +10,10 @@ import '../styles/Navbar.css';
 //login page
 export default function Editing(props) {
 
+  //---------------------------STATE--------------------------------//
 
   //sets up tag state
-  const [tags, setTags] = useState(
-    
-    props.isAlbum ? props.currentAlbum.tags :  props.currentPhoto.tags); 
+  const [tags, setTags] = useState( props.isAlbum ? props.currentAlbum.tags :  props.currentPhoto.tags); 
 
 
   //sets up album state
@@ -40,29 +39,19 @@ export default function Editing(props) {
 
   ); 
 
+  //--------------------------FUNCTIONS-----------------------------//
+
   function onInputChange(e){
       setInput( prevInput => {
-        
-        return {
-          ...prevInput,
-          [e.target.name]: e.target.value
-        }
-
+        return { ...prevInput,  [e.target.name]: e.target.value}
       })
-    
   }
 
  
   function removeTag(e){
-
     let tempTags = tags
-
-   tempTags.splice(tempTags.findIndex(tag => {return e.target.value === tag}, 1)); // 2nd parameter means remove one item only
-
-
-    //simply add tag
+    tempTags.splice(tempTags.findIndex(tag => {return e.target.value === tag}, 1)); // 2nd parameter means remove one item only
     setTags((tempTags) => [...tempTags]);
-
   }
 
 
@@ -76,7 +65,6 @@ export default function Editing(props) {
 
     if(props.isAlbum){
       
-
           //replace data with data from inputs
           tempAlbums[index].caption = document.getElementById("caption").value;
           tempAlbums[index].location = document.getElementById("location").value;
@@ -116,11 +104,6 @@ export default function Editing(props) {
 
     }
 
-    
-
-
-
-
     //call some sort of function that hides the editing component again and resets currentalbum state
     props.onEditExit();
 
@@ -129,15 +112,13 @@ export default function Editing(props) {
 
   //handles adding tag
   function onClickAddTag(){
-  
     let tempTags = tags
     tempTags.push(document.getElementsByClassName("tagInput")[0].value)
-
-    //simply add tag
     setTags((tempTags) => [...tempTags]);
   }
 
 
+  //------------------------JSX OBJECT------------------------------//
 
 
   return (

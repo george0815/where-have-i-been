@@ -11,6 +11,17 @@ import '../styles/Fonts.css';
 //navbar, used in every page except the login page
 export default function Navbar(props) {
 
+
+  //---------------------------STATE--------------------------------//
+
+  //used for showing search tags input
+  const [showTagInput, setShowTagInput] = useState(false)
+
+  //initiates title
+  const [country, setCurrentCountry] = useState("Where have I been?") // set currrent slide index
+
+  //--------------------------FUNCTIONS-----------------------------//
+
   const navigate = useNavigate();
 
 
@@ -23,8 +34,6 @@ export default function Navbar(props) {
       let tempAlbums = JSON.parse(localStorage.getItem("albums"));
 
       let index = tempAlbums.findIndex(album => {return JSON.parse(sessionStorage.getItem("currentAlbum")).id === album.id});
-
-
 
       //if user is deleting album
       if(props.page === 1){
@@ -41,9 +50,6 @@ export default function Navbar(props) {
       }
 
     } 
-
-     
-
 
   }
 
@@ -93,12 +99,8 @@ export default function Navbar(props) {
 
     }
          
-
     //reset the select value to always show sort
     evt.target.value = "Sort by..."
-
-
-    
 
   }
 
@@ -126,13 +128,7 @@ export default function Navbar(props) {
   function onTagInputChange(e){props.setSearchTag(e.target.value); }
 
 
-  //used for showing search tags input
-  const [showTagInput, setShowTagInput] = useState(false)
-
-
-  //initiates title
-  const [country, setCurrentCountry] = useState("Where have I been?") // set currrent slide index
-
+  
   //sets the title to a random countries name every 100ms up to i times
   function showCountries(i) {
     let keys = Object.keys(countries);
@@ -155,6 +151,9 @@ export default function Navbar(props) {
   }
 
 
+  //--------------------------USE EFFECT-----------------------------//
+
+
   //every 15 seconds set the title to a series of random countrys' names
   useEffect(() => {
     let titleTextInterval = setInterval(() => {for(let i = 0; i <= 20; i++){ showCountries(i);}}, 15000);
@@ -162,13 +161,7 @@ export default function Navbar(props) {
   })
 
 
-  /**
-   * 0 = Main page
-   * 1 = Album
-   * 2 = Albums
-   * 3 = individual photo
-   * 4 = login page
-   */
+  //------------------------JSX OBJECT------------------------------//
 
 
   return (

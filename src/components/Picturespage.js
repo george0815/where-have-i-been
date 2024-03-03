@@ -14,25 +14,28 @@ import '../styles/Picturespage.css';
 //login page
 export default function Picturespage() {
 
+    //---------------------------STATE--------------------------------//
+
+
   //sets up current album state
   const [currentAlbum, setCurrentAlbum] = useState(JSON.parse(sessionStorage.getItem("currentAlbum"))); 
 
-  //handles photo button functionality,
-  //onclick pass clicked photo into session storage
-  function onclickPhoto(index){sessionStorage.setItem("currentPhoto", JSON.stringify(currentAlbum.photos[index]));}
+  //search tag, tag the user wants to filter by
+  const [searchTagPictures, setSearchTagPictures] = useState("")
 
+  //sets up state for whether the user is currently editing
+  const [currentlyEditing, setcurrentlyEditing] = useState(false); 
+
+  //--------------------------FUNCTIONS-----------------------------//
+
+  //handles photo button functionality, onclick pass clicked photo into session storage
+  function onclickPhoto(index){sessionStorage.setItem("currentPhoto", JSON.stringify(currentAlbum.photos[index]));}
 
   //displays editing component
   function onClickEdit(){ setcurrentlyEditing(true);}
 
   //hides editing component and refreshes state
   function onEditExit(){ setcurrentlyEditing(false);}
-
-
-  //sets up state for whether the user is currently editing
-  const [currentlyEditing, setcurrentlyEditing] = useState(false); 
-
-
 
   //used to update pictures after sorting, gets passed to navbar
   function updatePictures(){
@@ -42,9 +45,7 @@ export default function Picturespage() {
   }
 
 
-  //search tag, tag the user wants to filter by
-  const [searchTagPictures, setSearchTagPictures] = useState("")
-
+  //------------------------JSX OBJECT------------------------------//
   
 
   return (

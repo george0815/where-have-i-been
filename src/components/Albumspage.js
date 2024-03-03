@@ -11,16 +11,18 @@ import '../styles/Albumspage.css';
 
 
 //Alubums page
-export default function Albumspage(props) {
+export default function Albumspage() {
 
 
-  //handles album button functionality,
-  //onclick pass clicked album into session storage
-  function onclickAlbum(index){  sessionStorage.setItem("currentAlbum", JSON.stringify(albumsObj[index])); }
+  //---------------------------STATE--------------------------------//
 
+  //search tag, tag the user wants to filter by
+  const [searchTag, setSearchTag] = useState("")
 
   //sets up albums state
   const [albumsObj, setAlbumsObj] = useState(JSON.parse(localStorage.getItem("albums"))); 
+
+  //--------------------------FUNCTIONS-----------------------------//
 
 
   //used to update ablums after sorting, gets passed to navbar
@@ -31,9 +33,11 @@ export default function Albumspage(props) {
   }
 
 
-  //search tag, tag the user wants to filter by
-  const [searchTag, setSearchTag] = useState("")
+  //handles album button functionality, onclick pass clicked album into session storage
+  function onclickAlbum(index){  sessionStorage.setItem("currentAlbum", JSON.stringify(albumsObj[index])); }
 
+
+  //------------------------JSX OBJECT------------------------------//
 
   return (
 

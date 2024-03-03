@@ -13,10 +13,7 @@ import '../styles/Photo.css';
 export default function Photo() {
 
 
-  //displays image at maximim size while not going over either the viewport width or height
-  function onClickFullscreen(){
-    setFullscreen(true);
-  }
+  //---------------------------STATE--------------------------------//
 
   //sets up current photo state
   const [currentPhoto, setCurrentPhoto] = useState(JSON.parse(sessionStorage.getItem("currentPhoto"))); 
@@ -24,6 +21,13 @@ export default function Photo() {
   //sets up state for fullscreen
   const [fullScreen, setFullscreen] = useState(false); 
 
+  //sets up state for whether the user is currently editing
+  const [currentlyEditing, setcurrentlyEditing] = useState(false); 
+
+  //--------------------------FUNCTIONS-----------------------------//
+
+  //displays image at maximim size while not going over either the viewport width or height
+  function onClickFullscreen(){setFullscreen(true); }
 
   //displays editing component
   function onClickEdit(){ setcurrentlyEditing(true);}
@@ -32,8 +36,7 @@ export default function Photo() {
   function onEditExit(){ setcurrentlyEditing(false);}
   
   
-  //sets up state for whether the user is currently editing
-  const [currentlyEditing, setcurrentlyEditing] = useState(false); 
+  //------------------------JSX OBJECT------------------------------//
 
  
   return (
