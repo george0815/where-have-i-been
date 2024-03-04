@@ -60,10 +60,13 @@ export default function Albumspage() {
   //hides editing component and refreshes state
   function onEditExit(){ setEditingSettings(
     
-    {
-        ...[editingSettings],
+      {
+        adding: true,
+        isAlbum: true,
+        saveButtonText: "Create",
         currentlyEditing: false
-    }
+      }
+    
 
   );}
 
@@ -97,7 +100,7 @@ export default function Albumspage() {
 
         {/*Contains fullscreen version of photo*/}
         <div className={editingSettings.currentlyEditing ? 'editingComponentContainer activeEditing' : 'editingComponentContainer'}>  
-                  <Editing editingSettings={editingSettings} onEditExit={onEditExit} currentAlbum={currentAlbum}/>
+            <Editing editingSettings={editingSettings} onEditExit={onEditExit} currentAlbum={currentAlbum}/>
         </div>
 
         {/*main div that hold all the login promps and buttons*/}

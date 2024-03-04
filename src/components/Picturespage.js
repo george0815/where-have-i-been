@@ -14,7 +14,7 @@ import '../styles/Picturespage.css';
 //login page
 export default function Picturespage() {
 
-    //---------------------------STATE--------------------------------//
+  //---------------------------STATE--------------------------------//
 
 
   //sets up current album state
@@ -33,6 +33,16 @@ export default function Picturespage() {
         currentlyEditing: false
     }
   )
+
+  //create empty current photo
+  let currentPhoto = {
+    description: "",
+    location: "",
+    date: "",
+    caption: "",
+    id: "",
+    tags: []
+  }
   //--------------------------FUNCTIONS-----------------------------//
 
   //handles photo button functionality, onclick pass clicked photo into session storage
@@ -84,15 +94,7 @@ export default function Picturespage() {
     setCurrentAlbum(temp);
   }
 
-  //create empty current photo
-  let currentPhoto = {
-    description: "",
-    location: "",
-    date: "",
-    caption: "",
-    id: "",
-    tags: []
-  }
+  
 
   //------------------------JSX OBJECT------------------------------//
   

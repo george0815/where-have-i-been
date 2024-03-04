@@ -1,4 +1,4 @@
-import {React, useState } from 'react'; //React
+import {React, useState, useEffect, useCallback} from 'react'; //React
 //CSS
 import '../styles/Mainpage.css';
 import '../styles/Fonts.css';
@@ -18,29 +18,17 @@ export default function Editing(props) {
 
 
   //sets up album state
-  const [input, setInput] = useState(
-    props.editingSettings.isAlbum ?
-    {
-      description: props.currentAlbum.description,
-      location: props.currentAlbum.location,
-      toDate: props.currentAlbum.dateTo,
-      fromDate: props.currentAlbum.date,
-      caption: props.currentAlbum.caption
-    }
+  const [input, setInput] = useState({}); 
 
-    :
-
-    {
-      description: props.currentPhoto.description,
-      location: props.currentPhoto.location,
-      fromDate: props.currentPhoto.date,
-      caption: props.currentPhoto.caption
-    }
-
-
-  ); 
 
   //--------------------------FUNCTIONS-----------------------------//
+
+ 
+  function addPhotoAlbum(){
+    let fileInput = document.getElementsByClassName("fileInput")[0];
+    console.log(fileInput.value)
+    props.onEditExit();
+  }
 
   function onInputChange(e){
       setInput( prevInput => {
@@ -117,6 +105,35 @@ export default function Editing(props) {
     tempTags.push(document.getElementsByClassName("tagInput")[0].value)
     setTags((tempTags) => [...tempTags]);
   }
+
+
+  
+  //--------------------------USE EFFECT-----------------------------//
+
+  useEffect(() => {
+
+    setInput(props.editingSettings.isAlbum ?
+      {
+        description: props.currentAlbum.description,
+        location: props.currentAlbum.location,
+        toDate: props.currentAlbum.dateTo,
+        fromDate: props.currentAlbum.date,
+        caption: props.currentAlbum.caption
+      }
+  
+      :
+  
+      {
+        description: props.currentPhoto.description,
+        location: props.currentPhoto.location,
+        fromDate: props.currentPhoto.date,
+        caption: props.currentPhoto.caption
+      }
+    )
+
+    setTags(props.editingSettings.isAlbum ? props.currentAlbum.tags :  props.currentPhoto.tags)
+
+  }, [props.editingSettings])
 
 
   //------------------------JSX OBJECT------------------------------//
@@ -238,9 +255,9 @@ export default function Editing(props) {
             </div>     
                
             {/*Save Button*/}
-            <button className='saveButton' onClick={onClickSave}>
+            <button className='saveButton' onClick={!props.editingSettings.adding ? onClickSave : console.log("Add")}>
                 {props.editingSettings.saveButtonText}
-                {props.editingSettings.adding && <input className="fileInput" type="file" multiple />}
+                {props.editingSettings.adding && <input onChange={addPhotoAlbum} className="fileInput" type="file" multiple />}
             </button>
 
 
