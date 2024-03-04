@@ -8,6 +8,7 @@ import Albumspage from './components/Albumspage';
 import Picturespage from './components/Picturespage';
 import Photo from './components/Photo';
 import Editing from './components/Editing';
+import Imagetest from './components/Imagetest';
 import albumsObj from './components/Testalbums'; //gets test data
 
 
@@ -37,6 +38,8 @@ function App() {
           <Route path="album" element={<Picturespage/>}/>
           <Route path="photo" element={<Photo/>}/>
           <Route path="login" element={<Loginpage/>}/>
+          <Route path="test" element={<Imagetest/>}/>
+
       </Routes>
     </BrowserRouter>
 

@@ -26,7 +26,6 @@ export default function Editing(props) {
  
   function addPhotoAlbum(){
     let fileInput = document.getElementsByClassName("fileInput")[0];
-    console.log(fileInput.value)
     props.onEditExit();
   }
 
