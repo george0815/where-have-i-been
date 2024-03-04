@@ -1,25 +1,43 @@
-import { React } from 'react'; //React
+import { React, useState, useEffect } from 'react'; //React
 
 
 export default function Imagetest(){
 
-    var base64String = "";
+
+  let temp = JSON.parse(localStorage.getItem("photo"));
+
+
+    const [testPhoto, setTestPhoto] = useState(temp);
+
+
 
     function addPhotoAlbum(){
         
         let fileInput = document.getElementById("fileInput");
-
         const file = fileInput.files[0];
-        getBase64(file).then(
-        data => document.getElementById('img').src = "data:image/png;base64," + data);
+        getBase64(file).then( data => addPhoto(data));
 
-
-        //test with local storage
-    
     }
 
+    
+    useEffect( () => {
+      if(JSON.parse(localStorage.getItem("photo"))){
+        setTestPhoto(JSON.parse(localStorage.getItem("photo")))
+      }
+    },[testPhoto])
 
 
+
+
+function addPhoto(src){
+
+    let tempPhoto = testPhoto;
+    tempPhoto.img ="data:image/png;base64," + src   
+
+    setTestPhoto(tempPhoto);
+    localStorage.setItem('photo', JSON.stringify(testPhoto));
+
+}
 
 
 
@@ -38,12 +56,17 @@ export default function Imagetest(){
         });
       }
 
+
+
+
+
+      
     return (
    
         <>
 
 <           input onChange={addPhotoAlbum} id="fileInput" type="file" multiple />
-            <img id="img" width={300} height={300}/>
+            <img id="img" key={testPhoto.img} src={testPhoto.img} width={300} height={300}/>
         
         </>
     
