@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
     //pushes test datalocal to storage
-    localStorage.setItem('albums', JSON.stringify(albumsObj));
+    //localStorage.setItem('albums', JSON.stringify(albumsObj));
 
     //sets state
     setAlbums(JSON.parse(localStorage.getItem("albums")));

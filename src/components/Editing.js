@@ -1,4 +1,4 @@
-import {React, useState, useEffect, useCallback} from 'react'; //React
+import {React, useState, useEffect} from 'react'; //React
 //CSS
 import '../styles/Mainpage.css';
 import '../styles/Fonts.css';
@@ -23,11 +23,68 @@ export default function Editing(props) {
 
   //--------------------------FUNCTIONS-----------------------------//
 
+  function getBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        let encoded = reader.result.toString().replace(/^data:(.*,)?/, '');
+        if ((encoded.length % 4) > 0) {
+          encoded += '='.repeat(4 - (encoded.length % 4));
+        }
+        resolve(encoded);
+      };
+      reader.onerror = error => reject(error);
+    });
+  
+  }
+
+  function addPhotoAlbumData(src){
+
+
+    //create temp photo object from input, and tempalbum
+    let tempPhoto = {
+      img : "data:image/png;base64," + src,
+      id :  Date.now(),
+      caption : document.getElementById("caption").value,
+      location : document.getElementById("location").value,
+      date : document.getElementById("fromDate").value,
+      description : document.getElementById("description").value,
+      tags : tags
+    }
+
+    //make new temp album object from localstorage albums object
+    let tempAlbums = JSON.parse(localStorage.getItem("albums"));
+    let index = tempAlbums.findIndex(album => {return JSON.parse(sessionStorage.getItem("currentAlbum")).id === album.id});
+
+
+    if(!props.editingSettings.isAlbum && props.editingSettings.adding){
+      
+          //replace data with data from inputs
+          tempAlbums[index].photos.push(tempPhoto);
+          
+   
+          //overwrite albums object in local storage
+          localStorage.setItem('albums', JSON.stringify(tempAlbums));
+          sessionStorage.setItem("currentAlbum", JSON.stringify(tempAlbums[index]));
+
+
+    }
+
+    //call some sort of function that hides the editing component again and resets currentalbum state
+    props.onEditExit();
+    
+
+
+  }
+
  
   function addPhotoAlbum(){
     let fileInput = document.getElementsByClassName("fileInput")[0];
-    props.onEditExit();
+    const file = fileInput.files[0];
+    getBase64(file).then( data => addPhotoAlbumData(data));  
   }
+
 
   function onInputChange(e){
       setInput( prevInput => {

@@ -1,4 +1,4 @@
-import {React, useState} from 'react'; //React
+import {React, useState, useEffect} from 'react'; //React
 import Background from './Background'; //Gets background
 import {Link} from 'react-router-dom'; //gets link from react router
 import Navbar from './Navbar';
@@ -74,16 +74,20 @@ export default function Picturespage() {
   );}
 
   //hides editing component and refreshes state
-  function onEditExit(){ setEditingSettings(
-    
-    {
-        adding: false,
-        isAlbum: true,
-        saveButtonText: "Save",
-        currentlyEditing: false
-    }
+  function onEditExit(){ 
 
-  );}
+    setEditingSettings(
+      {
+          adding: false,
+          isAlbum: true,
+          saveButtonText: "Save",
+          currentlyEditing: false
+      }
+    )
+
+    updatePictures();
+   
+    ;}
 
 
 

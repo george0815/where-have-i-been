@@ -54,7 +54,7 @@ function addPhoto(src){
           };
           reader.onerror = error => reject(error);
         });
-      }
+    }
 
 
 
