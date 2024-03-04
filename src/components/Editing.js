@@ -12,13 +12,14 @@ export default function Editing(props) {
 
   //---------------------------STATE--------------------------------//
 
+  
   //sets up tag state
-  const [tags, setTags] = useState( props.isAlbum ? props.currentAlbum.tags :  props.currentPhoto.tags); 
+  const [tags, setTags] = useState( props.editingSettings.isAlbum ? props.currentAlbum.tags :  props.currentPhoto.tags); 
 
 
   //sets up album state
   const [input, setInput] = useState(
-    props.isAlbum ?
+    props.editingSettings.isAlbum ?
     {
       description: props.currentAlbum.description,
       location: props.currentAlbum.location,
@@ -63,7 +64,7 @@ export default function Editing(props) {
     let index = tempAlbums.findIndex(album => {return JSON.parse(sessionStorage.getItem("currentAlbum")).id === album.id});
 
 
-    if(props.isAlbum){
+    if(props.editingSettings.isAlbum){
       
           //replace data with data from inputs
           tempAlbums[index].caption = document.getElementById("caption").value;
@@ -77,7 +78,7 @@ export default function Editing(props) {
       localStorage.setItem('albums', JSON.stringify(tempAlbums));
 
     }
-    else if(!props.isAlbum){
+    else if(!props.editingSettings.isAlbum){
 
       let photoIndex = tempAlbums[index].photos.findIndex(photo => {return JSON.parse(sessionStorage.getItem("currentPhoto")).id === photo.id});
 
@@ -177,7 +178,7 @@ export default function Editing(props) {
 
                     />    
                     
-                    { props.isAlbum && <input
+                    { props.editingSettings.isAlbum && <input
                       type="text"
                       placeholder="to"
                       name="toDate"
@@ -238,8 +239,8 @@ export default function Editing(props) {
                
             {/*Save Button*/}
             <button className='saveButton' onClick={onClickSave}>
-                {props.saveButtonText}
-                {props.adding && <input className="fileInput" type="file" multiple />}
+                {props.editingSettings.saveButtonText}
+                {props.editingSettings.adding && <input className="fileInput" type="file" multiple />}
             </button>
 
 

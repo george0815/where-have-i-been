@@ -174,9 +174,9 @@ export default function Navbar(props) {
 
       {/*Holds all buttons */}
       <div className="navButtonContainer">
-        {props.page === 2 && <button className="navButton">New album</button>}
-        {props.page === 1 && <button className="navButton">Add photo</button>}
-        {(props.page === 1 || props.page === 3) && <button  onClick={remove} className="navButton">Remove</button>}
+        {props.page === 2 && <button onClick={props.onClickAdd} className="navButton">New album</button>}
+        {props.page === 1 && <button onClick={props.onClickAdd} className="navButton">Add photo</button>}
+        {(props.page === 1 || props.page === 3) && <button onClick={remove} className="navButton">Remove</button>}
         {(props.page === 1 || props.page === 3) && <button onClick={props.onClickEdit} className="navButton">Edit</button>}
         {(props.page === 1 || props.page === 2) && <select className="navButton sort" onChange={(e) => {onClickSort(e)}}>
           <option defaultValue="Sort by...">Sort by...</option>

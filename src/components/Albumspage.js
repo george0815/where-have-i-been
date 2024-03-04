@@ -2,6 +2,7 @@ import {React, useState, useEffect } from 'react'; //React
 import Background from './Background'; //Gets background
 import {Link} from 'react-router-dom'; //gets link from react router
 import Navbar from './Navbar';
+import Editing from './Editing';
 //CSS
 import '../styles/Fonts.css';
 import '../styles/Navbar.css';
@@ -22,6 +23,18 @@ export default function Albumspage() {
   //sets up albums state
   const [albumsObj, setAlbumsObj] = useState(JSON.parse(localStorage.getItem("albums"))); 
 
+  //sets up state for //sets up state for editing props
+  const [editingSettings, setEditingSettings] = useState(
+
+    {
+        adding: true,
+        isAlbum: true,
+        saveButtonText: "Create",
+        currentlyEditing: false
+    }
+
+  ); 
+
   //--------------------------FUNCTIONS-----------------------------//
 
 
@@ -30,6 +43,40 @@ export default function Albumspage() {
     let temp = albumsObj;
     temp = JSON.parse(localStorage.getItem("albums"));
     setAlbumsObj(temp);
+  }
+
+  //displays editing component
+  function onClickAdd(){ setEditingSettings(
+    
+    {
+        adding: true,
+        isAlbum: true,
+        saveButtonText: "Add",
+        currentlyEditing: true
+    }
+
+  );}
+
+  //hides editing component and refreshes state
+  function onEditExit(){ setEditingSettings(
+    
+    {
+        ...[editingSettings],
+        currentlyEditing: false
+    }
+
+  );}
+
+
+  //empty album object for adding
+  let currentAlbum = {
+    description: "",
+    location: "",
+    toDate: "",
+    fromDate: "",
+    caption: "",
+    id: "",
+    tags: []
   }
 
 
@@ -43,10 +90,15 @@ export default function Albumspage() {
 
     <div className='componentContainer transparentBackground'>
 
-      <Navbar setSearchTag={setSearchTag} updateAlbums={updateAlbums} page={2} />
+      <Navbar setSearchTag={setSearchTag} onClickAdd={onClickAdd} updateAlbums={updateAlbums} page={2} />
 
        {/*Holds all elements in the main page*/}
        <div className="albumPageContainer">
+
+        {/*Contains fullscreen version of photo*/}
+        <div className={editingSettings.currentlyEditing ? 'editingComponentContainer activeEditing' : 'editingComponentContainer'}>  
+                  <Editing editingSettings={editingSettings} onEditExit={onEditExit} currentAlbum={currentAlbum}/>
+        </div>
 
         {/*main div that hold all the login promps and buttons*/}
           <div className="albumContainer">
@@ -61,7 +113,7 @@ export default function Albumspage() {
                   <button
                     key={album.caption}
                     className="albumButton"
-                    src={album.img}         
+                    src={album.img}           
                   > 
                   {/*Contains all the text that shows when the user hovers over the album button*/}
                     <div className='tooltiptext'>

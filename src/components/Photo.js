@@ -21,8 +21,17 @@ export default function Photo() {
   //sets up state for fullscreen
   const [fullScreen, setFullscreen] = useState(false); 
 
-  //sets up state for whether the user is currently editing
-  const [currentlyEditing, setcurrentlyEditing] = useState(false); 
+  //sets up state for //sets up state for editing props
+  const [editingSettings, setEditingSettings] = useState(
+
+    {
+        adding: false,
+        isAlbum: false,
+        saveButtonText: "Save",
+        currentlyEditing: false
+    }
+
+  ); 
 
   //--------------------------FUNCTIONS-----------------------------//
 
@@ -30,12 +39,32 @@ export default function Photo() {
   function onClickFullscreen(){setFullscreen(true); }
 
   //displays editing component
-  function onClickEdit(){ setcurrentlyEditing(true);}
+  function onClickEdit(){ setEditingSettings(
+    
+    {
+        adding: false,
+        isAlbum: false,
+        saveButtonText: "Save",
+        currentlyEditing: true
+    }
+
+  );}
+
 
   //hides editing component and refreshes state
-  function onEditExit(){ setcurrentlyEditing(false);}
-  
-  
+  function onEditExit(){ setEditingSettings(
+    
+    {
+        adding: false,
+        isAlbum: false,
+        saveButtonText: "Save",
+        currentlyEditing: false
+    }
+
+  );}
+
+
+
   //------------------------JSX OBJECT------------------------------//
 
  
@@ -49,8 +78,8 @@ export default function Photo() {
         <div className="mainPhotoContainer">
 
              {/*Contains fullscreen version of photo*/}
-             <div className={currentlyEditing ? 'editingComponentContainer activeEditing' : 'editingComponentContainer'}>  
-                  <Editing saveButtonText="Save" setCurrentPhoto={setCurrentPhoto} isAlbum={false} adding={false} onEditExit={onEditExit} currentPhoto={currentPhoto} />
+             <div className={editingSettings.currentlyEditing ? 'editingComponentContainer activeEditing' : 'editingComponentContainer'}>  
+                  <Editing editingSettings={editingSettings} setCurrentPhoto={setCurrentPhoto} onEditExit={onEditExit} currentPhoto={currentPhoto} />
             </div>
 
             {/*Contains fullscreen version of photo*/}

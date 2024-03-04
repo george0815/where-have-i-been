@@ -23,19 +23,59 @@ export default function Picturespage() {
   //search tag, tag the user wants to filter by
   const [searchTagPictures, setSearchTagPictures] = useState("")
 
-  //sets up state for whether the user is currently editing
-  const [currentlyEditing, setcurrentlyEditing] = useState(false); 
+  //sets up state for editing props
+  const [editingSettings, setEditingSettings] = useState(
 
+    {
+        adding: false,
+        isAlbum: true,
+        saveButtonText: "Save",
+        currentlyEditing: false
+    }
+  )
   //--------------------------FUNCTIONS-----------------------------//
 
   //handles photo button functionality, onclick pass clicked photo into session storage
   function onclickPhoto(index){sessionStorage.setItem("currentPhoto", JSON.stringify(currentAlbum.photos[index]));}
 
   //displays editing component
-  function onClickEdit(){ setcurrentlyEditing(true);}
+  function onClickEdit(){ setEditingSettings(
+    
+    {
+        adding: false,
+        isAlbum: true,
+        saveButtonText: "Save",
+        currentlyEditing: true
+    }
+
+  );}
+
+
+  //displays editing component
+  function onClickAdd(){ setEditingSettings(
+    
+    {
+        adding: true,
+        isAlbum: false,
+        saveButtonText: "Add",
+        currentlyEditing: true
+    }
+
+  );}
 
   //hides editing component and refreshes state
-  function onEditExit(){ setcurrentlyEditing(false);}
+  function onEditExit(){ setEditingSettings(
+    
+    {
+        adding: false,
+        isAlbum: true,
+        saveButtonText: "Save",
+        currentlyEditing: false
+    }
+
+  );}
+
+
 
   //used to update pictures after sorting, gets passed to navbar
   function updatePictures(){
@@ -44,6 +84,15 @@ export default function Picturespage() {
     setCurrentAlbum(temp);
   }
 
+  //create empty current photo
+  let currentPhoto = {
+    description: "",
+    location: "",
+    date: "",
+    caption: "",
+    id: "",
+    tags: []
+  }
 
   //------------------------JSX OBJECT------------------------------//
   
@@ -52,14 +101,14 @@ export default function Picturespage() {
 
     <div className='componentContainer transparentBackground'>
 
-      <Navbar page={1} setSearchTag={setSearchTagPictures} updatePictures={updatePictures} onClickEdit={onClickEdit}/>
+      <Navbar page={1} setSearchTag={setSearchTagPictures} updatePictures={updatePictures} onClickEdit={onClickEdit} onClickAdd={onClickAdd}/>
 
       {/*Holds all elements in the main page*/}
       <div className="picturePageContainer">
 
             {/*Contains fullscreen version of photo*/}
-            <div className={currentlyEditing ? 'editingComponentContainer activeEditing' : 'editingComponentContainer'}>  
-                  <Editing saveButtonText="Save" isAlbum={true} adding={false} onEditExit={onEditExit} currentAlbum={currentAlbum}/>
+            <div className={editingSettings.currentlyEditing ? 'editingComponentContainer activeEditing' : 'editingComponentContainer'}>  
+                  <Editing editingSettings={editingSettings} onEditExit={onEditExit} currentPhoto={currentPhoto} currentAlbum={currentAlbum}/>
             </div>
 
             {/*main div that hold all the login promps and buttons*/}
