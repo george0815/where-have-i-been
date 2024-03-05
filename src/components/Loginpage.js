@@ -45,13 +45,10 @@ export default function Loginpage() {
   function onClickRegister(){
     
 
-
     //get inputs from fields
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
     let passwordConfirm = document.getElementById("passwordConfirm").value;
-
-
 
 
     if(passwordConfirm === password){
@@ -83,19 +80,27 @@ export default function Loginpage() {
 
 
   function onClickLogin(){
-/*
-    const auth = getAuth();
+
+     //get inputs from fields
+     let email = document.getElementById("email").value;
+     let password = document.getElementById("password").value;
+
+
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in 
+        //set loggedIn local storage value to true and go to main page
         const user = userCredential.user;
-        // ...
+        console.log(user);
+        localStorage.setItem('loggedIn', true);
+
+        navigate("/");        // ...
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+        //display error alert
+        window.alert("Error: " + error.message + "\nCode: " + error.code);
       });
-*/
+
   }
 
 
