@@ -1,4 +1,4 @@
-import {React } from 'react'; //React
+import {React, useState } from 'react'; //React
 import Background from './Background'; //Gets background
 import logo from '../images/logo.svg'; //gets globe logo
 import Navbar from './Navbar';
@@ -12,6 +12,26 @@ import '../styles/Navbar.css';
 
 //login page
 export default function Loginpage() {
+
+  //---------------------------STATE--------------------------------//
+
+  //set whether the user is currently requesting a new password
+  const [forgotPassword, setForgotPassword] = useState(false)
+
+  //set whether the user is currently signing up
+  const [sigingUp, setSigingUp] = useState(false)
+
+
+  function onClickForgot(){
+    setSigingUp(false);
+    setForgotPassword(true);
+  }
+
+  function onClickSignup(){
+    setSigingUp(true);
+    setForgotPassword(false);
+  }
+
 
   
   return (
@@ -30,7 +50,7 @@ export default function Loginpage() {
 
                 {/*Email prompt*/}
                 <div className='inputContainer'>
-                  <label for="email">Email</label>
+                  <label for="email">{forgotPassword ? "Confirm email" : "Email"}</label>
                   <input
                     type="text"
                     placeholder="email"
@@ -38,7 +58,7 @@ export default function Loginpage() {
                   />      
                 </div>
                 {/*Password prompt*/}      
-                <div className='inputContainer'>
+                {!forgotPassword && <div className='inputContainer'>
 
                   <label for="Password">Password</label>
                   <input
@@ -46,10 +66,21 @@ export default function Loginpage() {
                     placeholder="password"
                     name="password"
                   />
-                </div>      
+                  {(!forgotPassword && !sigingUp) && <button onClick={onClickForgot} className='forgotPassword'>Forgot password</button> }
+                </div>} 
+                {/* Confirm Password prompt*/}      
+                {(sigingUp && !forgotPassword) && <div className='inputContainer'>
+
+                  <label for="Password">Confirm Password</label>
+                  <input
+                    type="text"
+                    placeholder="password"
+                    name="password"
+                  />
+                </div>} 
                 {/*login and forgot password buttons*/}   
-                <button className='navButton'>Login</button>
-                <p className='noPassText'>No account? <button>Sign up here</button></p>
+                <button className='navButton'>{(forgotPassword && !sigingUp) ? "Reset Password" : (sigingUp ? "Create account" : "Login")}</button>
+                {(!forgotPassword && !sigingUp) && <p className='noPassText'>No account? <button onClick={onClickSignup}>Sign up here</button></p>}
 
             </div>
       
