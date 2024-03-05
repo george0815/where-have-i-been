@@ -27,13 +27,7 @@ export default function Editing(props) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
-      reader.onload = () => {
-        let encoded = reader.result.toString().replace(/^data:(.*,)?/, '');
-        if ((encoded.length % 4) > 0) {
-          encoded += '='.repeat(4 - (encoded.length % 4));
-        }
-        resolve(encoded);
-      };
+      reader.onload = () => resolve(reader.result);
       reader.onerror = error => reject(error);
     });
   
@@ -41,24 +35,23 @@ export default function Editing(props) {
 
   function addPhotoAlbumData(src){
 
-
-    //create temp photo object from input, and tempalbum
-    let tempPhoto = {
-      img : "data:image/png;base64," + src,
-      id :  Date.now(),
-      caption : document.getElementById("caption").value,
-      location : document.getElementById("location").value,
-      date : document.getElementById("fromDate").value,
-      description : document.getElementById("description").value,
-      tags : tags
-    }
-
-    //make new temp album object from localstorage albums object
-    let tempAlbums = JSON.parse(localStorage.getItem("albums"));
-    let index = tempAlbums.findIndex(album => {return JSON.parse(sessionStorage.getItem("currentAlbum")).id === album.id});
-
-
     if(!props.editingSettings.isAlbum && props.editingSettings.adding){
+
+
+          //make new temp album object from localstorage albums object
+          let tempAlbums = JSON.parse(localStorage.getItem("albums"));
+          let index = tempAlbums.findIndex(album => {return JSON.parse(sessionStorage.getItem("currentAlbum")).id === album.id});
+
+          //create temp photo object from input, and tempalbum
+          let tempPhoto = {
+            img : src,
+            id :  Date.now(),
+            caption : document.getElementById("caption").value,
+            location : document.getElementById("location").value,
+            date : document.getElementById("fromDate").value,
+            description : document.getElementById("description").value,
+            tags : tags
+          }
       
           //replace data with data from inputs
           tempAlbums[index].photos.push(tempPhoto);
@@ -68,21 +61,93 @@ export default function Editing(props) {
           localStorage.setItem('albums', JSON.stringify(tempAlbums));
           sessionStorage.setItem("currentAlbum", JSON.stringify(tempAlbums[index]));
 
+          //call some sort of function that hides the editing component again and resets currentalbum state
+          props.onEditExit();
 
     }
-
-    //call some sort of function that hides the editing component again and resets currentalbum state
-    props.onEditExit();
-    
-
+  
 
   }
 
  
   function addPhotoAlbum(){
     let fileInput = document.getElementsByClassName("fileInput")[0];
-    const file = fileInput.files[0];
-    getBase64(file).then( data => addPhotoAlbumData(data));  
+    const files = fileInput.files;
+
+    if(!props.editingSettings.isAlbum && props.editingSettings.adding){
+      getBase64(files[0]).then( data => addPhotoAlbumData(data));  
+    }
+
+    else if(props.editingSettings.isAlbum && props.editingSettings.adding){
+
+      //make new temp album object from localstorage albums object
+      let tempAlbums = JSON.parse(localStorage.getItem("albums"));
+
+      //add album data 
+      let tempAlbum = {
+        caption : document.getElementById("caption").value,
+        location : document.getElementById("location").value,
+        date : document.getElementById("fromDate").value,
+        dateTo : document.getElementById("toDate").value,
+        description : document.getElementById("description").value,
+        tags : tags,
+        img: "",
+        id : Date.now(),
+        photos : []
+      }
+
+
+      async function asyncCall() {
+
+        const filePathsPromises = [];
+        Array.from(files).forEach((file, index) => {
+          filePathsPromises.push(getBase64(file));
+
+          tempAlbum.photos.push(
+
+            {
+              id :  Date.now(),
+              key: Date.now(),
+              caption : index,
+              location : "location",
+              date : "date",
+              description : "description",
+              tags : []
+            }
+
+          );
+        });
+        const filePaths = await Promise.all(filePathsPromises);
+        tempAlbum.photos = filePaths.map((base64File, index) => (
+          {
+            ...tempAlbum.photos[index],
+            img : base64File,
+            
+          }
+        ));
+ 
+
+       
+        console.log(tempAlbum.photos[0]);
+        tempAlbum.img = tempAlbum.photos[0].img;
+
+        //replace data with data from inputs
+        tempAlbums.push(tempAlbum);
+            
+    
+        //overwrite albums object in local storage
+        localStorage.setItem('albums', JSON.stringify(tempAlbums));
+
+        //call some sort of function that hides the editing component again and resets currentalbum state
+        props.onEditExit();
+      }
+
+      asyncCall();
+        
+    
+
+    }
+
   }
 
 
@@ -110,13 +175,13 @@ export default function Editing(props) {
 
     if(props.editingSettings.isAlbum){
       
-          //replace data with data from inputs
-          tempAlbums[index].caption = document.getElementById("caption").value;
-          tempAlbums[index].location = document.getElementById("location").value;
-          tempAlbums[index].date = document.getElementById("fromDate").value;
-          tempAlbums[index].dateTo = document.getElementById("toDate").value;
-          tempAlbums[index].description = document.getElementById("description").value;
-          tempAlbums[index].tags = tags;
+      //replace data with data from inputs
+      tempAlbums[index].caption = document.getElementById("caption").value;
+      tempAlbums[index].location = document.getElementById("location").value;
+      tempAlbums[index].date = document.getElementById("fromDate").value;
+      tempAlbums[index].dateTo = document.getElementById("toDate").value;
+      tempAlbums[index].description = document.getElementById("description").value;
+      tempAlbums[index].tags = tags;
    
       //overwrite albums object in local storage
       localStorage.setItem('albums', JSON.stringify(tempAlbums));

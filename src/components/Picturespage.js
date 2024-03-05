@@ -23,6 +23,8 @@ export default function Picturespage() {
   //search tag, tag the user wants to filter by
   const [searchTagPictures, setSearchTagPictures] = useState("")
 
+  console.log(currentAlbum);
+
   //sets up state for editing props
   const [editingSettings, setEditingSettings] = useState(
 

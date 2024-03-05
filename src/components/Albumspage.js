@@ -58,17 +58,19 @@ export default function Albumspage() {
   );}
 
   //hides editing component and refreshes state
-  function onEditExit(){ setEditingSettings(
+  function onEditExit(){ 
     
+    setEditingSettings(
       {
         adding: true,
         isAlbum: true,
         saveButtonText: "Create",
         currentlyEditing: false
-      }
-    
+      }    
+    )
 
-  );}
+    updateAlbums();
+  ;}
 
 
   //empty album object for adding
