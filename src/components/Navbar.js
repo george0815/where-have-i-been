@@ -194,7 +194,6 @@ export default function Navbar(props) {
         </select>}
         {showTagInput && <input onChange={(e) => {onTagInputChange(e)}} placeholder='Enter tag'/>}
         {(props.page === 1 || props.page === 3) && <button className="navButton">Download</button>}
-        <button className="navButton">Language</button>
         {!props.loggedIn && <Link to="../login"><button className="navButton">Login</button></Link> }
       </div>
 
