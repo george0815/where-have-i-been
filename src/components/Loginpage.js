@@ -2,6 +2,7 @@ import {React, useState } from 'react'; //React
 import Background from './Background'; //Gets background
 import logo from '../images/logo.svg'; //gets globe logo
 import Navbar from './Navbar';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 //CSS
 import '../styles/Mainpage.css';
 import '../styles/Fonts.css';
@@ -13,6 +14,8 @@ import '../styles/Navbar.css';
 //login page
 export default function Loginpage() {
 
+
+
   //---------------------------STATE--------------------------------//
 
   //set whether the user is currently requesting a new password
@@ -22,15 +25,38 @@ export default function Loginpage() {
   const [sigingUp, setSigingUp] = useState(false)
 
 
+  //--------------------------FUNCTIONS----------------------------//
+
+
   function onClickForgot(){
     setSigingUp(false);
     setForgotPassword(true);
   }
 
   function onClickSignup(){
-    setSigingUp(true);
-    setForgotPassword(false);
+    
+    const auth = getAuth();
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        
+        //set loggedIn local storage value to true and go to main page
+
+
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+       
+        //go to error page
+
+      });
   }
+
+
+  //----------------------JSX OBJECT----------------------//
 
 
   
