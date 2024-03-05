@@ -2,7 +2,8 @@ import {React, useState } from 'react'; //React
 import Background from './Background'; //Gets background
 import logo from '../images/logo.svg'; //gets globe logo
 import Navbar from './Navbar';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail  } from "firebase/auth";
 //CSS
 import '../styles/Mainpage.css';
 import '../styles/Fonts.css';
@@ -27,15 +28,25 @@ export default function Loginpage() {
 
   //--------------------------FUNCTIONS----------------------------//
 
+  //used for redirecting to pages
+  const navigate = useNavigate();
 
-  function onClickForgot(){
-    setSigingUp(false);
-    setForgotPassword(true);
-  }
 
-  function onClickSignup(){
+  //changes state when user clicks reset password
+  function onClickForgot(){setSigingUp(false); setForgotPassword(true); }
+
+
+  //changes state when user clicks signup
+  function  onClickSignup(){setSigingUp(true); setForgotPassword(false); }
+
+
+  //registers new user
+  function onClickRegister(){
     
     const auth = getAuth();
+
+
+    //get inputs from fields
 
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -43,6 +54,9 @@ export default function Loginpage() {
         const user = userCredential.user;
         
         //set loggedIn local storage value to true and go to main page
+
+
+        navigate("/");
 
 
       })
@@ -55,6 +69,47 @@ export default function Loginpage() {
       });
   }
 
+
+
+  function login(){
+
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+
+  }
+
+
+
+
+  function onClickResetPassword(){
+
+    const auth = getAuth();
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        // Password reset email sent!
+        // ..
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
+
+
+  }
+
+
+
+  
 
   //----------------------JSX OBJECT----------------------//
 
