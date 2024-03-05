@@ -2,6 +2,8 @@ import { useState, useEffect, React } from 'react'; //React
 import logo from '../images/logo.svg'; //gets globe logo
 import {countries} from "countries-list"; //gets list of every country (used for title)
 import { useNavigate } from "react-router-dom";
+import {Link} from 'react-router-dom'; //gets link from react router
+
 
 //CSS
 import '../styles/Navbar.css';
@@ -193,7 +195,7 @@ export default function Navbar(props) {
         {showTagInput && <input onChange={(e) => {onTagInputChange(e)}} placeholder='Enter tag'/>}
         {(props.page === 1 || props.page === 3) && <button className="navButton">Download</button>}
         <button className="navButton">Language</button>
-        {!props.loggedIn && <button className="navButton">Login</button>}
+        {!props.loggedIn && <Link to="../login"><button className="navButton">Login</button></Link> }
       </div>
 
     </nav>

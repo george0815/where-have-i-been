@@ -95,7 +95,7 @@ export default function Albumspage() {
 
     <div className='componentContainer transparentBackground'>
 
-      <Navbar setSearchTag={setSearchTag} onClickAdd={onClickAdd} updateAlbums={updateAlbums} page={2} />
+      <Navbar loggedIn={false} setSearchTag={setSearchTag} onClickAdd={onClickAdd} updateAlbums={updateAlbums} page={2} />
 
        {/*Holds all elements in the main page*/}
        <div className="albumPageContainer">
