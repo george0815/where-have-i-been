@@ -107,20 +107,22 @@ export default function Loginpage() {
 
 
   function onClickResetPassword(){
-/*
-    const auth = getAuth();
+
+    let email = document.getElementById("email").value;
+
+
     sendPasswordResetEmail(auth, email)
       .then(() => {
-        // Password reset email sent!
-        // ..
+        window.alert("Password reset email sent!");
+
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+         //display error alert
+         window.alert("Error: " + error.message + "\nCode: " + error.code);
         // ..
       });
 
-*/
+
   }
 
 
