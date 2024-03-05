@@ -44,31 +44,40 @@ export default function Loginpage() {
   //registers new user
   function onClickRegister(){
     
-    //const auth = auth;
 
 
     //get inputs from fields
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
+    let passwordConfirm = document.getElementById("passwordConfirm").value;
 
 
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed up 
-        const user = userCredential.user;
+
+
+    if(passwordConfirm === password){
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed up 
+          const user = userCredential.user;
+          
+          //set loggedIn local storage value to true and go to main page
+          localStorage.setItem('loggedIn', true);
+
+          navigate("/");
+
+        })
+        .catch((error) => {
         
-        //set loggedIn local storage value to true and go to main page
-        localStorage.setItem('loggedIn', true);
+          //display error alert
+          window.alert("Error: " + error.message + "\nCode: " + error.code);
 
-        navigate("/");
+        });
+    }
+    else{
+      window.alert("Error: passwords do not match");
+    }
 
-      })
-      .catch((error) => {
-       
-        //display error alert
-        window.alert("Error: " + error.message + "\nCode: " + error.code);
 
-      });
   }
 
 
