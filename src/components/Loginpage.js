@@ -4,6 +4,7 @@ import logo from '../images/logo.svg'; //gets globe logo
 import Navbar from './Navbar';
 import { useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail  } from "firebase/auth";
+import {auth} from "../firebase"
 //CSS
 import '../styles/Mainpage.css';
 import '../styles/Fonts.css';
@@ -43,10 +44,13 @@ export default function Loginpage() {
   //registers new user
   function onClickRegister(){
     
-    const auth = getAuth();
+    //const auth = auth;
 
 
     //get inputs from fields
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
 
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -54,25 +58,23 @@ export default function Loginpage() {
         const user = userCredential.user;
         
         //set loggedIn local storage value to true and go to main page
-
+        localStorage.setItem('loggedIn', true);
 
         navigate("/");
 
-
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
        
-        //go to error page
+        //display error alert
+        window.alert("Error: " + error.message + "\nCode: " + error.code);
 
       });
   }
 
 
 
-  function login(){
-
+  function onClickLogin(){
+/*
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -84,14 +86,14 @@ export default function Loginpage() {
         const errorCode = error.code;
         const errorMessage = error.message;
       });
-
+*/
   }
 
 
 
 
   function onClickResetPassword(){
-
+/*
     const auth = getAuth();
     sendPasswordResetEmail(auth, email)
       .then(() => {
@@ -104,7 +106,7 @@ export default function Loginpage() {
         // ..
       });
 
-
+*/
   }
 
 
@@ -136,6 +138,7 @@ export default function Loginpage() {
                     type="text"
                     placeholder="email"
                     name="email"
+                    id="email"
                   />      
                 </div>
                 {/*Password prompt*/}      
@@ -146,21 +149,23 @@ export default function Loginpage() {
                     type="text"
                     placeholder="password"
                     name="password"
+                    id="password"
                   />
                   {(!forgotPassword && !sigingUp) && <button onClick={onClickForgot} className='forgotPassword'>Forgot password</button> }
                 </div>} 
                 {/* Confirm Password prompt*/}      
                 {(sigingUp && !forgotPassword) && <div className='inputContainer'>
 
-                  <label for="Password">Confirm Password</label>
+                  <label for="PasswordConfirm">Confirm Password</label>
                   <input
                     type="text"
-                    placeholder="password"
-                    name="password"
+                    placeholder="passwordConfirm"
+                    name="passwordConfirm"
+                    id="passwordConfirm"
                   />
                 </div>} 
                 {/*login and forgot password buttons*/}   
-                <button className='navButton'>{(forgotPassword && !sigingUp) ? "Reset Password" : (sigingUp ? "Create account" : "Login")}</button>
+                <button onClick={(forgotPassword && !sigingUp) ? onClickResetPassword : (sigingUp ? onClickRegister : onClickLogin)} className='navButton'>{(forgotPassword && !sigingUp) ? "Reset Password" : (sigingUp ? "Create account" : "Login")}</button>
                 {(!forgotPassword && !sigingUp) && <p className='noPassText'>No account? <button onClick={onClickSignup}>Sign up here</button></p>}
 
             </div>
