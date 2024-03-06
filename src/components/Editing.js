@@ -1,4 +1,9 @@
 import {React, useState, useEffect} from 'react'; //React
+import { doc, setDoc } from "firebase/firestore"; 
+import {db} from "../firebase"
+import { storage} from "../firebase";
+import { uploadBytes, ref, getDownloadURL} from "firebase/storage";
+
 //CSS
 import '../styles/Mainpage.css';
 import '../styles/Fonts.css';
@@ -103,11 +108,24 @@ export default function Editing(props) {
         Array.from(files).forEach((file, index) => {
           filePathsPromises.push(getBase64(file));
 
+          let photoId = Date.now().toString();
+
+          const storageRef = ref(storage, photoId);
+
+
+          uploadBytes(storageRef, file).then((snapshot) => {
+
+            getDownloadURL(snapshot.ref).then(function(downloadURL) {
+              console.log("File available at", downloadURL);
+            });          
+
+          });
+
           tempAlbum.photos.push(
 
             {
-              id :  Date.now(),
-              key: Date.now(),
+              id :  "Date.now()",
+              key: "Date.now()",
               caption : index,
               location : "location",
               date : "date",
@@ -137,6 +155,18 @@ export default function Editing(props) {
     
         //overwrite albums object in local storage
         localStorage.setItem('albums', JSON.stringify(tempAlbums));
+
+
+        //firebase test
+        await setDoc(doc(db, "data", JSON.parse(localStorage.getItem("user")).uid), {
+          ...[tempAlbums]
+        });
+
+
+
+
+
+
 
         //call some sort of function that hides the editing component again and resets currentalbum state
         props.onEditExit();
@@ -225,6 +255,30 @@ export default function Editing(props) {
     let tempTags = tags
     tempTags.push(document.getElementsByClassName("tagInput")[0].value)
     setTags((tempTags) => [...tempTags]);
+  }
+
+
+
+
+  //saves data to either firebase collection or local storage depending on if user is logged in or not
+  function saveData(tempAlbums, tempAlbum, tempPhoto){
+
+    if(props.loggedIn){
+
+      //save tempAlbums to firebase collection
+      //if tempAlbum isn't null save it to session storage 
+      //if tempphoto isn't null save it to session storage
+
+    }
+    else if(!props.loggedIn){
+
+      //save tempAlbums to local storage
+      //if tempAlbum isn't null save it to session storage
+      //if tempphoto isn't null save it to session storage
+
+
+    }
+
   }
 
 

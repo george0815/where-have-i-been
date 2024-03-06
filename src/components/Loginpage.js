@@ -14,7 +14,7 @@ import '../styles/Navbar.css';
 
 
 //login page
-export default function Loginpage() {
+export default function Loginpage(props) {
 
 
 
@@ -58,7 +58,9 @@ export default function Loginpage() {
           const user = userCredential.user;
           
           //set loggedIn local storage value to true and go to main page
-          localStorage.setItem('loggedIn', true);
+          localStorage.setItem('user', JSON.stringify(user));
+
+          props.setLoggedIn(true);
 
           navigate("/");
 
@@ -93,6 +95,11 @@ export default function Loginpage() {
         const user = userCredential.user;
         console.log(user);
         localStorage.setItem('loggedIn', true);
+        localStorage.setItem('user', JSON.stringify(user));
+
+
+        props.setLoggedIn(true);
+
 
         navigate("/");        // ...
       })

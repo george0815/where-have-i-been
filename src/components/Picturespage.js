@@ -12,7 +12,7 @@ import '../styles/Picturespage.css';
 
 
 //login page
-export default function Picturespage() {
+export default function Picturespage(props) {
 
   //---------------------------STATE--------------------------------//
 
@@ -109,14 +109,14 @@ export default function Picturespage() {
 
     <div className='componentContainer transparentBackground'>
 
-      <Navbar page={1} setSearchTag={setSearchTagPictures} updatePictures={updatePictures} onClickEdit={onClickEdit} onClickAdd={onClickAdd}/>
+      <Navbar page={1}  loggedIn={props.loggedIn} setSearchTag={setSearchTagPictures} updatePictures={updatePictures} onClickEdit={onClickEdit} onClickAdd={onClickAdd}/>
 
       {/*Holds all elements in the main page*/}
       <div className="picturePageContainer">
 
             {/*Contains fullscreen version of photo*/}
             <div className={editingSettings.currentlyEditing ? 'editingComponentContainer activeEditing' : 'editingComponentContainer'}>  
-                  <Editing editingSettings={editingSettings} onEditExit={onEditExit} currentPhoto={currentPhoto} currentAlbum={currentAlbum}/>
+                  <Editing  loggedIn={props.loggedIn} editingSettings={editingSettings} onEditExit={onEditExit} currentPhoto={currentPhoto} currentAlbum={currentAlbum}/>
             </div>
 
             {/*main div that hold all the login promps and buttons*/}

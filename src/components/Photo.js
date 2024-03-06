@@ -10,7 +10,7 @@ import '../styles/Photo.css';
 
 
 //Photo page
-export default function Photo() {
+export default function Photo(props) {
 
 
   //---------------------------STATE--------------------------------//
@@ -72,14 +72,14 @@ export default function Photo() {
 
     <div className='componentContainer transparentBackground'>
 
-        <Navbar page={3} onClickEdit={onClickEdit}/>
+        <Navbar loggedIn={props.loggedIn} page={3} onClickEdit={onClickEdit}/>
 
         {/*Holds all elements in the photo page*/}
         <div className="mainPhotoContainer">
 
              {/*Contains fullscreen version of photo*/}
              <div className={editingSettings.currentlyEditing ? 'editingComponentContainer activeEditing' : 'editingComponentContainer'}>  
-                  <Editing editingSettings={editingSettings} setCurrentPhoto={setCurrentPhoto} onEditExit={onEditExit} currentPhoto={currentPhoto} />
+                  <Editing loggedIn={props.loggedIn}  editingSettings={editingSettings} setCurrentPhoto={setCurrentPhoto} onEditExit={onEditExit} currentPhoto={currentPhoto} />
             </div>
 
             {/*Contains fullscreen version of photo*/}

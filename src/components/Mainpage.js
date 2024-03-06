@@ -8,7 +8,7 @@ import '../styles/Navbar.css';
 
 
 //main page
-export default function Mainpage() {
+export default function Mainpage(props) {
 
   const [currentCaption, setCurrentCaption] = useState("Phuket, Thailand") // sets caption at the bottom
 
@@ -19,7 +19,7 @@ export default function Mainpage() {
 
     <div className='componentContainer'>
 
-      <Navbar page={0}/>
+      <Navbar loggedIn={props.loggedIn} page={0}/>
 
       {/*Holds all elements in the main page*/}
       <div className="mainPageContainer">

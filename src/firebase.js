@@ -1,6 +1,8 @@
 import { initializeApp } from "firebase/app";
 import {getFirestore, collection} from "firebase/firestore"
 import { getAuth } from "firebase/auth";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
+
 
 
 const firebaseConfig = {
@@ -13,7 +15,10 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+export const db = getFirestore(app);
 export const dataCollection = collection(db, "data");
 
 export const auth = getAuth();
+
+
+export const storage = getStorage();
