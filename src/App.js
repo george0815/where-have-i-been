@@ -12,6 +12,8 @@ import Photo from './components/Photo';
 import Editing from './components/Editing';
 import Signup from './components/Signup';
 import ForgotPassword from './components/Forgotpassword';
+import Datetest from './components/Datetest';
+
 import albumsObj from './components/Testalbums'; //gets test data
 
 
@@ -80,6 +82,8 @@ function App() {
           <Route path="login" element={<Loginpage setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>}/>
           <Route path="signup" element={<Signup setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>
           <Route path="forgotPassword" element={<ForgotPassword setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>}/>
+          <Route path="date" element={<Datetest/>}/>
+
 
 
       </Routes>

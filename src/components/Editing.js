@@ -4,6 +4,7 @@ import {db} from "../firebase"
 import { storage} from "../firebase";
 import exifr from 'exifr' // => exifr/dist/full.umd.cjs
 import { uploadBytes, ref, getDownloadURL} from "firebase/storage";
+import DatePicker from 'react-date-picker';
 import {
   setKey,
   setDefaults,
