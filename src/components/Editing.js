@@ -38,7 +38,19 @@ export default function Editing(props) {
   
   }
 
-  function addPhotoAlbumData(src){
+
+  function getURL(storageRef, file) {
+    return new Promise((resolve, reject) => uploadBytes(storageRef, file).then((snapshot) => {
+
+      getDownloadURL(snapshot.ref).then(function(downloadURL) {
+        resolve(downloadURL);
+      });          
+
+    }));
+  
+  }
+
+  async function addPhotoAlbumData(src){
 
     if(!props.editingSettings.isAlbum && props.editingSettings.adding){
 
@@ -50,7 +62,7 @@ export default function Editing(props) {
           //create temp photo object from input, and tempalbum
           let tempPhoto = {
             img : src,
-            id :  Date.now(),
+            id :  Date.now().toString(),
             caption : document.getElementById("caption").value,
             location : document.getElementById("location").value,
             date : document.getElementById("fromDate").value,
@@ -66,6 +78,13 @@ export default function Editing(props) {
           localStorage.setItem('albums', JSON.stringify(tempAlbums));
           sessionStorage.setItem("currentAlbum", JSON.stringify(tempAlbums[index]));
 
+          //uploads doc to firebase
+          if(props.loggedIn){
+            await setDoc(doc(db, "data", JSON.parse(localStorage.getItem("user")).uid), {
+              ...tempAlbums
+            });
+          }
+
           //call some sort of function that hides the editing component again and resets currentalbum state
           props.onEditExit();
 
@@ -73,14 +92,16 @@ export default function Editing(props) {
   
 
   }
-
+ 
  
   function addPhotoAlbum(){
     let fileInput = document.getElementsByClassName("fileInput")[0];
     const files = fileInput.files;
 
     if(!props.editingSettings.isAlbum && props.editingSettings.adding){
-      getBase64(files[0]).then( data => addPhotoAlbumData(data));  
+      let photoId = Date.now().toString();
+      const storageRef = ref(storage, photoId);
+      !props.loggedIn ? getBase64(files[0]).then( data => addPhotoAlbumData(data)) : getURL(storageRef, files[0]).then( data => addPhotoAlbumData(data));  
     }
 
     else if(props.editingSettings.isAlbum && props.editingSettings.adding){
@@ -97,7 +118,7 @@ export default function Editing(props) {
         description : document.getElementById("description").value,
         tags : tags,
         img: "",
-        id : Date.now(),
+        id : Date.now().toString(),
         photos : []
       }
 
@@ -106,27 +127,21 @@ export default function Editing(props) {
 
         const filePathsPromises = [];
         Array.from(files).forEach((file, index) => {
-          filePathsPromises.push(getBase64(file));
+
 
           let photoId = Date.now().toString();
-
           const storageRef = ref(storage, photoId);
 
+          filePathsPromises.push(props.loggedIn ? getURL(storageRef, file) : getBase64(file));
 
-          uploadBytes(storageRef, file).then((snapshot) => {
-
-            getDownloadURL(snapshot.ref).then(function(downloadURL) {
-              console.log("File available at", downloadURL);
-            });          
-
-          });
-
+          
+        
           tempAlbum.photos.push(
 
             {
-              id :  "Date.now()",
-              key: "Date.now()",
-              caption : index,
+              id :  photoId,
+              key: photoId,
+              caption : file.name,
               location : "location",
               date : "date",
               description : "description",
@@ -135,6 +150,7 @@ export default function Editing(props) {
 
           );
         });
+
         const filePaths = await Promise.all(filePathsPromises);
         tempAlbum.photos = filePaths.map((base64File, index) => (
           {
@@ -149,6 +165,8 @@ export default function Editing(props) {
         console.log(tempAlbum.photos[0]);
         tempAlbum.img = tempAlbum.photos[0].img;
 
+
+
         //replace data with data from inputs
         tempAlbums.push(tempAlbum);
             
@@ -156,12 +174,13 @@ export default function Editing(props) {
         //overwrite albums object in local storage
         localStorage.setItem('albums', JSON.stringify(tempAlbums));
 
-
-        //firebase test
-        await setDoc(doc(db, "data", JSON.parse(localStorage.getItem("user")).uid), {
-          ...[tempAlbums]
-        });
-
+        //uploads doc to firebase
+        if(props.loggedIn){
+          await setDoc(doc(db, "data", JSON.parse(localStorage.getItem("user")).uid), {
+            ...tempAlbums
+          });
+        }
+        
 
 
 
@@ -196,7 +215,7 @@ export default function Editing(props) {
 
 
   //handles save functionality
-  function onClickSave(){
+  async function onClickSave(){
 
     //make new temp album object from localstorage albums object
     let tempAlbums = JSON.parse(localStorage.getItem("albums"));
@@ -215,6 +234,13 @@ export default function Editing(props) {
    
       //overwrite albums object in local storage
       localStorage.setItem('albums', JSON.stringify(tempAlbums));
+
+      //uploads doc to firebase
+      if(props.loggedIn){
+        await setDoc(doc(db, "data", JSON.parse(localStorage.getItem("user")).uid), {
+          ...tempAlbums
+        });
+      }
 
     }
     else if(!props.editingSettings.isAlbum){
@@ -238,6 +264,13 @@ export default function Editing(props) {
 
       //overwrite current photo object in session storage
       sessionStorage.setItem("currentPhoto", JSON.stringify(tempAlbums[index].photos[photoIndex]));
+
+      //uploads doc to firebase
+      if(props.loggedIn){
+        await setDoc(doc(db, "data", JSON.parse(localStorage.getItem("user")).uid), {
+          ...tempAlbums
+        });
+      }
 
       //refresh
       props.setCurrentPhoto(tempAlbums[index].photos[photoIndex]);

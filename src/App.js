@@ -1,6 +1,8 @@
 import './App.css';
 import { useState, useEffect, React } from 'react'; //React
 import { BrowserRouter, Route, Routes } from 'react-router-dom' //React Router
+import { doc, getDoc } from "firebase/firestore"; 
+import {db} from "./firebase"
 //Components
 import Mainpage from './components/Mainpage';
 import Loginpage from './components/Loginpage';
@@ -15,11 +17,35 @@ import albumsObj from './components/Testalbums'; //gets test data
 function App() {
 
   // sets albums state
-  const [albums, setAlbums] = useState([]); 
+  const [albums, setAlbums] = useState(null); 
 
 
   // sets albums state
   const [loggedIn, setLoggedIn] = useState(false); 
+
+
+  async function getData(uid){
+    const docRef = doc(db, "data", uid);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+
+
+
+        var arr_obj = Object.keys(docSnap.data()).map(key => (docSnap.data()[key]));
+
+
+        console.log(arr_obj);
+        
+        //sets state
+        setAlbums(arr_obj);
+
+
+        localStorage.setItem('albums', JSON.stringify(arr_obj));
+        console.log(arr_obj);
+
+      }
+  } 
 
 
   useEffect(() => {
@@ -28,19 +54,22 @@ function App() {
     if(JSON.parse(localStorage.getItem("user")) !== null){
       setLoggedIn(true);
       console.log(JSON.parse(localStorage.getItem("user")));
+      getData(JSON.parse(localStorage.getItem("user")).uid);
+      
     }
-    console.log(loggedIn)
+    else if(JSON.parse(localStorage.getItem("albums")) !== null){
+      //sets state
+      setAlbums(JSON.parse(localStorage.getItem("albums")));
+    }
 
 
-    //sets state
-    setAlbums(JSON.parse(localStorage.getItem("albums")));
   }, [loggedIn])
 
   return (
     <BrowserRouter>
       <Routes>
           {/*If user has albums, render albums page, if not, redner main page */}
-          <Route path="/" element={(albums.length > 0) ? <Albumspage loggedIn={loggedIn}/> : <Mainpage loggedIn={loggedIn}/> }/>
+          <Route path="/" element={(albums) ? <Albumspage loggedIn={loggedIn}/> : <Mainpage loggedIn={loggedIn}/> }/>
           <Route path="main" element={<Mainpage loggedIn={loggedIn}/>}/>
           <Route path="editing" element={<Editing loggedIn={loggedIn}/>}/>
           <Route path="albums" element={<Albumspage loggedIn={loggedIn}/>}/>
