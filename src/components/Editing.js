@@ -2,6 +2,7 @@ import {React, useState, useEffect} from 'react'; //React
 import { doc, setDoc } from "firebase/firestore"; 
 import {db} from "../firebase"
 import { storage} from "../firebase";
+import exifr from 'exifr' // => exifr/dist/full.umd.cjs
 import { uploadBytes, ref, getDownloadURL} from "firebase/storage";
 
 //CSS
@@ -123,18 +124,26 @@ export default function Editing(props) {
       }
 
 
+      
+
       async function asyncCall() {
 
         const filePathsPromises = [];
-        Array.from(files).forEach((file, index) => {
+        Array.from(files).forEach((file) => {
 
+
+            let metaData;
+            console.log(file);
+            exifr.parse(file)
+            .then(output => metaData = output);
+  
 
           let photoId = Date.now().toString();
           const storageRef = ref(storage, photoId);
 
           filePathsPromises.push(props.loggedIn ? getURL(storageRef, file) : getBase64(file));
 
-          
+     
         
           tempAlbum.photos.push(
 
@@ -159,6 +168,9 @@ export default function Editing(props) {
             
           }
         ));
+
+        
+        
  
 
        
