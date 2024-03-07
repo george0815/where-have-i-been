@@ -4,6 +4,18 @@ import {db} from "../firebase"
 import { storage} from "../firebase";
 import exifr from 'exifr' // => exifr/dist/full.umd.cjs
 import { uploadBytes, ref, getDownloadURL} from "firebase/storage";
+import {
+  setKey,
+  setDefaults,
+  setLanguage,
+  setRegion,
+  fromAddress,
+  fromLatLng,
+  fromPlaceId,
+  setLocationType,
+  geocode,
+  RequestType,
+} from "react-geocode";
 
 //CSS
 import '../styles/Mainpage.css';
@@ -35,6 +47,47 @@ export default function Editing(props) {
       reader.readAsDataURL(file);
       reader.onload = () => resolve(reader.result);
       reader.onerror = error => reject(error);
+    });
+  
+  }
+
+  function getMetaData(file) {
+    return new Promise((resolve, reject) => {
+      exifr.parse(file)
+      .then(output => {
+        
+        console.log(output)
+
+        if(output){
+
+          let coords = output.latitude + "," + output.longitude 
+
+        geocode(RequestType.LATLNG, coords, {
+          location_type: "ROOFTOP", // Override location type filter for this request.
+          enable_address_descriptor: true, // Include address descriptor in response.
+        })
+          .then(({ results }) => {
+            const address = results[0].formatted_address;
+            const { city, state, country } = results[0].address_components.reduce(
+              (acc, component) => {
+                if (component.types.includes("locality"))
+                  acc.city = component.long_name;
+                else if (component.types.includes("administrative_area_level_1"))
+                  acc.state = component.long_name;
+                else if (component.types.includes("country"))
+                  acc.country = component.long_name;
+                return acc;
+              },
+              {}
+            );
+            console.log(city, state, country);
+            console.log(address);
+          })
+          .catch(console.error);
+        }
+            resolve(output);
+      
+      });
     });
   
   }
@@ -128,20 +181,23 @@ export default function Editing(props) {
 
       async function asyncCall() {
 
+        
+
         const filePathsPromises = [];
+        const metaDataPromises = [];
+
         Array.from(files).forEach((file) => {
 
 
-            let metaData;
-            console.log(file);
-            exifr.parse(file)
-            .then(output => metaData = output);
+          
   
 
           let photoId = Date.now().toString();
           const storageRef = ref(storage, photoId);
 
           filePathsPromises.push(props.loggedIn ? getURL(storageRef, file) : getBase64(file));
+          metaDataPromises.push(getMetaData(file));
+
 
      
         
@@ -161,10 +217,35 @@ export default function Editing(props) {
         });
 
         const filePaths = await Promise.all(filePathsPromises);
+        const metaData = await Promise.all(metaDataPromises);
+        console.log(metaData);
+
         tempAlbum.photos = filePaths.map((base64File, index) => (
           {
             ...tempAlbum.photos[index],
             img : base64File,
+            
+          }
+        ));
+
+        
+        //create function that takes in stuf and returns description, location, and date
+        function resolveData(data, index){
+          //date
+          let date = data.DateTimeOriginal ? data.DateTimeOriginal : files[index].lastModifiedDate
+
+          //description
+
+          //location
+        }
+        
+
+        tempAlbum.photos = metaData.map((data, index) => (
+          {
+            ...tempAlbum.photos[index],
+           // date : ,
+            description : data.DateTimeOriginal ? data.DateTimeOriginal : files[index].lastModifiedDate,
+            location : data.DateTimeOriginal ? data.DateTimeOriginal : files[index].lastModifiedDate,
             
           }
         ));
