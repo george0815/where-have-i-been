@@ -188,7 +188,7 @@ export default function Loginpage(props) {
                   />
                 </div>} 
                 {/*login and forgot password buttons*/}   
-                <button onClick={(forgotPassword && !sigingUp) ? onClickResetPassword : (sigingUp ? onClickRegister : onClickLogin)} className='navButton'>{(forgotPassword && !sigingUp) ? "Reset Password" : (sigingUp ? "Create account" : "Login")}</button>
+                <button onClick={(forgotPassword && !sigingUp) ? onClickResetPassword : (sigingUp ? onClickRegister : onClickLogin)} className='navButton loginButton'>{(forgotPassword && !sigingUp) ? "Reset Password" : (sigingUp ? "Create account" : "Login")}</button>
                 {(!forgotPassword && !sigingUp) && <p className='noPassText'>No account? <button onClick={onClickSignup}>Sign up here</button></p>}
 
             </div>

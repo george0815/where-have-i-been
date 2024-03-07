@@ -168,7 +168,7 @@ export default function Navbar(props) {
 
   return (
     //whole navbar
-    <nav className='mainNav'>
+    <nav className={props.fullScreen ? 'mainNav mainNavFullscreen' : 'mainNav'} >
       {/* title*/}
       <div className="logo">{country}</div>
       {/* logo*/}

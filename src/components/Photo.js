@@ -64,6 +64,12 @@ export default function Photo(props) {
   );}
 
 
+  function exitFullscreen(){
+    setFullscreen(false); 
+    console.log("test");
+  }
+
+
 
   //------------------------JSX OBJECT------------------------------//
 
@@ -72,7 +78,7 @@ export default function Photo(props) {
 
     <div className='componentContainer transparentBackground'>
 
-        <Navbar loggedIn={props.loggedIn} page={3} onClickEdit={onClickEdit}/>
+        <Navbar fullScreen={fullScreen} loggedIn={props.loggedIn} page={3} onClickEdit={onClickEdit}/>
 
         {/*Holds all elements in the photo page*/}
         <div className="mainPhotoContainer">
@@ -83,7 +89,7 @@ export default function Photo(props) {
             </div>
 
             {/*Contains fullscreen version of photo*/}
-            <div className={fullScreen ? 'fullscreenPhotoContainer activeFullscreen' : 'fullscreenPhotoContainer'}>  
+            <div onClick={exitFullscreen} className={fullScreen ? 'fullscreenPhotoContainer activeFullscreen' : 'fullscreenPhotoContainer fadeOut'}>  
                 <img src={currentPhoto.img} className="fullscreenPhoto"/>
             </div>
 

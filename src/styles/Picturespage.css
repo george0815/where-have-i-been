@@ -5,12 +5,13 @@
   padding-top: 50px;
   padding-bottom: 50px;
   justify-items: center;
+  align-items: center;
   justify-content: center;
   display: grid;
   grid-template-columns: repeat( auto-fit, 250px );
-  grid-template-rows: repeat( auto-fit, 250px );
+  grid-template-rows: repeat( auto-fit, 1fr );
   column-gap: 2%;   
-  row-gap: 4%; 
+  row-gap: 5%; 
   overflow-x: hidden;
   overflow-y: scroll;
 }

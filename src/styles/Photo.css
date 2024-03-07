@@ -147,9 +147,13 @@
     opacity: .5;
 }
 
-
 .fullscreenButton:hover, .arrow:hover{
     transform: scale(1.1);
+}
+
+
+.mainNavFullscreen{
+    z-index: 0 !important;
 }
 
 /*Keyframes for tooltip fade in and fade out animations*/

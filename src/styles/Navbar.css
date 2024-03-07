@@ -6,6 +6,7 @@
     color: white;
     height: 100px;
     width: 100vw;
+    min-width: 100vw;
     display: flex;
     opacity: 1;
     z-index: 12;
@@ -46,6 +47,10 @@
 
 
 /**************************MISC**************************/
+
+.mainNavFullscreen{
+    z-index: 0 !important;
+}
 
 .mainNav > img{
     height: 70%;

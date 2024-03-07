@@ -64,6 +64,10 @@
     margin-top: 2px;
 }
 
+.loginButton:hover{
+    transform: scale(1.05);
+}
+
 
 /**************************MISC**************************/
 
