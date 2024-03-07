@@ -51,6 +51,12 @@ export default function Editing(props) {
   
   }
 
+  setDefaults({
+    key: "AIzaSyAowkd_pNDHGK5ZVBfugs2uw3gt182uvL4", // Your API key here.
+    language: "en", // Default language for responses.
+    region: "es", // Default region for responses.
+  });
+
   function getMetaData(file) {
     return new Promise((resolve, reject) => {
       exifr.parse(file)
@@ -80,12 +86,32 @@ export default function Editing(props) {
               },
               {}
             );
+
+            let locationObject = {
+
+              city : city,
+              state : state, 
+              country : country
+
+            }
             console.log(city, state, country);
             console.log(address);
+
+            let tempObj = {
+              ...output,
+              ...locationObject
+            }
+            console.log(tempObj);
+
+            resolve(tempObj);
+
           })
           .catch(console.error);
         }
-            resolve(output);
+        else{
+          resolve(null);
+        }
+            
       
       });
     });
@@ -208,8 +234,8 @@ export default function Editing(props) {
               key: photoId,
               caption : file.name,
               location : "location",
-              date : "date",
-              description : "description",
+              date : "",
+              description : "",
               tags : []
             }
 
@@ -229,23 +255,13 @@ export default function Editing(props) {
         ));
 
         
-        //create function that takes in stuf and returns description, location, and date
-        function resolveData(data, index){
-          //date
-          let date = data.DateTimeOriginal ? data.DateTimeOriginal : files[index].lastModifiedDate
-
-          //description
-
-          //location
-        }
         
-
+        
         tempAlbum.photos = metaData.map((data, index) => (
           {
             ...tempAlbum.photos[index],
-           // date : ,
-            description : data.DateTimeOriginal ? data.DateTimeOriginal : files[index].lastModifiedDate,
-            location : data.DateTimeOriginal ? data.DateTimeOriginal : files[index].lastModifiedDate,
+            date : (data !== null && data.DateTimeOriginal !== null) ? data.DateTimeOriginal.toDateString() : files[index].lastModifiedDate.toDateString(),
+            location : (data !== null && data.country !== null) ? data.city + ", " + data.state + ", " + data.country : ""
             
           }
         ));

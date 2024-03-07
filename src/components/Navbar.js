@@ -3,7 +3,8 @@ import logo from '../images/logo.svg'; //gets globe logo
 import {countries} from "countries-list"; //gets list of every country (used for title)
 import { useNavigate } from "react-router-dom";
 import {Link} from 'react-router-dom'; //gets link from react router
-
+import { doc, setDoc } from "firebase/firestore"; 
+import {db} from "../firebase"
 
 //CSS
 import '../styles/Navbar.css';
@@ -28,7 +29,7 @@ export default function Navbar(props) {
 
 
   //handles removing
-  function remove(){
+  async function remove(){
 
      //add alert 
     if (window.confirm( + (props.page === 1) ? "Are you sure you want to delete this album?" : "Are you sure you want to delete this photo?")) {
@@ -40,12 +41,23 @@ export default function Navbar(props) {
       //if user is deleting album
       if(props.page === 1){
         tempAlbums.splice(index, 1); // 2nd parameter means remove one item only
+        if(props.loggedIn){
+          await setDoc(doc(db, "data", JSON.parse(localStorage.getItem("user")).uid), {
+            ...tempAlbums
+          });
+        }
         localStorage.setItem('albums', JSON.stringify(tempAlbums));
         navigate("/");
       }
       //if user is deleting photo
       else if(props.page === 3){
         tempAlbums[index].photos.splice(tempAlbums[index].photos.findIndex(photo => {return JSON.parse(sessionStorage.getItem("currentPhoto")).id === photo.id}), 1);
+        //uploads doc to firebase
+        if(props.loggedIn){
+          await setDoc(doc(db, "data", JSON.parse(localStorage.getItem("user")).uid), {
+            ...tempAlbums
+          });
+        }
         sessionStorage.setItem("currentAlbum", JSON.stringify(tempAlbums[index]));
         localStorage.setItem('albums', JSON.stringify(tempAlbums));
         navigate("/album");

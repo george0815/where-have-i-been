@@ -121,7 +121,7 @@ export default function Photo(props) {
                 <div className="photo"> 
                     
                     {/*holds all the text and tags that display when the user hovers over the photo*/}
-                    <div className='tooltiptext'>
+                    {(currentPhoto.tags.length > 1 || currentPhoto.description !== "") && <div className='tooltiptext'>
                             
                         <p>{currentPhoto.description}</p>
                         <nav className='tagContainer'>
@@ -132,7 +132,7 @@ export default function Photo(props) {
                             ))}
                         </nav>
 
-                    </div>
+                    </div>}
                     {/*actual photo*/}
                     <img src={currentPhoto.img}/> 
                 </div>
