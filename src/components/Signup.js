@@ -3,7 +3,6 @@ import Background from './Background'; //Gets background
 import logo from '../images/logo.svg'; //gets globe logo
 import Navbar from './Navbar';
 import { useNavigate } from "react-router-dom";
-import {Link} from 'react-router-dom'; //gets link from react router
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail  } from "firebase/auth";
 import {auth} from "../firebase"
 //CSS
@@ -15,7 +14,8 @@ import '../styles/Navbar.css';
 
 
 //login page
-export default function Loginpage(props) {
+export default function Signup(props) {
+
 
 
 
@@ -25,37 +25,48 @@ export default function Loginpage(props) {
   const navigate = useNavigate();
 
 
+  //registers new user
+  function onClickRegister(){
+    
 
-  function onClickLogin(){
-
-     //get inputs from fields
-     let email = document.getElementById("email").value;
-     let password = document.getElementById("password").value;
-
-
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in 
-        //set loggedIn local storage value to true and go to main page
-        const user = userCredential.user;
-        console.log(user);
-        localStorage.setItem('loggedIn', true);
-        localStorage.setItem('user', JSON.stringify(user));
+    //get inputs from fields
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    let passwordConfirm = document.getElementById("passwordConfirm").value;
 
 
-        props.setLoggedIn(true);
+    if(passwordConfirm === password){
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed up 
+          const user = userCredential.user;
+          
+          //set loggedIn local storage value to true and go to main page
+          localStorage.setItem('user', JSON.stringify(user));
 
+          props.setLoggedIn(true);
 
-        navigate("/");        // ...
-      })
-      .catch((error) => {
-        //display error alert
-        window.alert("Error: " + error.message + "\nCode: " + error.code);
-      });
+          navigate("/");
+
+        })
+        .catch((error) => {
+        
+          //display error alert
+          window.alert("Error: " + error.message + "\nCode: " + error.code);
+
+        });
+    }
+    else{
+      window.alert("Error: passwords do not match");
+    }
+
 
   }
 
 
+
+
+  
 
   //----------------------JSX OBJECT----------------------//
 
@@ -65,7 +76,7 @@ export default function Loginpage(props) {
 
     <div className='componentContainer'>
 
-    <div className='loginNav'><Navbar page={5}/></div>
+        <div className='loginNav'><Navbar page={5}/></div>
 
        {/*Holds all elements in the main page*/}
        <div className="loginPageContainer">
@@ -95,12 +106,20 @@ export default function Loginpage(props) {
                     name="password"
                     id="password"
                   />
-                <Link className='forgotPassword' to="../Forgotpassword"><button className='forgotPassword'>Forgot password</button></Link>
                 </div>
-              
+                {/* Confirm Password prompt*/}      
+                <div className='inputContainer'>
+
+                  <label for="PasswordConfirm">Confirm Password</label>
+                  <input
+                    type="text"
+                    placeholder="passwordConfirm"
+                    name="passwordConfirm"
+                    id="passwordConfirm"
+                  />
+                </div>
                 {/*login and forgot password buttons*/}   
-                <button onClick={onClickLogin} className='navButton loginButton'>Login</button>
-                 <p className='noPassText'>No account? <Link className='noPassText' to="../Signup"><button>Sign up here</button></Link></p>
+                <button onClick={ onClickRegister} className='navButton loginButton'>Create account</button>
 
             </div>
       

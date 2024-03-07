@@ -72,7 +72,11 @@
 /**************************MISC**************************/
 
 .forgotPassword:hover{
-    transform: scale(1.03) !important;
+    transform: scale(1.01) !important;
+}
+
+.loginNav{
+    opacity: 0 !important;
 }
 
 .loginPageContainer input{

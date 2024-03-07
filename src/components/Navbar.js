@@ -227,7 +227,7 @@ export default function Navbar(props) {
         </select>}
         {showTagInput && <input onChange={(e) => {onTagInputChange(e)}} placeholder='Enter tag'/>}
         {(props.page === 1 || props.page === 3) && <button className="navButton">Download</button>}
-        {profileButton}
+        {props.page !== 5 && profileButton}
       </div>
 
     </nav>

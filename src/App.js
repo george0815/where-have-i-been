@@ -10,6 +10,8 @@ import Albumspage from './components/Albumspage';
 import Picturespage from './components/Picturespage';
 import Photo from './components/Photo';
 import Editing from './components/Editing';
+import Signup from './components/Signup';
+import ForgotPassword from './components/Forgotpassword';
 import albumsObj from './components/Testalbums'; //gets test data
 
 
@@ -76,6 +78,9 @@ function App() {
           <Route path="album" element={<Picturespage  setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>
           <Route path="photo" element={<Photo setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>
           <Route path="login" element={<Loginpage setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>}/>
+          <Route path="signup" element={<Signup setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>
+          <Route path="forgotPassword" element={<ForgotPassword setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>}/>
+
 
       </Routes>
     </BrowserRouter>
