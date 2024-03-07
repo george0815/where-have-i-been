@@ -33,6 +33,10 @@
 
 /**************************BUTTONS**************************/
 
+.noArrow{
+    opacity: 0;
+}
+
 .arrow{
     height: fit-content;
     align-self: center;
@@ -42,7 +46,7 @@
     border: none;
     color: white;
     background-color: #000000;
-    padding:  4px 15px;
+    padding:  3px 13px;
     margin: 0px 30px
 }
 .fullscreenButton{
@@ -139,6 +143,12 @@
 }
 
 /**************************EFFECTS**************************/
+
+.mainPhotoContainerEditing{
+    background-color: transparent !important;
+    z-index: 15;
+  }
+  
 
 /*Current active image*/
 .activeFullscreen { opacity: 1; visibility: visible;}

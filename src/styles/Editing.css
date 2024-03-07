@@ -180,6 +180,15 @@ button:hover{
 }
 
 
-
+.closeButton{
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    border-radius: 9999em;
+    background-color: #5b5b5b;
+    border: none;
+    color: white;
+    font-family: "IBM Plex Sans Hebrew";
+}
 
 

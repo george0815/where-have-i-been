@@ -69,12 +69,12 @@ function App() {
     <BrowserRouter>
       <Routes>
           {/*If user has albums, render albums page, if not, redner main page */}
-          <Route path="/" element={(albums) ? <Albumspage loggedIn={loggedIn}/> : <Mainpage loggedIn={loggedIn}/> }/>
-          <Route path="main" element={<Mainpage loggedIn={loggedIn}/>}/>
-          <Route path="editing" element={<Editing loggedIn={loggedIn}/>}/>
-          <Route path="albums" element={<Albumspage loggedIn={loggedIn}/>}/>
-          <Route path="album" element={<Picturespage loggedIn={loggedIn}/>}/>
-          <Route path="photo" element={<Photo loggedIn={loggedIn}/>}/>
+          <Route path="/" element={(albums) ? <Albumspage setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/> : <Mainpage setLoggedIn={setLoggedIn} loggedIn={loggedIn}/> }/>
+          <Route path="main" element={<Mainpage setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>
+          <Route path="editing" element={<Editing setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>
+          <Route path="albums" element={<Albumspage setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>
+          <Route path="album" element={<Picturespage  setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>
+          <Route path="photo" element={<Photo setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>
           <Route path="login" element={<Loginpage setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>}/>
 
       </Routes>

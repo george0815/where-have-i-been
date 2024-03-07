@@ -293,27 +293,6 @@ export default function Editing(props) {
 
 
 
-  //saves data to either firebase collection or local storage depending on if user is logged in or not
-  function saveData(tempAlbums, tempAlbum, tempPhoto){
-
-    if(props.loggedIn){
-
-      //save tempAlbums to firebase collection
-      //if tempAlbum isn't null save it to session storage 
-      //if tempphoto isn't null save it to session storage
-
-    }
-    else if(!props.loggedIn){
-
-      //save tempAlbums to local storage
-      //if tempAlbum isn't null save it to session storage
-      //if tempphoto isn't null save it to session storage
-
-
-    }
-
-  }
-
 
   
   //--------------------------USE EFFECT-----------------------------//
@@ -351,6 +330,9 @@ export default function Editing(props) {
 
         //main div that hold all the login promps and buttons
         <div className="editingContainer">
+
+            {/*Close button */}
+            <button onClick={props.onEditExit} className='closeButton'>X</button>
 
             {/* Caption and Location*/}
             <div className='captionLocation'>

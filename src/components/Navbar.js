@@ -153,6 +153,27 @@ export default function Navbar(props) {
   }
 
 
+  function logout(){
+    if (window.confirm("Are you sure you want to logout?")) {
+    
+
+      //set loggedIn local storage value to true and go to main page
+      localStorage.setItem('user', null);
+
+      props.setLoggedIn(false);
+
+      navigate("/");
+    
+    }
+  }
+
+
+  //sets profile button
+  let profileButton = !props.loggedIn ? <Link to="../login"><button className="navButton">{"Login"}</button></Link> : 
+  <button onClick={logout} className="navButton">{"Logout"}</button>
+
+
+
   //--------------------------USE EFFECT-----------------------------//
 
 
@@ -194,7 +215,7 @@ export default function Navbar(props) {
         </select>}
         {showTagInput && <input onChange={(e) => {onTagInputChange(e)}} placeholder='Enter tag'/>}
         {(props.page === 1 || props.page === 3) && <button className="navButton">Download</button>}
-        {!props.loggedIn && <Link to="../login"><button className="navButton">Login</button></Link> }
+        {profileButton}
       </div>
 
     </nav>

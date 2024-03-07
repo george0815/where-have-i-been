@@ -19,7 +19,7 @@ export default function Mainpage(props) {
 
     <div className='componentContainer'>
 
-      <Navbar loggedIn={props.loggedIn} page={0}/>
+      <Navbar setLoggedIn={props.setLoggedIn}  loggedIn={props.loggedIn} page={0}/>
 
       {/*Holds all elements in the main page*/}
       <div className="mainPageContainer">

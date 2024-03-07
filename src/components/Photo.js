@@ -15,8 +15,13 @@ export default function Photo(props) {
 
   //---------------------------STATE--------------------------------//
 
+  //holds photo index
+  const [photoIndex, setPhotoIndex] = useState(JSON.parse(sessionStorage.getItem("currentAlbum")).photos.findIndex(photo => {return JSON.parse(sessionStorage.getItem("currentPhoto")).id === photo.id}));
+
+
   //sets up current photo state
   const [currentPhoto, setCurrentPhoto] = useState(JSON.parse(sessionStorage.getItem("currentPhoto"))); 
+
 
   //sets up state for fullscreen
   const [fullScreen, setFullscreen] = useState(false); 
@@ -70,6 +75,19 @@ export default function Photo(props) {
   }
 
 
+  function arrow(right){
+
+    //CHECK FOR UNDEFINED
+
+      //change current photo to the photo one index up
+      let index = (right &&  (photoIndex + 1 !== JSON.parse(sessionStorage.getItem("currentAlbum")).photos.length))? photoIndex + 1 : (!right && (photoIndex !== 0) ? photoIndex - 1 : photoIndex);
+      let newCurrentPhoto = JSON.parse(sessionStorage.getItem("currentAlbum")).photos[index];
+      setCurrentPhoto(newCurrentPhoto);
+      setPhotoIndex(index);
+      sessionStorage.setItem("currentPhoto", JSON.stringify(newCurrentPhoto));
+  
+  }
+
 
   //------------------------JSX OBJECT------------------------------//
 
@@ -78,10 +96,10 @@ export default function Photo(props) {
 
     <div className='componentContainer transparentBackground'>
 
-        <Navbar fullScreen={fullScreen} loggedIn={props.loggedIn} page={3} onClickEdit={onClickEdit}/>
+        <Navbar setLoggedIn={props.setLoggedIn}  fullScreen={fullScreen} loggedIn={props.loggedIn} page={3} onClickEdit={onClickEdit}/>
 
         {/*Holds all elements in the photo page*/}
-        <div className="mainPhotoContainer">
+        <div className={editingSettings.currentlyEditing ? 'mainPhotoContainer mainPhotoContainerEditing' : 'mainPhotoContainer'}>
 
              {/*Contains fullscreen version of photo*/}
              <div className={editingSettings.currentlyEditing ? 'editingComponentContainer activeEditing' : 'editingComponentContainer'}>  
@@ -94,7 +112,7 @@ export default function Photo(props) {
             </div>
 
             {/*left arrow*/}
-            <button className='arrow'>↩</button>
+            <button onClick={() =>{arrow(false)}} className={(photoIndex !== 0) ? 'arrow' : 'arrow noArrow'}>↩</button>
 
             {/*Holds the photo, info, caption, and fullscreen button*/}
             <div className='photoContainer'>
@@ -128,7 +146,7 @@ export default function Photo(props) {
             </div>
                     
             {/*right arrow*/}
-            <button className='arrow'>↪</button>
+            <button onClick={() =>{arrow(true)}} className={(photoIndex + 1 !== JSON.parse(sessionStorage.getItem("currentAlbum")).photos.length) ? 'arrow' : 'arrow noArrow'}>↪</button>
 
             {/*background*/}
             <Background isMain={false}/>

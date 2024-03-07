@@ -129,6 +129,10 @@
 /**************************EFFECTS**************************/
 
 
+.albumPageContainerEditing{
+  background-color: transparent !important;
+}
+
 .albumPageContainer .active {
     opacity: .5;
 }

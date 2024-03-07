@@ -109,10 +109,10 @@ export default function Picturespage(props) {
 
     <div className='componentContainer transparentBackground'>
 
-      <Navbar page={1}  loggedIn={props.loggedIn} setSearchTag={setSearchTagPictures} updatePictures={updatePictures} onClickEdit={onClickEdit} onClickAdd={onClickAdd}/>
+      <Navbar page={1} setLoggedIn={props.setLoggedIn}  loggedIn={props.loggedIn} setSearchTag={setSearchTagPictures} updatePictures={updatePictures} onClickEdit={onClickEdit} onClickAdd={onClickAdd}/>
 
       {/*Holds all elements in the main page*/}
-      <div className="picturePageContainer">
+      <div className={editingSettings.currentlyEditing ? 'picturePageContainer picturePageContainerEditing' : 'picturePageContainer'}>
 
             {/*Contains fullscreen version of photo*/}
             <div className={editingSettings.currentlyEditing ? 'editingComponentContainer activeEditing' : 'editingComponentContainer'}>  
