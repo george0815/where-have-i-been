@@ -5,7 +5,7 @@ import { storage} from "../firebase";
 import exifr from 'exifr' // => exifr/dist/full.umd.cjs
 import { uploadBytes, ref, getDownloadURL} from "firebase/storage";
 import DatePicker from 'react-date-picker';
-import 'react-date-picker/dist/DatePicker.css';
+
 import {
   setKey,
   setDefaults,
@@ -462,6 +462,7 @@ export default function Editing(props) {
                   placeholder="caption"
                   name="caption"
                   id="caption"
+                  className='input'
                   value={input.caption}
                   onChange={onInputChange}
 
@@ -471,6 +472,7 @@ export default function Editing(props) {
               <div className='inputContainerEditing location' >
                 <label htmlFor="location">Location</label>
                 <input
+                  className='input'
                   type="text"
                   placeholder="location"
                   name="location"
@@ -499,12 +501,12 @@ export default function Editing(props) {
                       name="fromDate"
                       id="fromDate"
                     />    
-                    
+                          
                     { props.editingSettings.isAlbum &&  <DatePicker onChange={onToChange} value={toDateValue}
+                      className='toDate'
                       type="text"
                       placeholder="to"
                       name="toDate"
-                      className='toDate'
                       id="toDate"
                     />  
                     } 
@@ -544,7 +546,7 @@ export default function Editing(props) {
                       type="text"
                       placeholder="tag name"
                       name="tagInput"
-                      className='tagInput'
+                      className='tagInput input'
                     />   
                     <button className='addTag' onClick={onClickAddTag}>Add tag</button>
                   </div>

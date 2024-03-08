@@ -107,11 +107,15 @@
 
 /**************************INPUT**************************/
 
+.react-date-picker__wrapper {
+border: none !important;
+}
+
 .location{
     margin-left: 25px;
 }
 
-.editingContainer input, .descriptionInput{
+.editingContainer .input, .descriptionInput{
     resize: none;
     font-family: "IBM Plex Sans Hebrew";
     font-weight: 500;
@@ -131,11 +135,22 @@
 
 .toDate{
     margin-left: auto;
+    color: black;
+  background-color: white;
+  font-family: "IBM Plex Sans Hebrew";
+  font-weight: 500;
+  border-radius: .5em;
+  border: none;
 }
 
 .dateAndTime{
-    min-width: 70% !important;
-    max-width: 70% !important;   
+    padding: 3px;
+  color: black;
+  background-color: white;
+  font-family: "IBM Plex Sans Hebrew";
+  font-weight: 500;
+  border-radius: .5em;
+  border: none;
 }
 
 
@@ -192,3 +207,7 @@ button:hover{
 }
 
 
+/**************************MISC**************************/
+label{
+    padding-bottom: 3px;
+}
