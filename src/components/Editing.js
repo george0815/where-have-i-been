@@ -5,6 +5,7 @@ import { storage} from "../firebase";
 import exifr from 'exifr' // => exifr/dist/full.umd.cjs
 import { uploadBytes, ref, getDownloadURL} from "firebase/storage";
 import DatePicker from 'react-date-picker';
+import 'react-date-picker/dist/DatePicker.css';
 import {
   setKey,
   setDefaults,
@@ -38,6 +39,13 @@ export default function Editing(props) {
 
   //sets up album state
   const [input, setInput] = useState({}); 
+
+  //from date state
+  const [toDateValue, onToChange] = useState(new Date());
+
+  //to date state
+  const [fromDateValue, onFromChange] = useState(new Date());
+
 
 
   //--------------------------FUNCTIONS-----------------------------//
@@ -484,25 +492,20 @@ export default function Editing(props) {
 
                     {/*If the user is currently adding or editing an
                     album, a second input box is displayed so they can enter a range of dates*/}
-                    <input
+                    <DatePicker onChange={onFromChange} value={fromDateValue}
                       className='dateAndTime'
                       type="text"
                       placeholder = {props.isAlbum ? "from" : "date and time"}
                       name="fromDate"
                       id="fromDate"
-                      value={input.fromDate}
-                      onChange={onInputChange}
-
                     />    
                     
-                    { props.editingSettings.isAlbum && <input
+                    { props.editingSettings.isAlbum &&  <DatePicker onChange={onToChange} value={toDateValue}
                       type="text"
                       placeholder="to"
                       name="toDate"
                       className='toDate'
                       id="toDate"
-                      value={input.toDate}
-                      onChange={onInputChange}
                     />  
                     } 
                   </div>
