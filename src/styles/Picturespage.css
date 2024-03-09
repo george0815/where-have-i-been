@@ -10,6 +10,8 @@
   display: grid;
   grid-template-columns: repeat( auto-fit, 250px );
   grid-template-rows: repeat( auto-fit, 1fr );
+  height: 50vh;
+
   column-gap: 2%;   
   row-gap: 5%; 
   overflow-x: hidden;
@@ -26,7 +28,7 @@
 .editingComponentContainer{
   visibility: hidden;
   background-color: #272727af;
-  position: absolute;
+  position: fixed;
   display: grid;
   top: 0%;
   left: 0%;

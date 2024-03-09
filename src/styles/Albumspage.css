@@ -16,7 +16,10 @@
     display: grid;
     grid-template-columns: repeat( auto-fit, 250px );
     grid-template-rows: repeat( auto-fit, 250px );
-    column-gap: 2%;   
+    column-gap: 2%;  
+    height: 50vh;
+    max-height: 100vh; 
+
     row-gap: 4%; 
     overflow-x: hidden;
     overflow-y: scroll;

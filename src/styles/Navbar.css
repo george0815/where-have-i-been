@@ -38,6 +38,8 @@
     color: white;
     font-family: "IBM Plex Sans Hebrew";
     height: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     margin-left: 15px;
     padding: 13px;
     font-size: 1.2rem;
@@ -63,9 +65,11 @@
     align-self: center;
     padding-left: 50px;
     width: 330px;
+    text-wrap: wrap;
+    word-wrap:break-word;
     font-family: 'Koh Santepheap';
     font-size:xx-large;
-    min-width: 330px;
+    min-width: 100px;
 }
 
 
