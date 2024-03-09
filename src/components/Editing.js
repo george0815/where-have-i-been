@@ -7,14 +7,7 @@ import { uploadBytes, ref, getDownloadURL} from "firebase/storage";
 import DatePicker from 'react-date-picker';
 
 import {
-  setKey,
   setDefaults,
-  setLanguage,
-  setRegion,
-  fromAddress,
-  fromLatLng,
-  fromPlaceId,
-  setLocationType,
   geocode,
   RequestType,
 } from "react-geocode";
@@ -41,10 +34,10 @@ export default function Editing(props) {
   const [input, setInput] = useState({}); 
 
   //from date state
-  const [toDateValue, onToChange] = useState(new Date());
+  const [fromDateValue, onFromChange] = useState(props.editingSettings.adding ? new Date() : (props.editingSettings.isAlbum) ? props.currentAlbum.date : props.currentPhoto.date);
 
   //to date state
-  const [fromDateValue, onFromChange] = useState(new Date());
+  const [toDateValue, onToChange] = useState((!props.editingSettings.adding && props.editingSettings.isAlbum) ? props.currentAlbum.date : new Date());
 
 
 
@@ -148,13 +141,14 @@ export default function Editing(props) {
           let tempAlbums = JSON.parse(localStorage.getItem("albums"));
           let index = tempAlbums.findIndex(album => {return JSON.parse(sessionStorage.getItem("currentAlbum")).id === album.id});
 
+
           //create temp photo object from input, and tempalbum
           let tempPhoto = {
             img : src,
             id :  Date.now().toString(),
             caption : document.getElementById("caption").value,
             location : document.getElementById("location").value,
-            date : document.getElementById("fromDate").value,
+            date : fromDateValue.toDateString(),
             description : document.getElementById("description").value,
             tags : tags
           }
@@ -202,8 +196,8 @@ export default function Editing(props) {
       let tempAlbum = {
         caption : document.getElementById("caption").value,
         location : document.getElementById("location").value,
-        date : document.getElementById("fromDate").value,
-        dateTo : document.getElementById("toDate").value,
+        date : fromDateValue.toDateString(),
+        date : toDateValue.toDateString(),
         description : document.getElementById("description").value,
         tags : tags,
         img: "",
@@ -242,7 +236,7 @@ export default function Editing(props) {
               id :  photoId,
               key: photoId,
               caption : file.name,
-              location : "location",
+              location : "",
               date : "",
               description : "",
               tags : []
@@ -345,8 +339,8 @@ export default function Editing(props) {
       //replace data with data from inputs
       tempAlbums[index].caption = document.getElementById("caption").value;
       tempAlbums[index].location = document.getElementById("location").value;
-      tempAlbums[index].date = document.getElementById("fromDate").value;
-      tempAlbums[index].dateTo = document.getElementById("toDate").value;
+      tempAlbums[index].date = fromDateValue.toDateString();
+      tempAlbums[index].dateTo = toDateValue.toDateString();
       tempAlbums[index].description = document.getElementById("description").value;
       tempAlbums[index].tags = tags;
    
@@ -369,7 +363,7 @@ export default function Editing(props) {
       //replace data with data from inputs
       tempAlbums[index].photos[photoIndex].caption = document.getElementById("caption").value;
       tempAlbums[index].photos[photoIndex].location = document.getElementById("location").value;
-      tempAlbums[index].photos[photoIndex].date = document.getElementById("fromDate").value;
+      tempAlbums[index].photos[photoIndex].date = fromDateValue.toDateString();
       tempAlbums[index].photos[photoIndex].description = document.getElementById("description").value;
       tempAlbums[index].photos[photoIndex].tags = tags;
 
