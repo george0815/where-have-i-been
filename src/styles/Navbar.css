@@ -17,7 +17,7 @@
     align-self: center;
     margin-left: auto;
     padding-right: 40px;
-    min-width: fit-content;
+    min-width: max-content;
 }
 
 /**************************BUTTONS**************************/
@@ -82,7 +82,9 @@ select::-ms-expand {
 .mainNav input{
     font-family: "IBM Plex Sans Hebrew";
     height: auto;
-    width: 100px;
+    width: auto;
+    min-width: 100px;
+    text-align: left;
     border-radius: 9999em;    
     padding: 13px;
     margin-left: 15px;
@@ -90,4 +92,13 @@ select::-ms-expand {
     font-weight: 500;
     font-style: normal;
     border: none;
+}
+
+.mainNav ::placeholder {
+  text-align: left;
+}
+  
+  
+.mainNav input:placeholder-shown {
+    text-align: left;
 }

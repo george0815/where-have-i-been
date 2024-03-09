@@ -17,9 +17,6 @@ export default function Navbar(props) {
 
   //---------------------------STATE--------------------------------//
 
-  //used for showing search tags input
-  const [showTagInput, setShowTagInput] = useState(false)
-
   //initiates title
   const [country, setCurrentCountry] = useState("Where have I been?") // set currrent slide index
 
@@ -77,12 +74,21 @@ export default function Navbar(props) {
 
     //sorts albums if user is on albums page
     if(props.page === 2){
-      if(evt.target.value !== "tag") {
-        setShowTagInput(false)
-        tempAlbums = tempAlbums.sort(stringSort(evt.target.value));
-      }     
-      else{setShowTagInput(true)}
 
+        switch(evt.target.value) {
+          case "date (asc)":
+            tempAlbums = tempAlbums.sort(function(a,b){
+              return new Date(Date.parse(a.date)) - new Date(Date.parse(b.date));
+            })   
+            break;
+          case "date (desc)":
+            tempAlbums = tempAlbums.sort(function(a,b){
+              return new Date(Date.parse(b.date)) - new Date(Date.parse(a.date));
+            })         
+            break;
+          default:
+            tempAlbums = tempAlbums.sort(stringSort(evt.target.value)) ;
+        }
 
       //saves to local storage and refreshes albums
       localStorage.setItem('albums', JSON.stringify(tempAlbums));
@@ -95,13 +101,22 @@ export default function Navbar(props) {
 
       let index = tempAlbums.findIndex(album => {return JSON.parse(sessionStorage.getItem("currentAlbum")).id === album.id});
 
-      //sort the photo array for that album and update temp albums
-      if(evt.target.value !== "tag") {
-        setShowTagInput(false)
-        tempAlbums[index].photos = tempAlbums[index].photos.sort(stringSort(evt.target.value));
-        console.log(tempAlbums);
-      }
-      else{setShowTagInput(true)}
+
+      switch(evt.target.value) {
+        case "date (asc)":
+          tempAlbums[index].photos = tempAlbums[index].photos.sort(function(a,b){
+            return new Date(Date.parse(a.date)) - new Date(Date.parse(b.date));
+          })   
+          break;
+        case "date (desc)":
+          tempAlbums[index].photos = tempAlbums[index].photos.sort(function(a,b){
+            return new Date(Date.parse(b.date)) - new Date(Date.parse(a.date));
+          })         
+          break;
+        default:
+          tempAlbums[index].photos = tempAlbums[index].photos.sort(stringSort(evt.target.value));
+        }
+      
 
       //set currentAlbum in session storage
       sessionStorage.setItem("currentAlbum", JSON.stringify(tempAlbums[index]));
@@ -215,17 +230,17 @@ export default function Navbar(props) {
         {(props.page === 1 || props.page === 3) && <button onClick={props.onClickEdit} className="navButton">Edit</button>}
         {(props.page === 1 || props.page === 2) && <select className="navButton sort" onChange={(e) => {onClickSort(e)}}>
           <option defaultValue="Sort by...">Sort by...</option>
-          <option>date</option>
+          <option>{"date (asc)"}</option>
+          <hr/>
+          <option>{"date (desc)"}</option>
           <hr/>
           <option>caption</option>
           <hr/>
           <option>description</option> 
           <hr/>
           <option>location</option>
-          <hr/>
-          <option>tag</option>
         </select>}
-        {showTagInput && <input onChange={(e) => {onTagInputChange(e)}} placeholder='Enter tag'/>}
+        <input onChange={(e) => {onTagInputChange(e)}} placeholder='search'/>
         {(props.page === 1 || props.page === 3) && <button className="navButton">Download</button>}
         {props.page !== 5 && profileButton}
       </div>

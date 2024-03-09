@@ -37,7 +37,7 @@ export default function Editing(props) {
   const [fromDateValue, onFromChange] = useState(props.editingSettings.adding ? new Date() : (props.editingSettings.isAlbum) ? props.currentAlbum.date : props.currentPhoto.date);
 
   //to date state
-  const [toDateValue, onToChange] = useState((!props.editingSettings.adding && props.editingSettings.isAlbum) ? props.currentAlbum.date : new Date());
+  const [toDateValue, onToChange] = useState((!props.editingSettings.adding && props.editingSettings.isAlbum) ? props.currentAlbum.dateTo : new Date());
 
 
 
@@ -148,7 +148,7 @@ export default function Editing(props) {
             id :  Date.now().toString(),
             caption : document.getElementById("caption").value,
             location : document.getElementById("location").value,
-            date : fromDateValue.toDateString(),
+            date : Object.prototype.toString.call(fromDateValue) === '[object Date]' ? fromDateValue.toDateString() : fromDateValue,
             description : document.getElementById("description").value,
             tags : tags
           }
@@ -196,8 +196,8 @@ export default function Editing(props) {
       let tempAlbum = {
         caption : document.getElementById("caption").value,
         location : document.getElementById("location").value,
-        date : fromDateValue.toDateString(),
-        date : toDateValue.toDateString(),
+        date : Object.prototype.toString.call(fromDateValue) === '[object Date]' ? fromDateValue.toDateString() : fromDateValue,
+        dateTo : Object.prototype.toString.call(toDateValue) === '[object Date]' ? toDateValue.toDateString() : toDateValue,
         description : document.getElementById("description").value,
         tags : tags,
         img: "",
@@ -206,12 +206,10 @@ export default function Editing(props) {
       }
 
 
-      
-
+    
       async function asyncCall() {
 
-        
-
+      
         const filePathsPromises = [];
         const metaDataPromises = [];
 
@@ -335,12 +333,13 @@ export default function Editing(props) {
 
 
     if(props.editingSettings.isAlbum){
+
       
       //replace data with data from inputs
       tempAlbums[index].caption = document.getElementById("caption").value;
       tempAlbums[index].location = document.getElementById("location").value;
-      tempAlbums[index].date = fromDateValue.toDateString();
-      tempAlbums[index].dateTo = toDateValue.toDateString();
+      tempAlbums[index].date = Object.prototype.toString.call(fromDateValue) === '[object Date]' ? fromDateValue.toDateString() : fromDateValue;
+      tempAlbums[index].dateTo = Object.prototype.toString.call(toDateValue) === '[object Date]' ? toDateValue.toDateString() : toDateValue;
       tempAlbums[index].description = document.getElementById("description").value;
       tempAlbums[index].tags = tags;
    
@@ -363,7 +362,7 @@ export default function Editing(props) {
       //replace data with data from inputs
       tempAlbums[index].photos[photoIndex].caption = document.getElementById("caption").value;
       tempAlbums[index].photos[photoIndex].location = document.getElementById("location").value;
-      tempAlbums[index].photos[photoIndex].date = fromDateValue.toDateString();
+      tempAlbums[index].photos[photoIndex].date = Object.prototype.toString.call(fromDateValue) === '[object Date]' ? fromDateValue.toDateString() : fromDateValue;
       tempAlbums[index].photos[photoIndex].description = document.getElementById("description").value;
       tempAlbums[index].photos[photoIndex].tags = tags;
 
