@@ -4,7 +4,9 @@
 .mainNav{
     background-color: #000000;
     color: white;
-    height: 100px;
+    height:max-content;
+    min-height: 100px;
+    max-height: 300px;
     width: 100vw;
     min-width: 100vw;
     display: flex;
@@ -17,7 +19,7 @@
     align-self: center;
     margin-left: auto;
     padding-right: 40px;
-    min-width: max-content;
+    min-width: min-content;
 }
 
 /**************************BUTTONS**************************/
