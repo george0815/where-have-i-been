@@ -125,8 +125,11 @@ export default function Picturespage(props) {
                 {/*creates each picture button from data, it pulls data from a database if the user is signed in
                 or localstorage if the user doens't have an account    */}
                 {currentAlbum.photos.map((photo, index) => (
+
+
     
-                  (photo.tags.some(tg => tg.includes(searchTagPictures)) && searchTagPictures != "" || (searchTagPictures === "")) && <Link to="../photo" key={photo.caption}onClick={() => {onclickPhoto(index)}}>
+                  ((photo.tags.some(tg => tg.includes(searchTagPictures)) || photo.caption.includes(searchTagPictures) || photo.location.includes(searchTagPictures) || photo.description.includes(searchTagPictures))
+                  && searchTagPictures != "" || (searchTagPictures === "")) && <Link to="../photo" key={photo.caption}onClick={() => {onclickPhoto(index)}}>
                     <button
                       id={index}
                       

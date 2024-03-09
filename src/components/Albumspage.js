@@ -113,8 +113,10 @@ export default function Albumspage(props) {
               or localstorage if the user doens't have an account  */} 
               {albumsObj.map((album, index) => (
 
+
                 //redirects to album
-                (album.tags.some(tg => tg.includes(searchTag)) && searchTag != "" || (searchTag === "")) && <Link to="album" key={index} onClick={() => { onclickAlbum(index)}}>
+                ((album.tags.some(tg => tg.includes(searchTag)) || album.caption.includes(searchTag) || album.location.includes(searchTag) || album.description.includes(searchTag))
+                && searchTag != "" || (searchTag === "")) && <Link to="album" key={index} onClick={() => { onclickAlbum(index)}}>
                   <button
                     key={album.caption}
                     className="albumButton"
