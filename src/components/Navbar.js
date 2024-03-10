@@ -206,9 +206,9 @@ export default function Navbar(props) {
 
   //every 15 seconds set the title to a series of random countrys' names
   useEffect(() => {
-    let titleTextInterval = setInterval(() => {for(let i = 0; i <= 20; i++){ showCountries(i);}}, 15000);
-    return () => {  clearInterval(titleTextInterval)}
-  })
+    let titleTextInterval = setInterval(() => {for(let i = 0; i <= 20; i++){showCountries(i);}}, 15000);
+    return () => {  clearInterval(titleTextInterval) }
+  },[])
 
 
   //------------------------JSX OBJECT------------------------------//
@@ -240,7 +240,7 @@ export default function Navbar(props) {
           <hr/>
           <option>location</option>
         </select>}
-        <input onChange={(e) => {onTagInputChange(e)}} placeholder='search'/>
+        {(props.page === 1 || props.page === 2) && <input onChange={(e) => {onTagInputChange(e)}} placeholder='search'/>}
         {(props.page === 1 || props.page === 3) && <button className="navButton">Download</button>}
         {props.page !== 5 && profileButton}
       </div>
