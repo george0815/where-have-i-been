@@ -38,7 +38,6 @@ export default function Loginpage(props) {
         // Signed in 
         //set loggedIn local storage value to true and go to main page
         const user = userCredential.user;
-        console.log(user);
         localStorage.setItem('loggedIn', true);
         localStorage.setItem('user', JSON.stringify(user));
 

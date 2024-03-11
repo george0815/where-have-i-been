@@ -71,7 +71,6 @@ export default function Photo(props) {
 
   function exitFullscreen(){
     setFullscreen(false); 
-    console.log("test");
   }
 
 

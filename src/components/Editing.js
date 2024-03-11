@@ -17,7 +17,8 @@ import '../styles/Mainpage.css';
 import '../styles/Fonts.css';
 import '../styles/Editing.css';
 import '../styles/Navbar.css';
-
+import 'react-date-picker/dist/DatePicker.css';
+import 'react-calendar/dist/Calendar.css';
 
 
 //login page
@@ -31,7 +32,15 @@ export default function Editing(props) {
 
 
   //sets up album state
-  const [input, setInput] = useState({}); 
+  const [input, setInput] = useState(
+
+    {
+      description: "",
+      location: props.currentAlbum.location,
+      caption: props.currentAlbum.caption
+    }
+
+  ); 
 
   //from date state
   const [fromDateValue, onFromChange] = useState(props.editingSettings.adding ? new Date() : (props.editingSettings.isAlbum) ? props.currentAlbum.date : props.currentPhoto.date);
@@ -64,7 +73,6 @@ export default function Editing(props) {
       exifr.parse(file)
       .then(output => {
         
-        console.log(output)
 
         if(output){
 
@@ -75,7 +83,6 @@ export default function Editing(props) {
           enable_address_descriptor: true, // Include address descriptor in response.
         })
           .then(({ results }) => {
-            const address = results[0].formatted_address;
             const { city, state, country } = results[0].address_components.reduce(
               (acc, component) => {
                 if (component.types.includes("locality"))
@@ -96,14 +103,12 @@ export default function Editing(props) {
               country : country
 
             }
-            console.log(city, state, country);
-            console.log(address);
+        
 
             let tempObj = {
               ...output,
               ...locationObject
             }
-            console.log(tempObj);
 
             resolve(tempObj);
 
@@ -245,7 +250,6 @@ export default function Editing(props) {
 
         const filePaths = await Promise.all(filePathsPromises);
         const metaData = await Promise.all(metaDataPromises);
-        console.log(metaData);
 
         tempAlbum.photos = filePaths.map((base64File, index) => (
           {
@@ -272,7 +276,6 @@ export default function Editing(props) {
  
 
        
-        console.log(tempAlbum.photos[0]);
         tempAlbum.img = tempAlbum.photos[0].img;
 
 
@@ -414,8 +417,6 @@ export default function Editing(props) {
       {
         description: props.currentAlbum.description,
         location: props.currentAlbum.location,
-        toDate: props.currentAlbum.dateTo,
-        fromDate: props.currentAlbum.date,
         caption: props.currentAlbum.caption
       }
   
@@ -424,13 +425,12 @@ export default function Editing(props) {
       {
         description: props.currentPhoto.description,
         location: props.currentPhoto.location,
-        fromDate: props.currentPhoto.date,
         caption: props.currentPhoto.caption
       }
     )
 
     setTags(props.editingSettings.isAlbum ? props.currentAlbum.tags :  props.currentPhoto.tags)
-
+  //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.editingSettings])
 
 
@@ -553,7 +553,7 @@ export default function Editing(props) {
             </div>     
                
             {/*Save Button*/}
-            <button className='saveButton' onClick={!props.editingSettings.adding ? onClickSave : console.log("Add")}>
+            <button className='saveButton' onClick={!props.editingSettings.adding ? onClickSave : null}>
                 {props.editingSettings.saveButtonText}
                 {props.editingSettings.adding && <input onChange={addPhotoAlbum} className="fileInput" type="file" multiple />}
             </button>

@@ -3,6 +3,7 @@ import { useState, useEffect, React } from 'react'; //React
 import { BrowserRouter, Route, Routes } from 'react-router-dom' //React Router
 import { doc, getDoc } from "firebase/firestore"; 
 import {db} from "./firebase"
+
 //Components
 import Mainpage from './components/Mainpage';
 import Loginpage from './components/Loginpage';
@@ -36,14 +37,12 @@ function App() {
         var arr_obj = Object.keys(docSnap.data()).map(key => (docSnap.data()[key]));
 
 
-        console.log(arr_obj);
         
         //sets state
         setAlbums(arr_obj);
 
 
         localStorage.setItem('albums', JSON.stringify(arr_obj));
-        console.log(arr_obj);
 
       }
   } 
@@ -54,7 +53,6 @@ function App() {
     //sets loggedIn state
     if(JSON.parse(localStorage.getItem("user")) !== null){
       setLoggedIn(true);
-      console.log(JSON.parse(localStorage.getItem("user")));
       getData(JSON.parse(localStorage.getItem("user")).uid);
       
     }
