@@ -107,7 +107,11 @@ flex-direction: column;
 margin-top: 7% !important;
 }
 .picturePageContainer .tagDescription{
+  width: 93%;
   margin-top: 3%;
+  margin-right: auto;
+  margin-left: auto;
+  word-wrap: break-word;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
