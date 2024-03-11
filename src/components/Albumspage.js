@@ -124,12 +124,8 @@ export default function Albumspage(props) {
                   > 
                   {/*Contains all the text that shows when the user hovers over the album button*/}
                     <div className='tooltiptext'>
-                      <br/>
-                      <p>{album.caption}</p>
-                      <p>{album.location} - {album.date} to {album.dateTo}</p>
-                      <br/>        
-                      <p>{album.description}</p>
-                      <br/>     
+                      <p className='tagDateLocationCaption'>{album.caption}<br/><br/>{album.location}<br/> {album.date} to {album.dateTo}</p>
+                      <p className='tagDescription'>{album.description}</p>
                       <nav className='tagContainer'>
                       {album.tags.map((tag) => (<div className='tag'> {tag}</div>))}
                       </nav>

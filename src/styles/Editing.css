@@ -11,9 +11,10 @@
     color: white;
     font-family: "IBM Plex Sans Hebrew";
     font-weight: 500;
-    width: max-content;
+    width: 415px;
     padding: 25px 35px;
     height: auto;
+    max-height: 80vh;
     min-height: 200px;
     margin: 0 auto;
     margin-top: 50px;

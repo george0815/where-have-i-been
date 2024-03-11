@@ -27,13 +27,11 @@
 
 /*Tags container*/
 .albumPageContainer .tagContainer{
-    padding-top: 2px;
-    
     justify-content: center;
     align-content: center;
     justify-items: center;
-    width: 100%;
-
+    width: 95%;
+    margin: 0 !important;
     display: flex;
     flex-wrap: wrap;
 }
@@ -75,23 +73,47 @@
   
 /* Tooltip for blocks*/
 .albumPageContainer  .tooltiptext {
+    box-sizing: content-box;
     visibility: hidden;
     border-radius: 10%;
-    font-size: larger;
+    font-size: 1.05em;
     width: 100%;
-    height: 100%;
+    height: 98%;
     color:white;
-    
+    text-wrap: wrap;
+    display: grid;
+    /*grid-template-rows: 15% 10% 10% 25% 30%;*/
+    grid-template-rows: repeat(3, min-content);
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    justify-items: center;
+    row-gap: 0;
     font-family: 'Koh Santepheap';
     background-color: rgba(0, 0, 0, 0.75);
     text-align: center;
     position: absolute;
     z-index: 1;
   }
-   .albumPageContainer .tooltiptext > p{
+ .tagDateLocationCaption {
     width: 95%;
-    margin: 0px 5px;
+    height: 100%;
+    overflow: hidden;
+    margin: 0 !important;
+    text-overflow: ellipsis;
+    padding-top: 10%;
+  }
+ 
 
+  .albumPageContainer .tagDescription{
+
+    overflow: hidden;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    /* Set the number of lines you want to show */
+    -webkit-line-clamp: 3;
   }
   
   /* Show the tooltip text when mouse is over the block */

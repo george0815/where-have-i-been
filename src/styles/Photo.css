@@ -76,13 +76,13 @@
     height: auto;
     color:white;
     display: grid;
-    grid-template-rows: 60% 40%;
+    grid-template-rows: repeat(2, min-content);
     
     font-family: 'Koh Santepheap';
     background-color: rgba(0, 0, 0, 0.75);
     text-align: center;
+    padding-bottom: 1%;
     bottom: 0%;
-    padding-bottom: 20px;
     position: absolute;
     z-index: 1;
   }
@@ -91,7 +91,11 @@
     font-size: .9em;
     margin: 5px 10px;
     text-align: left;
-
+  }
+  .photoTooltipDescription{
+    word-wrap: break-word;
+    text-wrap: wrap;
+    overflow: hidden;
   }
 
 

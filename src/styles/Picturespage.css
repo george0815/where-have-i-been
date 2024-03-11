@@ -83,16 +83,21 @@ flex-direction: column;
 
   visibility: hidden;
   border-radius: 10%;
-  font-size: 1.1em;
+  font-size: 1.05em;
   width: 100%;
   color:white;
-  height: 100%;
+  height: 99%;
   margin: 0%;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  justify-items: center;
   padding: 0%;
   max-width: 350px;
   object-fit: cover;
   font-family: 'Koh Santepheap';
   background-color: rgba(0, 0, 0, 0.75);
+  grid-template-rows: min-content max-content;
   text-align: center;
   position: absolute;
   z-index: 1;
@@ -102,7 +107,21 @@ flex-direction: column;
   margin: 0px 5px;
 
 }
-
+.toolTipCaption{
+margin-top: 7% !important;
+}
+.picturePageContainer .tagDescription{
+  margin-top: 3%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  /* Set the number of lines you want to show */
+  -webkit-line-clamp: 3;
+}
+.tagCaption{
+  margin-top: 5% !important;
+}
 /* Show the tooltip text when mouse is over the block */
 .pictureButton:hover .tooltiptextpic {
   visibility: visible;

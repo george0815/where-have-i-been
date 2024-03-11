@@ -137,12 +137,8 @@ export default function Picturespage(props) {
                     > 
                       {/*Contains all the text that shows when the user hovers over the photo button*/}
                       <div className='tooltiptextpic'>
-                        <br/>
-                        <p>{photo.caption}</p>
-                        <br/>        
-                        <p>{photo.date}</p>
-                        <br/>        
-                        <p>{photo.description}</p>
+                        <p className='toolTipCaption'>{photo.caption}<br/> <br/>{photo.location} - {photo.date}</p> 
+                        <p className='tagDescription'>{photo.description}</p>
                       </div>
                       {/*actual photo*/}
                       <img src={photo.img}/> 

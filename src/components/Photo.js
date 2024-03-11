@@ -123,7 +123,7 @@ export default function Photo(props) {
                     {/*holds all the text and tags that display when the user hovers over the photo*/}
                     {(currentPhoto.tags.length > 1 || currentPhoto.description !== "") && <div className='tooltiptext'>
                             
-                        <p>{currentPhoto.description}</p>
+                        <p className='photoTooltipDescription'>{currentPhoto.description}</p>
                         <nav className='tagContainer'>
                             {currentPhoto.tags.map((tag) => (
 
