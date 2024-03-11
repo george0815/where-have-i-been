@@ -126,7 +126,7 @@ export default function Photo(props) {
                         <nav className='tagContainer'>
                             {currentPhoto.tags.map((tag) => (
 
-                                <div className='tag'>{tag}</div>
+                                <div key={tag} className='tag'>{tag}</div>
 
                             ))}
                         </nav>

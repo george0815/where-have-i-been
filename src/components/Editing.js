@@ -36,8 +36,8 @@ export default function Editing(props) {
 
     {
       description: "",
-      location: props.currentAlbum.location,
-      caption: props.currentAlbum.caption
+      location: "",
+      caption: ""
     }
 
   ); 
