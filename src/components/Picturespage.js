@@ -129,7 +129,7 @@ export default function Picturespage(props) {
 
     
                   ((photo.tags.some(tg => tg.includes(searchTagPictures)) || photo.caption.includes(searchTagPictures) || photo.location.includes(searchTagPictures) || photo.description.includes(searchTagPictures))
-                  && searchTagPictures != "" || (searchTagPictures === "")) && <Link to="../photo" key={photo.caption}onClick={() => {onclickPhoto(index)}}>
+                  && searchTagPictures !== "" || (searchTagPictures === "")) && <Link to="../photo" key={photo.caption}onClick={() => {onclickPhoto(index)}}>
                     <button
                       id={index}
                       
