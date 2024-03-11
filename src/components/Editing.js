@@ -451,6 +451,7 @@ export default function Editing(props) {
               <div className='inputContainerEditing'>
                 <label htmlFor="name">Caption</label>
                 <input
+                  maxLength={25}
                   type="text"
                   placeholder="caption"
                   name="caption"
@@ -465,6 +466,7 @@ export default function Editing(props) {
               <div className='inputContainerEditing location' >
                 <label htmlFor="location">Location</label>
                 <input
+                  maxLength={25}
                   className='input'
                   type="text"
                   placeholder="location"
@@ -513,6 +515,7 @@ export default function Editing(props) {
 
                 <label htmlFor="description">Description</label>
                 <textarea
+                  maxLength={275}
                   rows={6}
                   placeholder= {props.isAlbum ? "What kinds of pictures are in this album?" : "What inspired you to take this photo?"}
                   name="description"
