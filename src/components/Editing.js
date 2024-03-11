@@ -321,8 +321,10 @@ export default function Editing(props) {
 
  
   function removeTag(e){
+    console.log(e.target.innerText);
     let tempTags = tags
-    tempTags.splice(tempTags.findIndex(tag => {return e.target.value === tag}, 1)); // 2nd parameter means remove one item only
+    let index = tempTags.findIndex(tag => {return e.target.innerText === tag});
+    tempTags.splice(index, 1); // 2nd parameter means remove one item only
     setTags((tempTags) => [...tempTags]);
   }
 
@@ -399,9 +401,13 @@ export default function Editing(props) {
 
   //handles adding tag
   function onClickAddTag(){
+
+  if(tags.length > 6){window.alert("Reached tag limit");} 
+  else{
     let tempTags = tags
     tempTags.push(document.getElementsByClassName("tagInput")[0].value)
     setTags((tempTags) => [...tempTags]);
+  }
   }
 
 
@@ -539,6 +545,7 @@ export default function Editing(props) {
                   <label title="Tags can be used to search for a given photo or album. To remove a tag, just click on it's button." htmlFor="tagInput">Tags</label>
                   <div className='addTagRow'>
                     <input
+                      maxLength={10}
                       type="text"
                       placeholder="tag name"
                       name="tagInput"
