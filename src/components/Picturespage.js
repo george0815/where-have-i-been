@@ -1,4 +1,4 @@
-import {React, useState, useEffect} from 'react'; //React
+import {React, useState} from 'react'; //React
 import Background from './Background'; //Gets background
 import {Link} from 'react-router-dom'; //gets link from react router
 import Navbar from './Navbar';
@@ -128,8 +128,8 @@ export default function Picturespage(props) {
 
 
     
-                  ((photo.tags.some(tg => tg.includes(searchTagPictures)) || photo.caption.includes(searchTagPictures) || photo.location.includes(searchTagPictures) || photo.description.includes(searchTagPictures))
-                  && searchTagPictures !== "" || (searchTagPictures === "")) && <Link to="../photo" key={photo.caption}onClick={() => {onclickPhoto(index)}}>
+                  (((photo.tags.some(tg => tg.includes(searchTagPictures)) || photo.caption.includes(searchTagPictures) || photo.location.includes(searchTagPictures) || photo.description.includes(searchTagPictures))
+                  && (searchTagPictures !== "")) || (searchTagPictures === "")) && <Link to="../photo" key={photo.caption}onClick={() => {onclickPhoto(index)}}>
                     <button
                       id={index}
                       
@@ -137,11 +137,11 @@ export default function Picturespage(props) {
                     > 
                       {/*Contains all the text that shows when the user hovers over the photo button*/}
                       <div className='tooltiptextpic'>
-                        <p className='toolTipCaption'>{photo.caption}<br/> <br/>{photo.location} - {photo.date}</p> 
+                        <div className='toolTipCaption'>{photo.caption}<br/> <br/>{photo.location} - {photo.date}</div> 
                         <p className='tagDescription'>{photo.description}</p>
                       </div>
                       {/*actual photo*/}
-                      <img src={photo.img}/> 
+                      <img alt={photo.caption} src={photo.img}/> 
 
                     </button>
                   </Link>

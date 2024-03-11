@@ -108,7 +108,7 @@ export default function Photo(props) {
 
             {/*Contains fullscreen version of photo*/}
             <div onClick={exitFullscreen} className={fullScreen ? 'fullscreenPhotoContainer activeFullscreen' : 'fullscreenPhotoContainer fadeOut'}>  
-                <img src={currentPhoto.img} className="fullscreenPhoto"/>
+                <img src={currentPhoto.img} alt={currentPhoto.caption} className="fullscreenPhoto"/>
             </div>
 
             {/*left arrow*/}
@@ -134,7 +134,7 @@ export default function Photo(props) {
 
                     </div>}
                     {/*actual photo*/}
-                    <img src={currentPhoto.img}/> 
+                    <img alt={currentPhoto.caption} src={currentPhoto.img}/> 
                 </div>
 
                 {/*Holds the caption, date and time, and fullscreen button*/}

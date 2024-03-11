@@ -1,9 +1,9 @@
-import {React, useState } from 'react'; //React
+import {React} from 'react'; //React
 import Background from './Background'; //Gets background
 import logo from '../images/logo.svg'; //gets globe logo
 import Navbar from './Navbar';
 import { useNavigate } from "react-router-dom";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail  } from "firebase/auth";
+import {createUserWithEmailAndPassword} from "firebase/auth";
 import {auth} from "../firebase"
 //CSS
 import '../styles/Mainpage.css';

@@ -25,12 +25,12 @@ export default function Mainpage(props) {
       <div className="mainPageContainer">
 
         {/*Holds all the text in the main page, except for picture caption at the bottom left*/}
-        <p className="mainTextContainer">A free, online photo album
+        <div className="mainTextContainer">A free, online photo album
             <br/>
                 <span>Never lose your memories, <br/>save every experience</span>
             <br/><br/><br/><br/><br/><br/>
             <p>Login or <button>create an album as a guest</button></p>
-        </p>
+        </div>
         
         
         {/*background*/}

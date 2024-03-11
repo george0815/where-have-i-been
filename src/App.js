@@ -13,8 +13,6 @@ import Editing from './components/Editing';
 import Signup from './components/Signup';
 import ForgotPassword from './components/Forgotpassword';
 
-import albumsObj from './components/Testalbums'; //gets test data
-
 
 
 function App() {

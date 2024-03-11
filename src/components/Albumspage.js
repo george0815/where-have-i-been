@@ -1,4 +1,4 @@
-import {React, useState, useEffect } from 'react'; //React
+import {React, useState} from 'react'; //React
 import Background from './Background'; //Gets background
 import {Link} from 'react-router-dom'; //gets link from react router
 import Navbar from './Navbar';
@@ -115,8 +115,8 @@ export default function Albumspage(props) {
 
 
                 //redirects to album
-                ((album.tags.some(tg => tg.includes(searchTag)) || album.caption.includes(searchTag) || album.location.includes(searchTag) || album.description.includes(searchTag))
-                && searchTag !== "" || (searchTag === "")) && <Link to="album" key={index} onClick={() => { onclickAlbum(index)}}>
+                (((album.tags.some(tg => tg.includes(searchTag)) || album.caption.includes(searchTag) || album.location.includes(searchTag) || album.description.includes(searchTag))
+                && (searchTag !== "")) || (searchTag === "")) && <Link to="album" key={index} onClick={() => { onclickAlbum(index)}}>
                   <button
                     key={album.caption}
                     className="albumButton"

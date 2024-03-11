@@ -231,13 +231,13 @@ export default function Navbar(props) {
         {(props.page === 1 || props.page === 2) && <select className="navButton sort" onChange={(e) => {onClickSort(e)}}>
           <option defaultValue="Sort by...">Sort by...</option>
           <option>{"date (asc)"}</option>
-          <hr/>
+          <option disabled/>
           <option>{"date (desc)"}</option>
-          <hr/>
+          <option disabled/>
           <option>caption</option>
-          <hr/>
+          <option disabled/>
           <option>description</option> 
-          <hr/>
+          <option disabled/>
           <option>location</option>
         </select>}
         {(props.page === 1 || props.page === 2) && <input onChange={(e) => {onTagInputChange(e)}} placeholder='search'/>}
