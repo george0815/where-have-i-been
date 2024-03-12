@@ -26,7 +26,15 @@ export default function Editing(props) {
 
   //---------------------------STATE--------------------------------//
 
-  
+   //sets up state for value that display upload progress
+  const [uploadPercent, setUploadPercent] = useState(0.0)
+  const [currentUpload, setCurrentUpload] = useState(0)
+  const [uploadFileName, setUploadFileName] = useState("")
+  const [totalUploads, setTotalUploads] = useState(0)
+
+
+
+
   //sets up tag state
   const [tags, setTags] = useState( props.editingSettings.isAlbum ? props.currentAlbum.tags :  props.currentPhoto.tags); 
 
@@ -128,6 +136,10 @@ export default function Editing(props) {
 
   function getURL(storageRef, file) {
     return new Promise((resolve, reject) => {
+
+
+      
+
       
       const uploadTask = uploadBytesResumable(storageRef, file);
 
@@ -141,6 +153,8 @@ export default function Editing(props) {
           // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
           const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log('Upload is ' + progress + '% done');
+          setUploadPercent(progress);
+          setUploadFileName(file.name);
           switch (snapshot.state) {
             case 'paused':
               console.log('Upload is paused');
@@ -154,11 +168,14 @@ export default function Editing(props) {
           // Handle unsuccessful uploads
         }, 
         () => {
-          // Handle successful uploads on complete
-          // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+          
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            setCurrentUpload(currentUpload => currentUpload + 1);
+            console.log(currentUpload)
+
             console.log('File available at', downloadURL);
             resolve(downloadURL);
+            
           });
         }
       );
@@ -223,6 +240,10 @@ export default function Editing(props) {
 
     else if(props.editingSettings.isAlbum && props.editingSettings.adding){
 
+      console.log(Array.from(files).length);
+
+      setTotalUploads(Array.from(files).length);
+
       //make new temp album object from localstorage albums object
       let tempAlbums = JSON.parse(localStorage.getItem("albums"));
 
@@ -243,6 +264,7 @@ export default function Editing(props) {
     
       async function asyncCall() {
 
+        
       
         const filePathsPromises = [];
         const metaDataPromises = [];
@@ -251,7 +273,7 @@ export default function Editing(props) {
 
 
           
-  
+          
 
           let photoId = Date.now().toString();
           const storageRef = ref(storage, photoId);
@@ -368,6 +390,7 @@ export default function Editing(props) {
 
     if(props.editingSettings.isAlbum){
 
+      
       
       //replace data with data from inputs
       tempAlbums[index].caption = document.getElementById("caption").value;
@@ -602,6 +625,13 @@ export default function Editing(props) {
                 {props.editingSettings.saveButtonText}
                 {props.editingSettings.adding && <input onChange={addPhotoAlbum} className="fileInput" type="file" multiple />}
             </button>
+
+             {/*Loading progress div*/}
+             <div className='loadingProgress '>
+              Uploading {uploadFileName} - {uploadPercent}% <br/>
+              {currentUpload} of {totalUploads}
+            
+            </div>
 
 
         </div>

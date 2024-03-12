@@ -212,3 +212,19 @@ button:hover{
 label{
     padding-bottom: 3px;
 }
+
+
+.loadingProgress{
+    position: absolute;
+    bottom: 20px;
+    min-width: min-content !important;
+    border: none;
+    background-color: #5b5b5b;
+    max-height: 45px;
+    left: 40%;
+    height: auto !important;
+    font-size: large !important;
+    padding:10px 16px !important;
+    border: none;
+    border-radius: 9999em;
+}
