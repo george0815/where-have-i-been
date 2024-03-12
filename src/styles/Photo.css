@@ -206,8 +206,9 @@
 
 }
 .fullscreenPhoto{
-    object-fit: contain;
+    object-fit: scale-down;
     align-self: center;
+    height: 100vh;
     justify-self: center;
 }
 
