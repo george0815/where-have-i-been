@@ -113,7 +113,7 @@ export default function Signup(props) {
                   <label for="PasswordConfirm">Confirm Password</label>
                   <input
                     type="text"
-                    placeholder="passwordConfirm"
+                    placeholder="confirm password"
                     name="passwordConfirm"
                     id="passwordConfirm"
                   />

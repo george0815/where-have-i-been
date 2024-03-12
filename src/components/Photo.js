@@ -84,6 +84,7 @@ export default function Photo(props) {
       setCurrentPhoto(newCurrentPhoto);
       setPhotoIndex(index);
       sessionStorage.setItem("currentPhoto", JSON.stringify(newCurrentPhoto));
+      console.log(currentPhoto.tags);
   
   }
 
@@ -138,7 +139,7 @@ export default function Photo(props) {
 
                 {/*Holds the caption, date and time, and fullscreen button*/}
                 <div className='captionContainer'>
-                    <p className='caption'>{currentPhoto.caption}     <span className='dateline'>{currentPhoto.location} - {currentPhoto.date}</span></p>
+                    <p className='caption'>{currentPhoto.caption} <span className='dateline'>{currentPhoto.location} - {currentPhoto.date}</span></p>
                     <button onClick={onClickFullscreen} className='fullscreenButton'>Fullscreen</button>
                 </div>
 

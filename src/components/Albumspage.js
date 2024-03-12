@@ -126,9 +126,7 @@ export default function Albumspage(props) {
                     <div className='tooltiptext'>
                       <p className='tagDateLocationCaption'>{album.caption}<br/><br/>{album.location}<br/> {album.date} to {album.dateTo}</p>
                       <p className='tagDescription'>{album.description}</p>
-                      <nav className='tagContainer'>
-                      {album.tags.map((tag) => (<div key={tag} className='tag'> {tag}</div>))}
-                      </nav>
+                     
                     </div>
                     <img src={album.img} alt={album.description}/> 
                   </button>

@@ -4,7 +4,10 @@ import {countries} from "countries-list"; //gets list of every country (used for
 import { useNavigate } from "react-router-dom";
 import {Link} from 'react-router-dom'; //gets link from react router
 import { doc, setDoc } from "firebase/firestore"; 
+import  JSZip from 'jszip';
 import {db} from "../firebase"
+import { saveAs } from 'file-saver';
+
 
 //CSS
 import '../styles/Navbar.css';
@@ -23,6 +26,77 @@ export default function Navbar(props) {
   //--------------------------FUNCTIONS-----------------------------//
 
   const navigate = useNavigate();
+
+  function getBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
+  
+  }
+
+  async function getBlob(src){
+    const image = await fetch(src)
+    const imageBlog = await image.blob()
+    return URL.createObjectURL(imageBlog)
+  }
+
+  //handles downloading
+  async function downloadImage() {
+
+    if(props.page === 3){
+      let currentPhoto = JSON.parse(sessionStorage.getItem("currentPhoto"));
+    
+      const link = document.createElement('a')
+      link.href = await getBlob(currentPhoto.img);
+      link.download = currentPhoto.caption;
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+
+      console.log("test");
+    }
+    else if(props.page === 1){
+
+      
+      async function downloadImages(imageSources, zipFileName) {
+        const zip = new JSZip();
+      
+        // Define a function to fetch and add each image to the zip
+        async function addImageToZip(src, index) {
+
+          console.log(src);
+          const image = await fetch(src)
+          const imageBlob = await image.blob()
+          console.log(imageBlob )
+         
+          // Add the blob to the zip file with a unique name
+          zip.file(`${imageSources[index].caption}.png`, imageBlob);
+        }
+      
+        // Use Promise.all to fetch and add all images concurrently
+        await Promise.all(imageSources.map((photo, index) => {
+          return addImageToZip(photo.img, index);
+        }));
+      
+        // Generate the zip file
+        const content = await zip.generateAsync({ type: 'blob' });
+      
+        // Create a download link and trigger the download
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(content);
+        link.download = zipFileName;
+        link.click();
+      }
+      let currentAlbum = JSON.parse(sessionStorage.getItem("currentAlbum"));
+      downloadImages(currentAlbum.photos, currentAlbum.caption);
+
+    }
+    
+  }
+
 
 
   //handles removing
@@ -241,7 +315,7 @@ export default function Navbar(props) {
           <option>location</option>
         </select>}
         {(props.page === 1 || props.page === 2) && <input onChange={(e) => {onTagInputChange(e)}} placeholder='search'/>}
-        {(props.page === 1 || props.page === 3) && <button className="navButton">Download</button>}
+        {(props.page === 1 || props.page === 3) && <button onClick={(e) => {downloadImage()}} className="navButton">Download</button>}
         {props.page !== 5 && profileButton}
       </div>
 

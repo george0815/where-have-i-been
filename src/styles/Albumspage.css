@@ -86,7 +86,7 @@
     text-wrap: wrap;
     display: grid;
     /*grid-template-rows: 15% 10% 10% 25% 30%;*/
-    grid-template-rows: repeat(3, min-content);
+    grid-template-rows: repeat(2, min-content);
     align-items: center;
     justify-items: center;
     justify-content: center;
@@ -117,7 +117,7 @@
     word-wrap: break-word;
     text-overflow: ellipsis;
     /* Set the number of lines you want to show */
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 6;
   }
   
   /* Show the tooltip text when mouse is over the block */
