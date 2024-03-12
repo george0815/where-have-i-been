@@ -31,6 +31,7 @@ export default function Editing(props) {
   const [currentUpload, setCurrentUpload] = useState(0)
   const [uploadFileName, setUploadFileName] = useState("")
   const [totalUploads, setTotalUploads] = useState(0)
+  const [isUploading, setIsUploading] = useState(false);
 
 
 
@@ -151,7 +152,7 @@ export default function Editing(props) {
         (snapshot) => {
           // Observe state change events such as progress, pause, and resume
           // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          const progress = ((snapshot.bytesTransferred / snapshot.totalBytes) * 100).toFixed(2);
           console.log('Upload is ' + progress + '% done');
           setUploadPercent(progress);
           setUploadFileName(file.name);
@@ -243,6 +244,7 @@ export default function Editing(props) {
       console.log(Array.from(files).length);
 
       setTotalUploads(Array.from(files).length);
+      setIsUploading(true);
 
       //make new temp album object from localstorage albums object
       let tempAlbums = JSON.parse(localStorage.getItem("albums"));
@@ -349,6 +351,7 @@ export default function Editing(props) {
 
 
 
+        setIsUploading(false);
 
 
         //call some sort of function that hides the editing component again and resets currentalbum state
@@ -627,11 +630,11 @@ export default function Editing(props) {
             </button>
 
              {/*Loading progress div*/}
-             <div className='loadingProgress '>
+            {isUploading && <div className='loadingProgress'>
               Uploading {uploadFileName} - {uploadPercent}% <br/>
               {currentUpload} of {totalUploads}
             
-            </div>
+            </div>}
 
 
         </div>
