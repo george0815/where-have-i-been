@@ -36,17 +36,25 @@
 .noArrow{
     opacity: 0;
 }
+.arrowLeft{
+    transform: scaleX(-1); 
+}
+.arrowLeft:hover{
+    transform: scaleX(-1) scale(1.1)!important; 
 
+}
 .arrow{
     height: fit-content;
     align-self: center;
     font-size: 2em;
     text-align: center;
+    text-justify: center;
     border-radius: 9999em;    
     border: none;
     color: white;
     background-color: #000000;
-    padding:  3px 13px;
+    padding:  0 13px;
+    padding-bottom: 3px;
     margin: 0px 30px
 }
 .fullscreenButton{

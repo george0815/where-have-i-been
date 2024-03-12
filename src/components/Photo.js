@@ -112,7 +112,7 @@ export default function Photo(props) {
             </div>
 
             {/*left arrow*/}
-            <button onClick={() =>{arrow(false)}} className={(photoIndex !== 0) ? 'arrow' : 'arrow noArrow'}>↩</button>
+            <button onClick={() =>{arrow(false)}} className={(photoIndex !== 0) ? 'arrow arrowLeft' : 'arrow arrowLeft noArrow'}>➜</button>
 
             {/*Holds the photo, info, caption, and fullscreen button*/}
             <div className='photoContainer'>
@@ -146,7 +146,7 @@ export default function Photo(props) {
             </div>
                     
             {/*right arrow*/}
-            <button onClick={() =>{arrow(true)}} className={(photoIndex + 1 !== JSON.parse(sessionStorage.getItem("currentAlbum")).photos.length) ? 'arrow' : 'arrow noArrow'}>↪</button>
+            <button onClick={() =>{arrow(true)}} className={(photoIndex + 1 !== JSON.parse(sessionStorage.getItem("currentAlbum")).photos.length) ? 'arrow' : 'arrow noArrow'}>➜</button>
 
             {/*background*/}
             <Background isMain={false}/>
