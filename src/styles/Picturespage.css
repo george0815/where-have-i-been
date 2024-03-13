@@ -1,7 +1,13 @@
 /************************CONTAINERS**************************/
  
-.pictureContainer{
-    
+
+/*Display*/
+.pictureContainer{  
+  /*Display*/
+/*Alignment*/
+/*Dimensions*/
+/*Font*/
+/*Misc*/
   padding-top: 50px;
   padding-bottom: 50px;
   justify-items: center;
@@ -11,21 +17,25 @@
   grid-template-columns: repeat( auto-fit, 250px );
   grid-template-rows: repeat( auto-fit, 1fr );
   height: 50vh;
-
   column-gap: 2%;   
   row-gap: 5%; 
   overflow-x: hidden;
   overflow-y: scroll;
 }
 
-
+/*Display*/
 .picturePageContainer{
   background-color: rgb(0, 0, 0);
   z-index: 10;
 }
 
-
+/*Display*/
 .editingComponentContainer{
+  /*Display*/
+/*Alignment*/
+/*Dimensions*/
+/*Font*/
+/*Misc*/
   visibility: hidden;
   background-color: #272727af;
   position: fixed;
@@ -42,7 +52,14 @@
 
 /**************************BUTTONS**************************/
 
+
+/*Display*/
 .pictureButton > img, .pictureButton{
+  /*Display*/
+/*Alignment*/
+/*Dimensions*/
+/*Font*/
+/*Misc*/
   border: none;
   height: fit-content;
   max-width: 250px;
@@ -53,11 +70,12 @@
   z-index: 0;
   opacity: 1.0;
 }
+
+/*Display*/
 .pictureButton{
   position: relative;
   display: flex;
-flex-direction: column;
-
+  flex-direction: column;
 }
 
 /**************************SCROLLBAR**************************/
@@ -69,8 +87,7 @@ flex-direction: column;
     -webkit-border-radius: 20px;   
     background-color: rgba(0, 0, 0, 0.0);;  
 }
-.picturePageContainer ::-webkit-scrollbar-thumb:hover {   
-    
+.picturePageContainer ::-webkit-scrollbar-thumb:hover {    
     background-color: rgba(111, 110, 110, 0.5);;  
 }
 
@@ -79,8 +96,11 @@ flex-direction: column;
 
 /* Tooltip for blocks*/
 .tooltiptextpic {
-    
-
+  /*Display*/
+/*Alignment*/
+/*Dimensions*/
+/*Font*/
+/*Misc*/
   visibility: hidden;
   border-radius: 10%;
   font-size: 1.05em;
@@ -103,10 +123,19 @@ flex-direction: column;
   z-index: 1;
 }
 
+
+/*Display*/
 .toolTipCaption{
-margin-top: 7% !important;
+  margin-top: 7% !important;
 }
+
+/*Display*/
 .picturePageContainer .tagDescription{
+  /*Display*/
+/*Alignment*/
+/*Dimensions*/
+/*Font*/
+/*Misc*/
   width: 93%;
   margin-top: 3%;
   margin-right: auto;
@@ -119,33 +148,57 @@ margin-top: 7% !important;
   /* Set the number of lines you want to show */
   -webkit-line-clamp: 3;
 }
+
+
+/*Display*/
 .tagCaption{
   margin-top: 5% !important;
 }
+
+
 /* Show the tooltip text when mouse is over the block */
 .pictureButton:hover .tooltiptextpic {
+  /*Display*/
+/*Alignment*/
+/*Dimensions*/
+/*Font*/
+/*Misc*/
   visibility: visible;
   opacity: 1;
-animation-name: fadeInOpacity;
-animation-iteration-count: 1;
-animation-timing-function: ease-in;
-animation-duration: .4s;
-
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: .4s;
 }
+
+
+/*Display*/
 .pictureButton:not(:hover) .tooltiptextpic {
+  /*Display*/
+/*Alignment*/
+/*Dimensions*/
+/*Font*/
+/*Misc*/
   visibility: visible;
   opacity: 0;
-animation-name: fadeOutOpacity;
-animation-iteration-count: 1;
-animation-timing-function: ease-in;
-animation-duration: .4s;
+  animation-name: fadeOutOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: .4s;
 
 }
 
 
 /**************************TAG**************************/
 
+
+/*Display*/
 .picturePageContainer .tag{
+  /*Display*/
+/*Alignment*/
+/*Dimensions*/
+/*Font*/
+/*Misc*/
   border-radius: 99em;
   background-color: #5b5b5b;
   padding:5px 7px;
@@ -158,15 +211,19 @@ animation-duration: .4s;
 }
 
 
+
+/*Display*/
 .picturePageContainer .tagContainer{
+  /*Display*/
+/*Alignment*/
+/*Dimensions*/
+/*Font*/
+/*Misc*/
   padding-top: 2px;
-  
   justify-content: center;
   align-content: center;
   justify-items: center;
   width: 100%;
-
-
   display: flex;
   flex-wrap: wrap;
 }
@@ -177,18 +234,23 @@ animation-duration: .4s;
 /*Current active image*/
 .activeEditing { opacity: 1; visibility: visible;}
 
+
+/*Display*/
 .picturePageContainerEditing{
   background-color: transparent !important;
   z-index: 15;
 }
 
 
-.picturePageContainer .active {
-    opacity: .5;
-}
-.pictureButton:hover{
-    transform: scale(1.05);
-}
+/*Display*/
+.picturePageContainer .active { opacity: .5;}
+
+
+
+/*Display*/
+.pictureButton:hover{ transform: scale(1.05);}
+
+
 
 /*Keyframes for tooltip fade in and fade out animations*/
 @keyframes fadeInOpacity {

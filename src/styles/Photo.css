@@ -1,12 +1,14 @@
 /************************CONTAINERS**************************/
 
-.mainPhotoContainer, .captionContainer{
-    display: flex;
-}
-.captionContainer{
-    padding-top: 10px ;
-}
+/*contains main photo, caption, arrows, and tooltip*/
+.mainPhotoContainer, .captionContainer{display: flex;}
 
+
+/*contains caption*/
+.captionContainer{padding-top: 10px ;}
+
+
+/*contains main photo, arrows, and tooltip*/
 .mainPhotoContainer{
     align-self: center;
     background-color: #272727;
@@ -16,48 +18,70 @@
     justify-content: center;
 }
 
+
+/*contains photo in fullscreen mode*/
 .fullscreenPhotoContainer{
-    visibility: hidden;
-    background-color: #272727e8;
+    /*Position*/
     position: absolute;
-    display: grid;
     top: 0%;
     left: 0%;
-    z-index: 5;
+    /*Dimensions*/
     height: 100vh;
     width: 100vw;
+    /*Misc*/
+    visibility: hidden;
+    background-color: #272727e8;
+    display: grid;
+    z-index: 5;
     transition: opacity 1s ease;
     opacity: 0;
-
 }
 
 /**************************BUTTONS**************************/
 
-.noArrow{
-    opacity: 0;
-}
-.arrowLeft{
-    transform: scaleX(-1); 
-}
-.arrowLeft:hover{
-    transform: scaleX(-1) scale(1.1)!important; 
 
-}
+/*hides arrow when user isn't supposed to press it*/
+.noArrow{opacity: 0;}
+
+/*left arrow*/
+.arrowLeft{transform: scaleX(-1); }
+
+/*make left arrow bigger on hover without reversing it*/
+.arrowLeft:hover{transform: scaleX(-1) scale(1.1)!important; }
+
+
+/*left and right arrows*/
 .arrow{
-    height: fit-content;
-    align-self: center;
-    font-size: 2em;
+
+    /*Alignment*/
     text-align: center;
     text-justify: center;
-    border-radius: 9999em;    
-    border: none;
-    color: white;
-    background-color: #000000;
+    align-self: center;
+    /*Margins and padding*/
     padding:  0 13px;
     padding-bottom: 3px;
-    margin: 0px 30px
+    margin: 0px 30px;
+    /*Color*/
+    color: white;
+    background-color: #000000;
+    /*Border*/
+    border-radius: 9999em;    
+    border: none;
+    /*Misc*/
+    height: fit-content;
+    font-size: 2em;
+
 }
+
+
+
+/*fullscreen button*/
 .fullscreenButton{
+    /*Display*/
+/*Alignment*/
+/*Dimensions*/
+/*Font*/
+/*Misc*/
     text-align: center;
     border-radius: 9999em;    
     border: none;
@@ -77,7 +101,13 @@
 /**************************TOOLTIP**************************/
 
 
+/*description container when user hovers over photo*/
 .mainPhotoContainer .tooltiptext {
+    /*Display*/
+/*Alignment*/
+/*Dimensions*/
+/*Font*/
+/*Misc*/
     visibility: hidden;
     font-size: larger;
     width: 100%;
@@ -94,21 +124,31 @@
     position: absolute;
     z-index: 1;
   }
-  .mainPhotoContainer .tooltiptext > p{
+
+/*all p tags in tooltip*/
+.mainPhotoContainer .tooltiptext > p{
     width: 95%;
     font-size: .9em;
     margin: 5px 10px;
     text-align: left;
-  }
-  .photoTooltipDescription{
+}
+
+
+/*photo description*/
+.photoTooltipDescription{
     word-wrap: break-word;
     text-wrap: wrap;
     overflow: hidden;
-  }
+}
 
 
   /* Show the tooltip text when mouse is over the block */
 .photo:hover .tooltiptext {
+    /*Display*/
+/*Alignment*/
+/*Dimensions*/
+/*Font*/
+/*Misc*/
     visibility: visible;
     opacity: 1;
     animation-name: fadeInOpacity;
@@ -117,7 +157,14 @@
     animation-duration: .4s;
 }
 
+
+  /* hide the tooltip text when mouse stops hovering over the block */
 .photo:not(:hover) .tooltiptext {
+    /*Display*/
+/*Alignment*/
+/*Dimensions*/
+/*Font*/
+/*Misc*/
     visibility: visible;
     opacity: 0;
     animation-name: fadeOutOpacity;
@@ -128,11 +175,17 @@
 
 /**************************TAG**************************/
 
+
+/*Display*/
 .mainPhotoContainer .tag{
+    /*Display*/
+/*Alignment*/
+/*Dimensions*/
+/*Font*/
+/*Misc*/
     border-radius: 99em;
     background-color: #5b5b5b;
     padding:5px 8px;
-
     width: max-content;
     margin-left: auto;
     margin-right: auto;
@@ -141,23 +194,30 @@
     font-size: smaller;
 }
 
+
+/*Display*/
 .mainPhotoContainer .tagContainer{
+    /*Display*/
+/*Alignment*/
+/*Dimensions*/
+/*Font*/
+/*Misc*/
     padding-top: 2px;
     gap: 10px;
-
     justify-content: left;
     align-content: center;
     justify-items: left;
     width: fit-content;
     padding-left: 10px;
     padding-bottom: 5px;
-
     display: flex;
     flex-wrap: wrap;
 }
 
 /**************************EFFECTS**************************/
 
+
+/*Display*/
 .mainPhotoContainerEditing{
     background-color: transparent !important;
     z-index: 15;
@@ -167,18 +227,18 @@
 /*Current active image*/
 .activeFullscreen { opacity: 1; visibility: visible;}
 
-.mainPhotoContainer .active {
-    opacity: .5;
-}
 
-.fullscreenButton:hover, .arrow:hover{
-    transform: scale(1.1);
-}
+/*Display*/
+.mainPhotoContainer .active { opacity: .5;}
 
 
-.mainNavFullscreen{
-    z-index: 0 !important;
-}
+/*Display*/
+.fullscreenButton:hover, .arrow:hover{transform: scale(1.1);}
+
+
+
+/*Display*/
+.mainNavFullscreen{ z-index: 0 !important;}
 
 /*Keyframes for tooltip fade in and fade out animations*/
 @keyframes fadeInOpacity {
@@ -193,7 +253,7 @@
 
 /**************************MISC**************************/
 
-
+/*Display*/
 .photo, .photo > img{
     height: 500px;
     width: 1000px;
@@ -201,18 +261,23 @@
     position: relative;
     object-fit: cover;
 }
+
+/*Display*/
 .caption{
     font-family: 'Koh Santepheap';
     font-size:xx-large;
     margin: 0;
-
 }
+
+/*Display*/
 .dateline{
     margin: 0 10px;
     text-align: center;
     font-size: medium;
-
 }
+
+
+/*Display*/
 .fullscreenPhoto{
     object-fit: scale-down;
     align-self: center;
