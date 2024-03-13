@@ -1,7 +1,8 @@
 import {React} from 'react'; //React
 import Background from './Background'; //Gets background
 import logo from '../images/logo.svg'; //gets globe logo
-import Navbar from './Navbar';
+import Navbar from './Navbar'; //navbar
+//Firebase
 import {sendPasswordResetEmail} from "firebase/auth";
 import {auth} from "../firebase"
 //CSS
@@ -17,22 +18,19 @@ export default function ForgotPassword(props) {
 
 //--------------------------FUNCTIONS----------------------------//
 
+  //resets password, if it fails displays error message as alert
   function onClickResetPassword(){
 
+    //get email from input
     let email = document.getElementById("email").value;
 
-
     sendPasswordResetEmail(auth, email)
-      .then(() => {
-        window.alert("Password reset email sent!");
-
-      })
+      .then(() => { window.alert("Password reset email sent!");})
       .catch((error) => {
          //display error alert
          window.alert("Error: " + error.message + "\nCode: " + error.code);
         // ..
       });
-
 
   }
 
@@ -44,9 +42,11 @@ export default function ForgotPassword(props) {
   
   return (
 
+    //holds entire page
     <div className='componentContainer'>
 
-        <div className='loginNav'><Navbar page={5}/></div>
+      {/*navbar, wrapped in a div in order to hide it*/}
+      <div className='loginNav'><Navbar page={5}/></div>
 
        {/*Holds all elements in the main page*/}
        <div className="loginPageContainer">

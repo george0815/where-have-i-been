@@ -1,8 +1,8 @@
 import {React, useState} from 'react'; //React
 import Background from './Background'; //Gets background
 import {Link} from 'react-router-dom'; //gets link from react router
-import Navbar from './Navbar';
-import Editing from './Editing';
+import Navbar from './Navbar'; //navbar
+import Editing from './Editing'; //editing component
 //CSS
 import '../styles/Fonts.css';
 import '../styles/Navbar.css';
@@ -85,7 +85,7 @@ export default function Picturespage(props) {
           currentlyEditing: false
       }
     )
-
+    //refeshes  page
     updatePictures();
    
     ;}
@@ -105,9 +105,11 @@ export default function Picturespage(props) {
   
 
   return (
-
+    
+    //holds entire page
     <div className='componentContainer transparentBackground'>
 
+      {/*navbar*/}
       <Navbar page={1} setLoggedIn={props.setLoggedIn}  loggedIn={props.loggedIn} setSearchTag={setSearchTagPictures} updatePictures={updatePictures} onClickEdit={onClickEdit} onClickAdd={onClickAdd}/>
 
       {/*Holds all elements in the main page*/}

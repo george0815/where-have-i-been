@@ -1,6 +1,6 @@
 import { useState, React } from 'react'; //React
 import Background from './Background'; //Gets background
-import Navbar from './Navbar';
+import Navbar from './Navbar'; //navbar
 //CSS
 import '../styles/Mainpage.css';
 import '../styles/Fonts.css';
@@ -10,13 +10,14 @@ import '../styles/Navbar.css';
 //main page
 export default function Mainpage(props) {
 
-  const [currentCaption, setCurrentCaption] = useState("Phuket, Thailand") // sets caption at the bottom
+  const [currentCaption, setCurrentCaption] = useState("Phuket, Thailand") // sets initial caption at the bottom
 
   //sets captions
   function setCaption(cap) { setCurrentCaption(cap);}
 
   return (
 
+    //holds entire page
     <div className='componentContainer'>
 
       <Navbar setLoggedIn={props.setLoggedIn}  loggedIn={props.loggedIn} page={0}/>

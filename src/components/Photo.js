@@ -1,7 +1,7 @@
 import {React, useState} from 'react'; //React
 import Background from './Background'; //Gets background
-import Navbar from './Navbar';
-import Editing from './Editing';
+import Navbar from './Navbar'; //navbar
+import Editing from './Editing'; //editing component
 //CSS
 import '../styles/Fonts.css';
 import '../styles/Navbar.css';
@@ -68,24 +68,22 @@ export default function Photo(props) {
 
   );}
 
-
-  function exitFullscreen(){
-    setFullscreen(false); 
-  }
+  //exit picture fullscreen view
+  function exitFullscreen(){ setFullscreen(false); }
 
 
+  //when clicked, parameter is used to determine what arrow was clicked and whether to show
+  //the next or previous photo
   function arrow(right){
-
-    //CHECK FOR UNDEFINED
 
       //change current photo to the photo one index up
       let index = (right &&  (photoIndex + 1 !== JSON.parse(sessionStorage.getItem("currentAlbum")).photos.length))? photoIndex + 1 : (!right && (photoIndex !== 0) ? photoIndex - 1 : photoIndex);
+      //sets new current photo
       let newCurrentPhoto = JSON.parse(sessionStorage.getItem("currentAlbum")).photos[index];
       setCurrentPhoto(newCurrentPhoto);
       setPhotoIndex(index);
-      sessionStorage.setItem("currentPhoto", JSON.stringify(newCurrentPhoto));
-      console.log(currentPhoto.tags);
-  
+      //saves it in session storage
+      sessionStorage.setItem("currentPhoto", JSON.stringify(newCurrentPhoto));  
   }
 
 
@@ -94,8 +92,10 @@ export default function Photo(props) {
  
   return (
 
+    //holds enitre page
     <div className='componentContainer transparentBackground'>
 
+        {/*navbar*/}
         <Navbar setLoggedIn={props.setLoggedIn}  fullScreen={fullScreen} loggedIn={props.loggedIn} page={3} onClickEdit={onClickEdit}/>
 
         {/*Holds all elements in the photo page*/}

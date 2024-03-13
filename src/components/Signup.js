@@ -1,8 +1,9 @@
 import {React} from 'react'; //React
 import Background from './Background'; //Gets background
 import logo from '../images/logo.svg'; //gets globe logo
-import Navbar from './Navbar';
-import { useNavigate } from "react-router-dom";
+import Navbar from './Navbar'; //navbar
+import { useNavigate } from "react-router-dom"; //navigate, used to go to homepage
+//firebase
 import {createUserWithEmailAndPassword} from "firebase/auth";
 import {auth} from "../firebase"
 //CSS
@@ -17,15 +18,13 @@ import '../styles/Navbar.css';
 export default function Signup(props) {
 
 
-
-
   //--------------------------FUNCTIONS----------------------------//
 
   //used for redirecting to pages
   const navigate = useNavigate();
 
 
-  //registers new user
+  //registers new user, displays any errors as an alert
   function onClickRegister(){
     
 
@@ -34,7 +33,7 @@ export default function Signup(props) {
     let password = document.getElementById("password").value;
     let passwordConfirm = document.getElementById("passwordConfirm").value;
 
-
+    //if both inputted passwords match, attempt to sign up user
     if(passwordConfirm === password){
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -43,14 +42,13 @@ export default function Signup(props) {
           
           //set loggedIn local storage value to true and go to main page
           localStorage.setItem('user', JSON.stringify(user));
-
           props.setLoggedIn(true);
 
+          //go to homepage 
           navigate("/");
 
         })
         .catch((error) => {
-        
           //display error alert
           window.alert("Error: " + error.message + "\nCode: " + error.code);
 
@@ -74,9 +72,11 @@ export default function Signup(props) {
   
   return (
 
+    //holds entire page
     <div className='componentContainer'>
 
-        <div className='loginNav'><Navbar page={5}/></div>
+      {/*navbar*/}
+      <div className='loginNav'><Navbar page={5}/></div>
 
        {/*Holds all elements in the main page*/}
        <div className="loginPageContainer">

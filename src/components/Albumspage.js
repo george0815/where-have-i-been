@@ -1,8 +1,8 @@
 import {React, useState} from 'react'; //React
 import Background from './Background'; //Gets background
 import {Link} from 'react-router-dom'; //gets link from react router
-import Navbar from './Navbar';
-import Editing from './Editing';
+import Navbar from './Navbar'; //navbar
+import Editing from './Editing'; //editing component
 //CSS
 import '../styles/Fonts.css';
 import '../styles/Navbar.css';
@@ -93,8 +93,10 @@ export default function Albumspage(props) {
 
   return (
 
+    //holds entire page
     <div className='componentContainer transparentBackground'>
 
+      {/*navbar*/}
       <Navbar  fullScreen={editingSettings.currentlyEditing} setLoggedIn={props.setLoggedIn} loggedIn={props.loggedIn} setSearchTag={setSearchTag} onClickAdd={onClickAdd} updateAlbums={updateAlbums} page={2} />
 
        {/*Holds all elements in the main page*/}
@@ -113,7 +115,6 @@ export default function Albumspage(props) {
               or localstorage if the user doens't have an account  */} 
               {albumsObj.map((album, index) => (
 
-
                 //redirects to album
                 (((album.tags.some(tg => tg.includes(searchTag)) || album.caption.includes(searchTag) || album.location.includes(searchTag) || album.description.includes(searchTag))
                 && (searchTag !== "")) || (searchTag === "")) && <Link to="album" key={index} onClick={() => { onclickAlbum(index)}}>
@@ -126,7 +127,6 @@ export default function Albumspage(props) {
                     <div className='tooltiptext'>
                       <p className='tagDateLocationCaption'>{album.caption}<br/><br/>{album.location}<br/> {album.date} to {album.dateTo}</p>
                       <p className='tagDescription'>{album.description}</p>
-                     
                     </div>
                     <img src={album.img} alt={album.description}/> 
                   </button>

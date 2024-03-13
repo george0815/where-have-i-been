@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, React } from 'react'; //React
+//imports images
 import phuket from '../images/background/0.svg';
 import newyork from '../images/background/1.svg';
 import chicago from '../images/background/2.svg';
@@ -22,7 +23,7 @@ export default function Background(props){
   const [currentSlide, setCurrentSlide] = useState(0); // set currrent slide index
   let sliderInterval = useRef() // interval ref
 
-
+  //used for cycle the background image
   useEffect(() => {
 
     // every 7 seconds will switch the background img to the next one in the array

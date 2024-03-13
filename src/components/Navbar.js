@@ -3,12 +3,11 @@ import logo from '../images/logo.svg'; //gets globe logo
 import {countries} from "countries-list"; //gets list of every country (used for title)
 import { useNavigate } from "react-router-dom";
 import {Link} from 'react-router-dom'; //gets link from react router
+//firebase
 import { doc, setDoc } from "firebase/firestore"; 
-import  JSZip from 'jszip';
 import {db} from "../firebase"
-import { saveAs } from 'file-saver';
-
-
+//zip and file save
+import  JSZip from 'jszip';
 //CSS
 import '../styles/Navbar.css';
 import '../styles/Fonts.css';

@@ -1,9 +1,10 @@
 import {React} from 'react'; //React
 import Background from './Background'; //Gets background
 import logo from '../images/logo.svg'; //gets globe logo
-import Navbar from './Navbar';
+import Navbar from './Navbar'; //navbar
 import { useNavigate } from "react-router-dom";
 import {Link} from 'react-router-dom'; //gets link from react router
+//firebase
 import { signInWithEmailAndPassword} from "firebase/auth";
 import {auth} from "../firebase"
 //CSS
@@ -17,15 +18,13 @@ import '../styles/Navbar.css';
 //login page
 export default function Loginpage(props) {
 
-
-
   //--------------------------FUNCTIONS----------------------------//
 
   //used for redirecting to pages
   const navigate = useNavigate();
 
 
-
+  //logs in user, displays any errors via alert
   function onClickLogin(){
 
      //get inputs from fields
@@ -35,17 +34,15 @@ export default function Loginpage(props) {
 
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in 
+        
         //set loggedIn local storage value to true and go to main page
         const user = userCredential.user;
         localStorage.setItem('loggedIn', true);
         localStorage.setItem('user', JSON.stringify(user));
-
-
         props.setLoggedIn(true);
 
-
-        navigate("/");        // ...
+        //go to homepage
+        navigate("/");  
       })
       .catch((error) => {
         //display error alert

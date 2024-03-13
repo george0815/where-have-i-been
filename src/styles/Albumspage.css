@@ -9,50 +9,59 @@
 
 /*Main container*/
 .albumContainer{
+    /*Padding*/
     padding-top: 50px;
     padding-bottom: 50px;
+    /*Alignment*/
     justify-items: center;
     justify-content: center;
+    /*Display*/
     display: grid;
     grid-template-columns: repeat( auto-fit, 250px );
     grid-template-rows: repeat( auto-fit, 250px );
-    column-gap: 2%;  
+    row-gap: 4%; 
+    column-gap: 2%; 
+    /*Dimensions*/
     height: 50vh;
     max-height: 100vh; 
-
-    row-gap: 4%; 
+    /*Overflow*/
     overflow-x: hidden;
     overflow-y: scroll;
 }
 
 /*Tags container*/
 .albumPageContainer .tagContainer{
+    /*Alignment*/
     justify-content: center;
     align-content: center;
     justify-items: center;
+    /*Dimensions*/
     width: 95%;
-    overflow: hidden;
- 
     height: 100%;
-    margin: 0 !important;
+    /*Overflow*/
+    overflow: hidden;
+    /*Margin*/
+    margin: 0 !important; 
+    /*Display*/
     display: flex;
     flex-wrap: wrap;
 }
 
 
-
-
 /**************************BUTTONS**************************/
 
-
+/*Thumbnail for album*/
 .albumButton > img, .albumButton{
-    border: none;
-    background: none;
-    border-radius: 10%;
-    margin: 0%;
-    min-height: 250px;
-    object-fit: cover;
+    /*Dimensions*/
     max-width: 250px;
+    min-height: 250px;
+    /*Border*/
+    border: none;
+    border-radius: 10%;
+    /*Misc*/
+    background: none;
+    margin: 0%;
+    object-fit: cover;
     z-index: 0;
     position: relative;
     opacity: 1.0;
@@ -157,17 +166,12 @@
 
 /**************************EFFECTS**************************/
 
-
-.albumPageContainerEditing{
-  background-color: transparent !important;
-}
-
-.albumPageContainer .active {
-    opacity: .5;
-}
-.albumButton:hover{
-    transform: scale(1.05);
-}
+/*Makes background the right opacity when editing */
+.albumPageContainerEditing{background-color: transparent !important;}
+/*Background image opacity*/
+.albumPageContainer .active {  opacity: .5;}
+/*makes button bigger when hovering over it*/
+.albumButton:hover{ transform: scale(1.05);}
 
 /*Keyframes for tooltip fade in and fade out animations*/
 @keyframes fadeInOpacity {
