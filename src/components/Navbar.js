@@ -26,41 +26,39 @@ export default function Navbar(props) {
 
   const navigate = useNavigate();
 
-  
+  //CONVERTS FILE TO BLOB FOR DOWNLOAD
   async function getBlob(src){
     const image = await fetch(src)
     const imageBlog = await image.blob()
     return URL.createObjectURL(imageBlog)
   }
 
-  //handles downloading
+  //DOWNLOADS IMAGE OR ALBUM
   async function downloadImage() {
 
+    //if user is downloading individual photo
     if(props.page === 3){
       let currentPhoto = JSON.parse(sessionStorage.getItem("currentPhoto"));
-    
       const link = document.createElement('a')
       link.href = await getBlob(currentPhoto.img);
       link.download = currentPhoto.caption;
       document.body.appendChild(link)
       link.click()
       document.body.removeChild(link)
-
-      console.log("test");
     }
+    //if user is downloading album
     else if(props.page === 1){
 
       
+      //DOWNLOADS IMAGES
       async function downloadImages(imageSources, zipFileName) {
         const zip = new JSZip();
       
-        // Define a function to fetch and add each image to the zip
+        //HELPER FUNCTION, ADDS EACH IMAGE TO ZIP
         async function addImageToZip(src, index) {
 
-          console.log(src);
           const image = await fetch(src)
           const imageBlob = await image.blob()
-          console.log(imageBlob )
          
           // Add the blob to the zip file with a unique name
           zip.file(`${imageSources[index].caption}.png`, imageBlob);
@@ -80,6 +78,7 @@ export default function Navbar(props) {
         link.download = zipFileName;
         link.click();
       }
+      //gets current album then passes it to downloadImages
       let currentAlbum = JSON.parse(sessionStorage.getItem("currentAlbum"));
       downloadImages(currentAlbum.photos, currentAlbum.caption);
 
@@ -89,14 +88,16 @@ export default function Navbar(props) {
 
 
 
-  //handles removing
+  //REMOVES IMAGE OR ALBUM
   async function remove(){
 
-     //add alert 
+    //displays alert asking user if they want to remove  
     if (window.confirm( + (props.page === 1) ? "Are you sure you want to delete this album?" : "Are you sure you want to delete this photo?")) {
+      
       //make new temp album object from localstorage albums object
       let tempAlbums = JSON.parse(localStorage.getItem("albums"));
 
+      //gets index for current album
       let index = tempAlbums.findIndex(album => {return JSON.parse(sessionStorage.getItem("currentAlbum")).id === album.id});
 
       //if user is deleting album
@@ -119,6 +120,7 @@ export default function Navbar(props) {
             ...tempAlbums
           });
         }
+        //updates storage and refreshes page
         sessionStorage.setItem("currentAlbum", JSON.stringify(tempAlbums[index]));
         localStorage.setItem('albums', JSON.stringify(tempAlbums));
         navigate("/album");
@@ -129,7 +131,7 @@ export default function Navbar(props) {
   }
 
 
-  //handles sorting
+  //HANDLES SORTING
   function onClickSort(evt) {
 
     //make new temp album object from localstorage albums object
@@ -140,16 +142,19 @@ export default function Navbar(props) {
     if(props.page === 2){
 
         switch(evt.target.value) {
+          //sort by date ascending
           case "date (asc)":
             tempAlbums = tempAlbums.sort(function(a,b){
               return new Date(Date.parse(a.date)) - new Date(Date.parse(b.date));
             })   
             break;
+          //sort by date descending
           case "date (desc)":
             tempAlbums = tempAlbums.sort(function(a,b){
               return new Date(Date.parse(b.date)) - new Date(Date.parse(a.date));
             })         
             break;
+          //sort by whatever category user chose
           default:
             tempAlbums = tempAlbums.sort(stringSort(evt.target.value)) ;
         }
@@ -163,20 +168,24 @@ export default function Navbar(props) {
     //sorts photos if user is on a page or an individual album
     else if(props.page === 1){
 
+      //gets index of current album
       let index = tempAlbums.findIndex(album => {return JSON.parse(sessionStorage.getItem("currentAlbum")).id === album.id});
 
 
       switch(evt.target.value) {
+        //sort by date ascending
         case "date (asc)":
           tempAlbums[index].photos = tempAlbums[index].photos.sort(function(a,b){
             return new Date(Date.parse(a.date)) - new Date(Date.parse(b.date));
           })   
           break;
+        //sort by date descending
         case "date (desc)":
           tempAlbums[index].photos = tempAlbums[index].photos.sort(function(a,b){
             return new Date(Date.parse(b.date)) - new Date(Date.parse(a.date));
           })         
           break;
+        //sort by whatever value user chose
         default:
           tempAlbums[index].photos = tempAlbums[index].photos.sort(stringSort(evt.target.value));
         }
@@ -200,7 +209,7 @@ export default function Navbar(props) {
 
 
 
-  //function used to sort by descripton, name and location
+  //FUNCTION THAT SORT ARRAY OF OBJECT BY A STRING PROPERTY IN OBJECT
   function stringSort(prop) {
 
     return function (a, b){
@@ -217,12 +226,12 @@ export default function Navbar(props) {
   }
 
 
-  //onchange for tag input, sorts photo/album by tag
+  //UPDATES SEARCH TAG STATE, USES BY PICTURESPAGE AND ALBUMSPAGE TO SEARCH 
   function onTagInputChange(e){props.setSearchTag(e.target.value); }
 
 
   
-  //sets the title to a random countries name every 100ms up to i times
+  //SETS THE TITLE TO A RANDOM COUNTRIES NAME EVERY 100MS EVERY 15 SECONDS
   function showCountries(i) {
     let keys = Object.keys(countries);
 
@@ -230,9 +239,11 @@ export default function Navbar(props) {
       //only get countries whos names are less that 18 characters
       let moreThan18Char = true;
       while(moreThan18Char){
+        //get random number for index
         let randomNum = Math.floor(keys.length * Math.random())
         if(countries[keys[randomNum]].name.length < 18){
           moreThan18Char = false;
+          //set state
           setCurrentCountry(countries[keys[randomNum]].name);
         }
       }
@@ -244,15 +255,13 @@ export default function Navbar(props) {
   }
 
 
+  //LOG OUT USER AFTER THEY CONFIRM
   function logout(){
     if (window.confirm("Are you sure you want to logout?")) {
     
-
       //set loggedIn local storage value to true and go to main page
       localStorage.setItem('user', null);
-
       props.setLoggedIn(false);
-
       navigate("/");
     
     }
@@ -279,6 +288,7 @@ export default function Navbar(props) {
 
 
   return (
+
     //whole navbar
     <nav className={props.fullScreen ? 'mainNav mainNavFullscreen' : 'mainNav'} >
       {/* title*/}
@@ -288,24 +298,30 @@ export default function Navbar(props) {
 
       {/*Holds all buttons */}
       <div className="navButtonContainer">
+        {/*New album and add photo buttons*/}
         {props.page === 2 && <button onClick={props.onClickAdd} className="navButton">New album</button>}
         {props.page === 1 && <button onClick={props.onClickAdd} className="navButton">Add photo</button>}
+        {/*remove and edit buttons*/}
         {(props.page === 1 || props.page === 3) && <button onClick={remove} className="navButton">Remove</button>}
         {(props.page === 1 || props.page === 3) && <button onClick={props.onClickEdit} className="navButton">Edit</button>}
+        {/*sort*/}
         {(props.page === 1 || props.page === 2) && <select className="navButton sort" onChange={(e) => {onClickSort(e)}}>
           <option defaultValue="Sort by...">Sort by...</option>
-          <option>{"date (asc)"}</option>
-          <option disabled/>
-          <option>{"date (desc)"}</option>
-          <option disabled/>
-          <option>caption</option>
-          <option disabled/>
-          <option>description</option> 
-          <option disabled/>
-          <option>location</option>
+          <option>{"date (asc)"}</option> {/*sorts by date ascending*/}
+          <hr/>
+          <option>{"date (desc)"}</option> {/*sorts by date descending*/}
+          <hr/>
+          <option>caption</option>{/*sorts by caption*/}
+          <hr/>
+          <option>description</option> {/*sorts by description*/}
+          <hr/>
+          <option>location</option>{/*sorts by location*/}
         </select>}
+        {/*search button*/}
         {(props.page === 1 || props.page === 2) && <input onChange={(e) => {onTagInputChange(e)}} placeholder='search'/>}
+        {/*download button*/}
         {(props.page === 1 || props.page === 3) && <button onClick={(e) => {downloadImage()}} className="navButton">Download</button>}
+        {/*login/logout button*/}
         {props.page !== 5 && profileButton}
       </div>
 
