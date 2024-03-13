@@ -1,14 +1,17 @@
 /*All images*/
 .image{
+    /*Position*/
     position: fixed;
     left: 0;
     top: 0;
-    overflow: hidden;
-    display: block;
+    /*Dimensions*/
     width: 100vw;
     min-width: 100vw;
     height: 100vh;
     min-height: 100vh;
+    /*Misc*/
+    overflow: hidden;
+    display: block;
     object-fit: cover;
     transition: opacity 1s ease;
     opacity: 0;

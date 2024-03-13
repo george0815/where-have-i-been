@@ -85,38 +85,48 @@
   
 /* Tooltip for blocks*/
 .albumPageContainer  .tooltiptext {
-    box-sizing: content-box;
-    visibility: hidden;
-    border-radius: 10%;
-    font-size: 1.05em;
-    width: 100%;
-    height: 98%;
-    color:white;
-    text-wrap: wrap;
+    /*Display*/
     display: grid;
-    /*grid-template-rows: 15% 10% 10% 25% 30%;*/
+    row-gap: 0;
     grid-template-rows: repeat(2, min-content);
+    /*Alignment*/
     align-items: center;
     justify-items: center;
     justify-content: center;
     justify-items: center;
-    row-gap: 0;
+    /*Dimensions*/
+    width: 100%;
+    height: 98%;
+    /*Font*/
+    font-size: 1.05em;
     font-family: 'Koh Santepheap';
+    /*Misc*/
+    box-sizing: content-box;
+    visibility: hidden;
+    border-radius: 10%;
+    color:white;
+    text-wrap: wrap;
     background-color: rgba(0, 0, 0, 0.75);
     text-align: center;
     position: absolute;
     z-index: 1;
   }
+
+
+  /*p tag in tooltip that has the data location and caption*/
  .tagDateLocationCaption {
+    /*Dimensions*/
     width: 95%;
     height: 100%;
+    /*Misc*/
     overflow: hidden;
     margin: 0 !important;
     text-overflow: ellipsis;
     padding-top: 10%;
   }
  
-
+  
+  /*p tag in tooltip that has the description*/
   .albumPageContainer .tagDescription{
     width: 93%;
     overflow: hidden;
@@ -131,36 +141,41 @@
   
   /* Show the tooltip text when mouse is over the block */
   .albumButton:hover .tooltiptext {
+    /*Animation*/
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: .4s;
+    /*Misc*/
     visibility: visible;
     opacity: 1;
-	animation-name: fadeInOpacity;
-	animation-iteration-count: 1;
-	animation-timing-function: ease-in;
-	animation-duration: .4s;
-
   }
+
+  /* fade tooltip out after user stops hovering over it */
   .albumButton:not(:hover) .tooltiptext {
+    /*Animation*/
+    animation-name: fadeOutOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: .4s;
+    /*Misc*/
     visibility: visible;
     opacity: 0;
-	animation-name: fadeOutOpacity;
-	animation-iteration-count: 1;
-	animation-timing-function: ease-in;
-	animation-duration: .4s;
-
   }
 
 /**************************TAG**************************/
 
-
   .albumPageContainer .tag{
+    /*Margins*/
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 7px;
+    /*Misc*/
     border-radius: 99em;
     background-color: #5b5b5b;
     padding:5px 7px;
     width: max-content;
-    margin-left: 1%;
-    margin-right: 1%;
     text-align: center;
-    margin-top: 7px;
     font-size: smaller;
 }
 

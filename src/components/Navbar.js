@@ -24,6 +24,7 @@ export default function Navbar(props) {
 
   //--------------------------FUNCTIONS-----------------------------//
 
+  //used for page redirects
   const navigate = useNavigate();
 
   //CONVERTS FILE TO BLOB FOR DOWNLOAD
