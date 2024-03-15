@@ -559,7 +559,7 @@ export default function Editing(props) {
                       name="fromDate"
                       id="fromDate"
                     />    
-                          
+                    { props.editingSettings.isAlbum && <div className='toLabel'> to</div>}
                     { props.editingSettings.isAlbum &&  <DatePicker onChange={onToChange} value={toDateValue}
                       className='toDate'
                       type="text"

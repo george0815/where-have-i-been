@@ -30,7 +30,10 @@
 
 
  /*inputs for date*/
-.dateInputContainer{display: flex;}
+.dateInputContainer{
+    display: flex; 
+    width: max-content; 
+}
 
 
  /*all main divs in editng container, each div holds a label and an input*/
@@ -280,4 +283,12 @@ label{padding-bottom: 3px;}
     border-radius: 9999em;
     visibility: visible;
     z-index: 15;
+}
+
+/*to text that shows up between start and end dates when adding/editing an album*/
+.toLabel{
+    margin-left: auto;
+    align-self: center;
+    font-size: large !important;
+    margin: 0 10px;
 }
