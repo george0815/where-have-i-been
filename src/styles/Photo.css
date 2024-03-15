@@ -77,24 +77,23 @@
 
 /*fullscreen button*/
 .fullscreenButton{
-    /*Display*/
-/*Alignment*/
-/*Dimensions*/
-/*Font*/
-/*Misc*/
+    /*Margins and Padding*/
+    margin-left: 15px;
+    padding: 13px;
+    margin-left: auto;
+    /*Font*/
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-style: normal;
+    font-family: "IBM Plex Sans Hebrew";
+    /*Misc*/
     text-align: center;
     border-radius: 9999em;    
     border: none;
     color: white;
-    font-family: "IBM Plex Sans Hebrew";
     height: 50px;
-    margin-left: 15px;
-    padding: 13px;
-    font-size: 1.2rem;
-    font-weight: 500;
-    font-style: normal;
     background-color: #000000;
-    margin-left: auto;
+   
 }
 
 
@@ -104,24 +103,23 @@
 /*description container when user hovers over photo*/
 .mainPhotoContainer .tooltiptext {
     /*Display*/
-/*Alignment*/
-/*Dimensions*/
-/*Font*/
-/*Misc*/
-    visibility: hidden;
-    font-size: larger;
-    width: 100%;
-    height: auto;
-    color:white;
     display: grid;
     grid-template-rows: repeat(2, min-content);
-    
-    font-family: 'Koh Santepheap';
+    /*Color*/
+    color:white;
     background-color: rgba(0, 0, 0, 0.75);
-    text-align: center;
-    padding-bottom: 1%;
+    /*Position*/
     bottom: 0%;
     position: absolute;
+    /*Dimensions*/
+    width: 100%;
+    height: auto;
+    /*Misc*/
+    visibility: hidden;
+    font-size: larger;
+    font-family: 'Koh Santepheap';
+    text-align: center;
+    padding-bottom: 1%;
     z-index: 1;
   }
 
@@ -144,72 +142,62 @@
 
   /* Show the tooltip text when mouse is over the block */
 .photo:hover .tooltiptext {
-    /*Display*/
-/*Alignment*/
-/*Dimensions*/
-/*Font*/
-/*Misc*/
-    visibility: visible;
-    opacity: 1;
+    /*Animations*/
     animation-name: fadeInOpacity;
     animation-iteration-count: 1;
     animation-timing-function: ease-in;
     animation-duration: .4s;
+    /*Misc*/
+    visibility: visible;
+    opacity: 1;
+    
 }
 
 
   /* hide the tooltip text when mouse stops hovering over the block */
 .photo:not(:hover) .tooltiptext {
-    /*Display*/
-/*Alignment*/
-/*Dimensions*/
-/*Font*/
-/*Misc*/
-    visibility: visible;
-    opacity: 0;
+    /*Animations*/
     animation-name: fadeOutOpacity;
     animation-iteration-count: 1;
     animation-timing-function: ease-in;
     animation-duration: .4s;
+    /*Misc*/
+    visibility: visible;
+    opacity: 0;  
 }
 
 /**************************TAG**************************/
 
 
-/*Display*/
+/*Actual tag*/
 .mainPhotoContainer .tag{
-    /*Display*/
-/*Alignment*/
-/*Dimensions*/
-/*Font*/
-/*Misc*/
-    border-radius: 99em;
-    background-color: #5b5b5b;
-    padding:5px 8px;
-    width: max-content;
+    /*Margins and padding*/
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
     margin-top: 7px;
+    padding:5px 8px;
+    /*Misc*/
+    border-radius: 99em;
+    background-color: #5b5b5b;
+    width: max-content;
+    text-align: center;
     font-size: smaller;
 }
 
 
-/*Display*/
+/*container for added tags*/
 .mainPhotoContainer .tagContainer{
-    /*Display*/
-/*Alignment*/
-/*Dimensions*/
-/*Font*/
-/*Misc*/
+    /*Margins and padding*/
+    padding-left: 10px;
+    padding-bottom: 5px;
     padding-top: 2px;
-    gap: 10px;
+    /*Alignment*/
     justify-content: left;
     align-content: center;
     justify-items: left;
+    /*Misc*/
+    gap: 10px;
     width: fit-content;
-    padding-left: 10px;
-    padding-bottom: 5px;
     display: flex;
     flex-wrap: wrap;
 }
@@ -217,7 +205,7 @@
 /**************************EFFECTS**************************/
 
 
-/*Display*/
+/*sets z index of main photo container while user is adding or editing album*/
 .mainPhotoContainerEditing{
     background-color: transparent !important;
     z-index: 15;
@@ -228,16 +216,16 @@
 .activeFullscreen { opacity: 1; visibility: visible;}
 
 
-/*Display*/
+/*active background image*/
 .mainPhotoContainer .active { opacity: .5;}
 
 
-/*Display*/
+/*hovering over arrow*/
 .fullscreenButton:hover, .arrow:hover{transform: scale(1.1);}
 
 
 
-/*Display*/
+/*lowers z index of navbar so user can't use navbar while editing*/
 .mainNavFullscreen{ z-index: 0 !important;}
 
 /*Keyframes for tooltip fade in and fade out animations*/
@@ -253,7 +241,7 @@
 
 /**************************MISC**************************/
 
-/*Display*/
+/*iamge container*/
 .photo, .photo > img{
     height: 500px;
     width: 1000px;
@@ -262,14 +250,14 @@
     object-fit: cover;
 }
 
-/*Display*/
+/*holds caption and dateline span*/
 .caption{
     font-family: 'Koh Santepheap';
     font-size:xx-large;
     margin: 0;
 }
 
-/*Display*/
+/*holds time and date*/
 .dateline{
     margin: 0 10px;
     text-align: center;
@@ -277,7 +265,7 @@
 }
 
 
-/*Display*/
+/*photo in fullscreen mode*/
 .fullscreenPhoto{
     object-fit: scale-down;
     align-self: center;

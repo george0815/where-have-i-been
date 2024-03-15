@@ -1,50 +1,47 @@
 /************************CONTAINERS**************************/
  
 
-/*Display*/
+/*holds all the picture thumbnails*/
 .pictureContainer{  
   /*Display*/
-/*Alignment*/
-/*Dimensions*/
-/*Font*/
-/*Misc*/
-  padding-top: 50px;
-  padding-bottom: 50px;
-  justify-items: center;
-  align-items: center;
-  justify-content: center;
   display: grid;
   grid-template-columns: repeat( auto-fit, 250px );
   grid-template-rows: repeat( auto-fit, 1fr );
-  height: 50vh;
   column-gap: 2%;   
   row-gap: 5%; 
+  /*Alignment*/
+  justify-items: center;
+  align-items: center;
+  justify-content: center;
+  /*Misc*/
+  padding-top: 50px;
+  padding-bottom: 50px;
+  height: 50vh;
   overflow-x: hidden;
   overflow-y: scroll;
 }
 
-/*Display*/
+/*container for entire page*/
 .picturePageContainer{
   background-color: rgb(0, 0, 0);
   z-index: 10;
 }
 
-/*Display*/
+
+/*Container for editing component*/
 .editingComponentContainer{
-  /*Display*/
-/*Alignment*/
-/*Dimensions*/
-/*Font*/
-/*Misc*/
-  visibility: hidden;
-  background-color: #272727af;
+  /*Position*/
   position: fixed;
-  display: grid;
   top: 0%;
   left: 0%;
-  z-index: 10;
+  /*Dimensions*/
   height: 100vh;
   width: 100vw;
+  /*Misc*/
+  visibility: hidden;
+  background-color: #272727af;
+  display: grid;
+  z-index: 10;
   transition: opacity 1s ease;
   opacity: 0;
 
@@ -53,25 +50,23 @@
 /**************************BUTTONS**************************/
 
 
-/*Display*/
+/*picture thumbnail button and img*/
 .pictureButton > img, .pictureButton{
-  /*Display*/
-/*Alignment*/
-/*Dimensions*/
-/*Font*/
-/*Misc*/
-  border: none;
+  /*Dimensions*/
   height: fit-content;
   max-width: 250px;
-  background: none;
+  /*Border*/
   border-radius: 10%;
+  border: none;
+  /*Misc*/
+  background: none;
   margin: 0%;
   object-fit: cover;
   z-index: 0;
   opacity: 1.0;
 }
 
-/*Display*/
+/*picture thumbnail button*/
 .pictureButton{
   position: relative;
   display: flex;
@@ -96,50 +91,44 @@
 
 /* Tooltip for blocks*/
 .tooltiptextpic {
-  /*Display*/
-/*Alignment*/
-/*Dimensions*/
-/*Font*/
-/*Misc*/
-  visibility: hidden;
-  border-radius: 10%;
-  font-size: 1.05em;
-  width: 100%;
-  color:white;
-  height: 99%;
-  margin: 0%;
+  /*Alignment*/
   align-items: center;
   justify-items: center;
   justify-content: center;
   justify-items: center;
-  padding: 0%;
+  text-align: center;
+  /*Dimensions*/
+  height: 99%;
+  width: 100%;
   max-width: 350px;
+  /*Misc*/
+  visibility: hidden;
+  border-radius: 10%;
+  font-size: 1.05em;
+  color:white;
+  margin: 0%;
+  padding: 0%;
   object-fit: cover;
   font-family: 'Koh Santepheap';
   background-color: rgba(0, 0, 0, 0.75);
   grid-template-rows: min-content max-content;
-  text-align: center;
   position: absolute;
   z-index: 1;
 }
 
 
-/*Display*/
-.toolTipCaption{
-  margin-top: 7% !important;
-}
+/*caption in tooltip*/
+.toolTipCaption{margin-top: 7% !important;}
 
-/*Display*/
+
+/*description in tool tip*/
 .picturePageContainer .tagDescription{
-  /*Display*/
-/*Alignment*/
-/*Dimensions*/
-/*Font*/
-/*Misc*/
-  width: 93%;
+  /*Margins and padding*/
   margin-top: 3%;
   margin-right: auto;
   margin-left: auto;
+  /*Misc*/
+  width: 93%;
   word-wrap: break-word;
   overflow: hidden;
   display: -webkit-box;
@@ -150,79 +139,64 @@
 }
 
 
-/*Display*/
-.tagCaption{
-  margin-top: 5% !important;
-}
+/*caption in tool tip*/
+.tagCaption{ margin-top: 5% !important;}
 
 
 /* Show the tooltip text when mouse is over the block */
 .pictureButton:hover .tooltiptextpic {
-  /*Display*/
-/*Alignment*/
-/*Dimensions*/
-/*Font*/
-/*Misc*/
-  visibility: visible;
-  opacity: 1;
+  /*Animation*/
   animation-name: fadeInOpacity;
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
-  animation-duration: .4s;
+  animation-duration: .4s; 
+  /*Misc*/
+  visibility: visible;
+  opacity: 1;
 }
 
 
-/*Display*/
+/*hide the tooltip text when mouse stops hovering over the block */
 .pictureButton:not(:hover) .tooltiptextpic {
-  /*Display*/
-/*Alignment*/
-/*Dimensions*/
-/*Font*/
-/*Misc*/
-  visibility: visible;
-  opacity: 0;
+  /*Animation*/
   animation-name: fadeOutOpacity;
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
   animation-duration: .4s;
-
+  /*Misc*/
+  visibility: visible;
+  opacity: 0;
 }
 
 
 /**************************TAG**************************/
 
 
-/*Display*/
+/*actual tag*/
 .picturePageContainer .tag{
-  /*Display*/
-/*Alignment*/
-/*Dimensions*/
-/*Font*/
-/*Misc*/
-  border-radius: 99em;
-  background-color: #5b5b5b;
-  padding:5px 7px;
-  width: max-content;
+  /*Margins and padding*/
   margin-left: auto;
   margin-right: auto;
-  text-align: center;
+  padding:5px 7px;
   margin-top: 7px;
+  /*Misc*/
+  border-radius: 99em;
+  background-color: #5b5b5b;
+  width: max-content; 
+  text-align: center;
   font-size: smaller;
 }
 
 
 
-/*Display*/
+/*container for added tags*/
 .picturePageContainer .tagContainer{
-  /*Display*/
-/*Alignment*/
-/*Dimensions*/
-/*Font*/
-/*Misc*/
-  padding-top: 2px;
+  /*Alignment*/
   justify-content: center;
   align-content: center;
   justify-items: center;
+  /*Misc*/
+  padding-top: 2px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -235,19 +209,20 @@
 .activeEditing { opacity: 1; visibility: visible;}
 
 
-/*Display*/
+/*container for entire page while user is adding or editing picture*/
 .picturePageContainerEditing{
   background-color: transparent !important;
   z-index: 15;
 }
 
 
-/*Display*/
+
+/*current active background photo*/
 .picturePageContainer .active { opacity: .5;}
 
 
 
-/*Display*/
+/*makes thumbnail bigger on hover*/
 .pictureButton:hover{ transform: scale(1.05);}
 
 

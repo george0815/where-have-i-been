@@ -1,20 +1,25 @@
 /************************CONTAINERS**************************/
 
 
+/*entire navbar*/
 .mainNav{
-    background-color: #000000;
-    color: white;
+    /*Dimensions*/
     height:max-content;
     min-height: 100px;
     max-height: 300px;
     width: 100vw;
     min-width: 100vw;
+    /*Misc*/
+    background-color: #000000;
+    color: white;  
     display: flex;
     opacity: 1;
     z-index: 12;
-
 }
 
+
+
+/*holds all buttons in navbar*/
 .navButtonContainer{
     align-self: center;
     margin-left: auto;
@@ -25,26 +30,28 @@
 /**************************BUTTONS**************************/
 
 
-.navButton:hover{
-    transform: scale(1.1);
-}
+/*makes button bigger on hover*/
+.navButton:hover{transform: scale(1.1);}
 
 
-
+/*navbar buttons*/
 .navButton{
+    /*Margins and padding*/
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+    padding: 13px;
+    /*Font*/
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-style: normal;
+    /*Misc*/
     text-align: center;
     border-radius: 9999em;    
     border: none;
     color: white;
     font-family: "IBM Plex Sans Hebrew";
-    height: 50px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: 15px;
-    padding: 13px;
-    font-size: 1.2rem;
-    font-weight: 500;
-    font-style: normal;
+    height: 50px;   
     background-color: #272727;
 }
 
@@ -52,27 +59,35 @@
 
 /**************************MISC**************************/
 
-.mainNavFullscreen{
-    z-index: 0 !important;
-}
 
+/*hides navbar when photos are viewed in fullscreen mode*/
+.mainNavFullscreen{  z-index: 0 !important;}
+
+
+/*holds all the picture thumbnails*/
 .mainNav > img{
     height: 70%;
     align-self: center;
 }
 
+
+
+/*holds all the picture thumbnails*/
 .logo{
-    align-self: center;
-    padding-left: 50px;
-    width: 330px;
+    /*Text wrap*/
     text-wrap: wrap;
     word-wrap:break-word;
+    /*Font*/
     font-family: 'Koh Santepheap';
     font-size:xx-large;
-    min-width: 100px;
+    /*Misc*/
+    align-self: center;
+    padding-left: 50px;
 }
 
 
+
+/*sorting dropdown menu*/
 .sort{
     text-align: center;
     padding: 13px 0px !important;
@@ -80,31 +95,31 @@
     max-width: auto !important;
 }
 
-select::-ms-expand {
-    display: none;
-}
+
+/*hides something, I dont know*/
+select::-ms-expand {display: none;}
 
 
+/*search bar*/
 .mainNav input{
-    font-family: "IBM Plex Sans Hebrew";
+    /*Dimensions*/
     height: auto;
     width: auto;
     min-width: 100px;
-    text-align: left;
-    border-radius: 9999em;    
-    padding: 13px;
-    margin-left: 15px;
+    /*Font*/
     font-size: 1.2rem;
     font-weight: 500;
     font-style: normal;
+    font-family: "IBM Plex Sans Hebrew";
+    /*Misc*/
+    text-align: left;
+    border-radius: 9999em;    
+    padding: 13px;
+    margin-left: 15px;  
     border: none;
 }
 
-.mainNav ::placeholder {
-  text-align: left;
-}
-  
-  
-.mainNav input:placeholder-shown {
-    text-align: left;
-}
+
+/*placeholder text in search bar*/
+.mainNav ::placeholder { text-align: left;}
+.mainNav input:placeholder-shown { text-align: left;}

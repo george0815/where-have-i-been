@@ -1,69 +1,85 @@
 /************************CONTAINERS**************************/
 
+
+/*holds entire main page*/
 .mainPageContainer {
     background-size: cover;
     overflow: hidden;
     width: 100vw;
     position: relative;
-    min-height: 450px;
+    min-height: 450px;   
 }
 
+
+/*holds splash text on main page*/
 .mainTextContainer {
+    /*Position*/
     position: absolute;
     top: 0px;
-    font-size: 3em;
-    color: white;
-    font-family: 'Koh Santepheap';
+    /*Margins*/
     margin-left: 50px;
+    margin-top: 70px;
+    /*Font*/
+    font-family: 'Koh Santepheap';
+    font-size: 3em;
+    /*Misc*/
+    color: white;
     min-width: 630px;
 }
 
 
 /**************************BUTTONS**************************/
 
-
+/*create album as a guest button*/
 .mainTextContainer > p > button{
+    /*Font*/
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-style: normal;
+    font-family: 'Koh Santepheap';    
+    /*Misc*/
     text-align: center;
     border-radius: 9999em;    
     border: none;
     color: white;
-    font-family: 'Koh Santepheap';    
     height: 50px;
     margin-left: 15px;
     padding: 13px;
-    font-size: 1.2rem;
-    font-weight: 500;
-    font-style: normal;
     background-color: #272727;
 }
 
 
-
-.mainTextContainer > p > button:hover{
-    transform: scale(1.05);
-}
+/*makes create albu as a guest button bigger on hover*/
+.mainTextContainer > p > button:hover{ transform: scale(1.05);}
 
 
 /**************************MISC**************************/
 
+
+/*background images on main page*/
 .mainPageContainer > img{
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    
+    object-fit: cover;  
 }
 
+
+/*background location cpation at the bottom left*/
 .backgroundCaption{
+    /*Position*/
     position: absolute;
     bottom: 0px;
     left: 10px;
+    /*Misc*/    
     color: white;   
     font-family: "IBM Plex Sans Hebrew";
     font-size: 1em;
 }
 
 
+
+/*line break*/
 .mainPageContainer br {
     display: block; /* makes it have a width */
     content: ""; /* clears default height */
@@ -71,17 +87,17 @@
  }
  
 
-
+/*span*/
 .mainTextContainer > span{
     font-size: .7em;
     display: block;
     margin-top: 10px;
 }
 
+
+/*p tags*/
 .mainTextContainer > p{
     font-size: .4em;
     margin-top: 70px;
 }
-.mainTextContainer{
-    margin-top: 70px;
-}
+
