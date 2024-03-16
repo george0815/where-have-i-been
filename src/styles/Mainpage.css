@@ -7,7 +7,6 @@
     overflow: hidden;
     width: 100vw;
     position: relative;
-    min-height: 450px;   
 }
 
 
@@ -17,14 +16,13 @@
     position: absolute;
     top: 0px;
     /*Margins*/
-    margin-left: 50px;
-    margin-top: 70px;
+    margin-left: 3%;
+    margin-top: 4.8%;
     /*Font*/
     font-family: 'Koh Santepheap';
-    font-size: 3em;
+    font-size: 7vh;
     /*Misc*/
-    color: white;
-    min-width: 630px;
+    color: white;  
 }
 
 
@@ -33,7 +31,7 @@
 /*create album as a guest button*/
 .mainTextContainer > p > button{
     /*Font*/
-    font-size: 1.2rem;
+    font-size: 1em;
     font-weight: 500;
     font-style: normal;
     font-family: 'Koh Santepheap';    
@@ -42,15 +40,15 @@
     border-radius: 9999em;    
     border: none;
     color: white;
-    height: 50px;
-    margin-left: 15px;
-    padding: 13px;
+    height: .9%;
+    margin-left: 1.5%;
+    padding: 2%;
     background-color: #272727;
 }
 
 
 /*makes create albu as a guest button bigger on hover*/
-.mainTextContainer > p > button:hover{ transform: scale(1.05);}
+.mainTextContainer > p > button:hover{ transform: scale(1.03);}
 
 
 /**************************MISC**************************/
@@ -70,11 +68,11 @@
     /*Position*/
     position: absolute;
     bottom: 0px;
-    left: 10px;
+    left: 1%;
     /*Misc*/    
     color: white;   
     font-family: "IBM Plex Sans Hebrew";
-    font-size: 1em;
+    font-size: 2vh;
 }
 
 
@@ -91,13 +89,12 @@
 .mainTextContainer > span{
     font-size: .7em;
     display: block;
-    margin-top: 10px;
+    margin-top: 1.4%;
 }
 
 
 /*p tags*/
 .mainTextContainer > p{
     font-size: .4em;
-    margin-top: 70px;
+    margin-top: 10.5%;
 }
-
