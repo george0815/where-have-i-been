@@ -11,19 +11,20 @@
     justify-items: center;
     align-self: center;
     /*Dimensions*/
-    width: 415px;
+    width: 25vw;
+    min-width: 440px;
     height: auto;
     max-height: 80vh;
-    min-height: 200px;
+    min-height: 375px;
     /*Font*/
     font-family: "IBM Plex Sans Hebrew";
     font-weight: 500;
     /*Misc*/
     background-color: #141414f3;
     color: white;
-    padding: 25px 35px; 
+    padding: 4vh 1.5vw; 
     margin: 0 auto;
-    margin-top: 50px;   
+    margin-top: 5vh;   
     position: relative;
     border-radius: 3em;
 }
@@ -66,10 +67,10 @@
     font-weight: 500;
     font-family: "IBM Plex Sans Hebrew";
     /*Misc*/ 
-    padding: 0 9px;
+    padding: 0 2.3%;
     height: 100%;
     align-self: center;
-    margin-left: 10px;  
+    margin-left: 2.4%;  
 }
 
 
@@ -84,9 +85,9 @@
 /*holds all tags*/
 .tagsContainerEditing{
     /*Padding*/
-    padding-top: 2px;
-    padding-left: 10px;
-    padding-bottom: 5px;
+    padding-top: 1%;
+    padding-left: 2.4%;
+    padding-bottom: 1.2%;
     /*Display*/
     display: flex;
     flex-wrap: wrap;
@@ -103,15 +104,16 @@
 .tagInput{
     min-width: 30% !important;
     min-height: 25px !important;
+    height: auto;
 }
 
 /*actual tag*/
 .editingContainer  .tag {
     /*Padding and Margins*/
-    margin-left: 5px !important;
+    margin-left: 2.4% !important;
     margin-right: auto;
-    padding:5px 8px;
-    margin-top: 10px;
+    padding:2.4% 3.5%;
+    margin-top: 2.4%;
     /*Alignment*/
     text-align: center;
     justify-self: left;
@@ -136,7 +138,7 @@
 .react-date-picker__wrapper {border: none !important;}
 
 /*location input*/
-.location{ margin-left: 25px;}
+.location{ margin-left: 2vw;}
 
 
 /*inputs and description*/
@@ -153,8 +155,8 @@
     resize: none;
     border-radius: .8em;
     border: none;
-    margin-top: 3px;
-    padding-left: 5px;
+    margin-top: 1%;
+    padding-left: .35vw;
 }
 
 
@@ -175,13 +177,14 @@
     margin-left: auto;
     color: black;
     background-color: white;
+    padding: 1%;
 }
 
 
 
 
 
-/*date and time section*/
+/*date input, for albums, first date input*/
 .dateAndTime{
     /*Border*/
     border-radius: .5em;
@@ -190,7 +193,7 @@
     font-family: "IBM Plex Sans Hebrew";
     font-weight: 500;
     /*Misc*/
-    padding: 3px;
+    padding: 1%;
     color: black;
     background-color: white;
 }
@@ -205,9 +208,9 @@
     left: 0px;
     /*Dimensions*/
     min-height: 100%;
-    max-height: 20px;
+    max-height: 100%;
     min-width: 100%;
-    max-width: 30px;
+    max-width: 100%;
     /*Font*/
     font-family: "IBM Plex Sans Hebrew";
     font-size: 1em;
@@ -225,23 +228,22 @@
 
     
 /*increase button size on hover*/
-button:hover{transform: scale(1.1);}
+button:hover{transform: scale(1.05);}
 
 
 /*save button*/
 .saveButton{
     /*Position*/
     position: absolute;
-    bottom: 20px; 
-    right: 35px;
+    bottom: 5%; 
+    right: 7%;
     /*Dimensions*/
-    height: auto !important;
-    max-height: 45px;
+    height: auto !important;    
     width: 75px;
     /*Misc*/
     overflow: hidden;
     font-size: large !important;
-    padding:10px 16px !important;
+    padding:3% 4% !important;
 }
 
 
@@ -250,8 +252,8 @@ button:hover{transform: scale(1.1);}
 .closeButton{
     /*Position*/
     position: absolute;
-    top: 15px;
-    right: 25px;
+    top: 3%;
+    right: 5%;
     /*Misc*/
     border-radius: 9999em;
     background-color: #5b5b5b;
@@ -265,21 +267,20 @@ button:hover{transform: scale(1.1);}
 
 
 /*label*/
-label{padding-bottom: 3px;}
+label{padding-bottom: .7%;}
 
 
 
 /*loading progress div*/
 .loadingProgress{
     /*Dimensions*/
-    max-height: 45px;
     height: auto !important;
     min-width: min-content !important;
     /*Misc*/
     border: none;
     background-color: #5b5b5b;
     font-size: large !important;
-    padding:10px 16px !important;
+    padding:3% 5% !important;
     border-radius: 9999em;
     visibility: visible;
     z-index: 15;
@@ -290,5 +291,5 @@ label{padding-bottom: 3px;}
     margin-left: auto;
     align-self: center;
     font-size: large !important;
-    margin: 0 10px;
+    margin: 0 5%;
 }

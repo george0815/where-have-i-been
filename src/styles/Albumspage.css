@@ -10,15 +10,15 @@
 /*Main container*/
 .albumContainer{
     /*Padding*/
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 12vh;
+    padding-bottom: 12vh;
     /*Alignment*/
     justify-items: center;
     justify-content: center;
     /*Display*/
     display: grid;
-    grid-template-columns: repeat( auto-fit, 250px );
-    grid-template-rows: repeat( auto-fit, 250px );
+    grid-template-columns: repeat( auto-fit, 16.5vw );
+    grid-template-rows: repeat( auto-fit,  16.5vw );
     row-gap: 4%; 
     column-gap: 2%; 
     /*Dimensions*/
@@ -53,8 +53,8 @@
 /*Thumbnail for album*/
 .albumButton > img, .albumButton{
     /*Dimensions*/
-    max-width: 250px;
-    min-height: 250px;
+    max-width: 16.5vw;
+    min-height: 16.5vw;
     /*Border*/
     border: none;
     border-radius: 10%;
@@ -98,7 +98,7 @@
     width: 100%;
     height: 98%;
     /*Font*/
-    font-size: 1.05em;
+    font-size: 1vw;
     font-family: 'Koh Santepheap';
     /*Misc*/
     box-sizing: content-box;
