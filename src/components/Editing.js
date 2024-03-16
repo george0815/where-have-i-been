@@ -31,7 +31,7 @@ export default function Editing(props) {
   const [currentUpload, setCurrentUpload] = useState(0) //amount of files currently uploaded
   const [uploadFileName, setUploadFileName] = useState("") //name of the file being currently uploaded
   const [totalUploads, setTotalUploads] = useState(0) //total uploads for the albums
-  const [isUploading, setIsUploading] = useState(true); //if client is currently uploaded
+  const [isUploading, setIsUploading] = useState(false); //if client is currently uploaded
 
 
   //sets up tag state
