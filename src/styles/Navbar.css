@@ -78,7 +78,7 @@
     word-wrap:break-word;
     /*Font*/
     font-family: 'Koh Santepheap';
-    font-size: 4vh;
+    font-size: 2vw;
     /*Misc*/
     align-self: center;
     padding-left: 4vw;
@@ -135,16 +135,14 @@ select::-ms-expand {display: none;}
 
     .navButton{
         font-size: 1.5vh;
-        padding: 2vw 3vw;
+        padding: 1vh 2vh;
     }
     .mainNav input{
         min-width: 10vw;
         height: min-content;
         font-size: 1.5vh;
     }
-    .logo, .mainNav > img{
-        display: none;    
-    }
+    .logo, .mainNav > img{ display: none; }
 
     .navButtonContainer{
         box-sizing: border-box;
@@ -155,9 +153,7 @@ select::-ms-expand {display: none;}
         font-size: 1.5vh;
         padding: 1vh .5vh !important;
     }
-    .mainNav{
-        min-height: 15vh;
-    }
+    .mainNav{min-height: 15vh;}
     
     
   }

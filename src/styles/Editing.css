@@ -314,17 +314,12 @@ label{padding-bottom: 1.5%; font-size: 2vh;}
         display: grid !important;
         grid-template-rows: repeat(3 , auto);
     }
-    .toLabel{
-        margin: 2% 0;
-    }
-    .editingContainer .input{
-        min-width: 90%;
-    }
-    .tagsEditing{
-        margin-bottom: 2vh;
-    }
-    .saveButton{
-        bottom: 2%;
-    }
+    .toLabel{margin: 2% 0;}
+
+    .editingContainer .input{ min-width: 90%;}
+
+    .tagsEditing{ margin-bottom: 2vh;}
+    
+    .saveButton{  bottom: 2%; }
     
 }

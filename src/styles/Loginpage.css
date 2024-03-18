@@ -140,8 +140,6 @@
         padding-right: 2vh;
     }
     
-    .loginContainer input{
-        min-width: 85vw;
-    }
+    .loginContainer input{min-width: 85vw;}
    
 }
