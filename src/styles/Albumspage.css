@@ -200,3 +200,20 @@
 	0% {opacity: 1;}
 	100% {opacity: 0;}
 } 
+
+
+
+/**************************MEDIA QUERIES**************************/
+
+
+@media (max-width: 300px) {
+
+  .albumButton > img, .albumButton{
+    /*Dimensions*/
+    max-width: 16.5vw;
+    min-width: 200px;
+    min-height: 250px;
+    height: 16.5vw;
+  }
+
+}

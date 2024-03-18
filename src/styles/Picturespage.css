@@ -5,8 +5,8 @@
 .pictureContainer{  
   /*Display*/
   display: grid;
-  grid-template-columns: repeat( auto-fit, 250px );
-  grid-template-rows: repeat( auto-fit, 1fr );
+  grid-template-columns: repeat( auto-fit, minmax(250px, 16.5vw) );
+  grid-template-rows: repeat( auto-fit, minmax(250px, 16.5vw));
   column-gap: 2%;   
   row-gap: 5%; 
   /*Alignment*/
@@ -53,8 +53,8 @@
 /*picture thumbnail button and img*/
 .pictureButton > img, .pictureButton{
   /*Dimensions*/
-  height: fit-content;
-  max-width: 250px;
+  min-height: 10vw;
+  max-width: 16.5vw;
   /*Border*/
   border-radius: 10%;
   border: none;
@@ -238,3 +238,25 @@
 	100% {opacity: 0;}
 }
 
+/**************************MEDIA QUERIES**************************/
+
+
+@media (orientation: portrait) {
+
+  .pictureButton > img, .pictureButton{
+    /*Dimensions*/
+    max-width: 16.5vw;
+    min-width: 200px;
+    min-height: 200px;
+    height: 16.5vw;
+  }
+
+  .pictureContainer{  
+    /*Display*/
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(200px, 16.5vw) );
+    grid-template-rows: repeat( auto-fit, minmax(200px, 16.5vw));
+
+  }
+
+}
