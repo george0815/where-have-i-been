@@ -8,7 +8,7 @@ import {auth} from "../firebase"
 //CSS
 import '../styles/Mainpage.css';
 import '../styles/Fonts.css';
-import '../styles/Loginpage.css';
+import '../styles/Forgotpassword.css';
 import '../styles/Navbar.css';
 
 
@@ -49,7 +49,7 @@ export default function ForgotPassword(props) {
       <div className='loginNav'><Navbar page={5}/></div>
 
        {/*Holds all elements in the main page*/}
-       <div className="loginPageContainer">
+       <div className="forgotpasswordPageContainer">
 
             {/*main div that hold all the login promps and buttons*/}
             <div className="loginContainer">

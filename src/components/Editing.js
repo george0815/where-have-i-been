@@ -506,7 +506,7 @@ export default function Editing(props) {
         <div className="editingContainer">
 
             {/*Close button */}
-            <button onClick={props.onEditExit} className='closeButton'>X</button>
+            <button onClick={props.onEditExit} className='closeButton'>&#10005;</button>
 
             {/* Caption and Location*/}
             <div className='captionLocation'>

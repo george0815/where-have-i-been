@@ -4,17 +4,17 @@
 .editingContainer{
     /*Display*/
     display: grid;
-    gap: 10px;
+    gap: 1vh;
     /*Alignment*/
     align-items: center;
     justify-content: center;
     justify-items: center;
     align-self: center;
     /*Dimensions*/
-    width: 25vw;
-    min-width: 440px;
+    width: auto;
+    min-width: 400px;
     height: auto;
-    max-height: 80vh;
+    max-height: 70vh;
     min-height: 375px;
     /*Font*/
     font-family: "IBM Plex Sans Hebrew";
@@ -22,12 +22,12 @@
     /*Misc*/
     background-color: #141414f3;
     color: white;
-    padding: 4vh 1.5vw; 
+    padding: 4vh 2vw; 
     margin: 0 auto;
-    margin-top: 5vh;   
     position: relative;
-    border-radius: 3em;
+    border-radius: 3vh;
 }
+
 
 
  /*inputs for date*/
@@ -63,11 +63,11 @@
     border-radius: 99em;
     border: none;
     /*Font*/
-    font-size: smaller;
+    font-size: 2vh;
     font-weight: 500;
     font-family: "IBM Plex Sans Hebrew";
     /*Misc*/ 
-    padding: 0 2.3%;
+    padding: 2% 2.3%;
     height: 100%;
     align-self: center;
     margin-left: 2.4%;  
@@ -79,7 +79,7 @@
 
 
 /*add tag input and button*/
-.addTagRow{ display: flex;}
+.addTagRow{ display: flex; }
 
 
 /*holds all tags*/
@@ -103,7 +103,6 @@
 /*Display*/
 .tagInput{
     min-width: 30% !important;
-    min-height: 25px !important;
     height: auto;
 }
 
@@ -120,7 +119,7 @@
     /*Font*/
     font-family: "IBM Plex Sans Hebrew";
     font-weight: 500;
-    font-size: smaller;
+    font-size: 1vh;
     /*Misc*/
     border-radius: 99em;
     border: none;
@@ -150,12 +149,11 @@
     /*Font*/
     font-family: "IBM Plex Sans Hebrew";
     font-weight: 500;
-    font-size: 1em;
+    font-size: 2vh;
     /*Misc*/
     resize: none;
-    border-radius: .8em;
+    border-radius: 1vh;
     border: none;
-    margin-top: 1%;
     padding-left: .35vw;
 }
 
@@ -173,11 +171,14 @@
     /*Font*/
     font-family: "IBM Plex Sans Hebrew";
     font-weight: 500;
+    font-size: 2vh;
     /*Misc*/
     margin-left: auto;
     color: black;
     background-color: white;
     padding: 1%;
+    width:max-content;
+
 }
 
 
@@ -192,10 +193,12 @@
     /*Font*/
     font-family: "IBM Plex Sans Hebrew";
     font-weight: 500;
+    font-size: 2vh;
     /*Misc*/
     padding: 1%;
     color: black;
     background-color: white;
+    width:min-content;
 }
 
 
@@ -213,7 +216,7 @@
     max-width: 100%;
     /*Font*/
     font-family: "IBM Plex Sans Hebrew";
-    font-size: 1em;
+    font-size: 2vh;
     font-weight: 500;
     /*Misc*/
     border: none;
@@ -239,10 +242,9 @@ button:hover{transform: scale(1.05);}
     right: 7%;
     /*Dimensions*/
     height: auto !important;    
-    width: 75px;
     /*Misc*/
     overflow: hidden;
-    font-size: large !important;
+    font-size: 2vh !important;
     padding:2% 3% !important;
 }
 
@@ -255,10 +257,10 @@ button:hover{transform: scale(1.05);}
     top: 3%;
     right: 5%;
     /*Misc*/
-    border-radius: 9999em;
-    background-color: #5b5b5b;
     border: none;
     color: white;
+    font-size: 1.5vh;
+    background-color: transparent   ;
     font-family: "IBM Plex Sans Hebrew";
 }
 
@@ -267,7 +269,7 @@ button:hover{transform: scale(1.05);}
 
 
 /*label*/
-label{padding-bottom: .7%;}
+label{padding-bottom: 1.5%; font-size: 2vh;}
 
 
 
@@ -279,7 +281,7 @@ label{padding-bottom: .7%;}
     /*Misc*/
     border: none;
     background-color: #5b5b5b;
-    font-size: large !important;
+    font-size: 2vh !important;
     padding:3% 5% !important;
     border-radius: 9999em;
     visibility: visible;
@@ -290,6 +292,39 @@ label{padding-bottom: .7%;}
 .toLabel{
     margin-left: auto;
     align-self: center;
-    font-size: large !important;
+    font-size: 2vh !important;
     margin: 0 5%;
+}
+
+
+
+/**************************MEDIA QUERIES**************************/
+
+
+@media (orientation: portrait) {
+    
+    .editingContainer{
+        box-sizing: border-box;
+        width: 95vw;
+        min-width: 200px;
+        padding-left: 2vh;
+        padding-right: 2vh;
+    }
+    .dateInputContainer{
+        display: grid !important;
+        grid-template-rows: repeat(3 , auto);
+    }
+    .toLabel{
+        margin: 2% 0;
+    }
+    .editingContainer .input{
+        min-width: 90%;
+    }
+    .tagsEditing{
+        margin-bottom: 2vh;
+    }
+    .saveButton{
+        bottom: 2%;
+    }
+    
 }
