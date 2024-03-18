@@ -17,8 +17,8 @@
     justify-content: center;
     /*Display*/
     display: grid;
-    grid-template-columns: repeat( auto-fit, 16.5vw );
-    grid-template-rows: repeat( auto-fit,  16.5vw );
+    grid-template-columns: repeat( auto-fit, minmax(250px, 16.5vw) );
+    grid-template-rows: repeat( auto-fit,  minmax(250px, 16.5vw));
     row-gap: 4%; 
     column-gap: 2%; 
     /*Dimensions*/
@@ -54,7 +54,9 @@
 .albumButton > img, .albumButton{
     /*Dimensions*/
     max-width: 16.5vw;
-    min-height: 16.5vw;
+    min-width: 250px;
+    min-height: 250px;
+    height: 16.5vw;
     /*Border*/
     border: none;
     border-radius: 10%;
@@ -96,7 +98,7 @@
     justify-items: center;
     /*Dimensions*/
     width: 100%;
-    height: 98%;
+    height: 100%;
     /*Font*/
     font-size: 1vw;
     font-family: 'Koh Santepheap';
