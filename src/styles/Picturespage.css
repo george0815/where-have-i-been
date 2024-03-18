@@ -105,7 +105,7 @@
   /*Misc*/
   visibility: hidden;
   border-radius: 10%;
-  font-size: calc(.5vw + .5vh);
+  font-size: .95vw;
   color:white;
   margin: 0%;
   padding: 0%;
@@ -119,7 +119,13 @@
 
 
 /*caption in tooltip*/
-.toolTipCaption{margin-top: 7% !important;   word-wrap: break-word;}
+.toolTipCaption{
+  margin-top: 7% !important;   
+  word-wrap: break-word;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 
 /*description in tool tip*/
@@ -243,6 +249,6 @@
     grid-template-rows: repeat( auto-fit, minmax(200px, 14vw));
 
   }
-  .tooltiptextpic {font-size: calc(.7vw + 1vh);  }
+  .tooltiptextpic {font-size: 1.3vh}
 
 }

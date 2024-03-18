@@ -136,10 +136,14 @@ select::-ms-expand {display: none;}
     .navButton{
         font-size: 1.5vh;
         padding: 1vh 2vh;
+        margin-top: .5vh;
+        margin-bottom: .5vh;
     }
+    
     .mainNav input{
         min-width: 10vw;
-        height: min-content;
+        height: auto;
+        padding: 1vh 2vh;
         font-size: 1.5vh;
     }
     .logo, .mainNav > img{ display: none; }
