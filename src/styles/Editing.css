@@ -12,9 +12,10 @@
     align-self: center;
     /*Dimensions*/
     width: auto;
+    max-width: 50vw;
     min-width: 400px;
     height: auto;
-    max-height: 70vh;
+    max-height: 90vh;
     min-height: 375px;
     /*Font*/
     font-family: "IBM Plex Sans Hebrew";
@@ -93,7 +94,7 @@
     flex-wrap: wrap;
     /*Dimensions*/
     width: fit-content;
-    max-width: 50%;
+    max-width: 70%;
     /*Misc*/    
     justify-items: left;   
 }
@@ -109,17 +110,17 @@
 /*actual tag*/
 .editingContainer  .tag {
     /*Padding and Margins*/
-    margin-left: 2.4% !important;
-    margin-right: auto;
-    padding:2.4% 3.5%;
-    margin-top: 2.4%;
+    margin-left: 1.5vh !important;
+    padding: 1vh 2vh;
+    margin-top: 1.5vh;
     /*Alignment*/
     text-align: center;
     justify-self: left;
     /*Font*/
     font-family: "IBM Plex Sans Hebrew";
     font-weight: 500;
-    font-size: 1vh;
+    font-size: 2vh;
+    background-color: #5b5b5b;
     /*Misc*/
     border-radius: 99em;
     border: none;
@@ -306,7 +307,8 @@ label{padding-bottom: 1.5%; font-size: 2vh;}
     .editingContainer{
         box-sizing: border-box;
         width: 95vw;
-        min-width: 200px;
+        min-width: 100vw;
+        min-height: 100vh;
         padding-left: 2vh;
         padding-right: 2vh;
     }
@@ -321,5 +323,10 @@ label{padding-bottom: 1.5%; font-size: 2vh;}
     .tagsEditing{ margin-bottom: 2vh;}
     
     .saveButton{  bottom: 2%; }
+
+    .editingContainer .tag{
+        font-size: 1.4vh;
+        padding: .6vh 1.4vh;
+    }
     
 }

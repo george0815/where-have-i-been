@@ -5,7 +5,7 @@
 
 
 /*contains caption*/
-.captionContainer{padding-top: 10px ;}
+.captionContainer{padding-top: 1.05vh;}
 
 
 /*contains main photo, arrows, and tooltip*/
@@ -17,6 +17,8 @@
     color: white;
     justify-content: center;
 }
+
+
 
 
 /*contains photo in fullscreen mode*/
@@ -57,10 +59,10 @@
     text-align: center;
     text-justify: center;
     align-self: center;
-    /*Margins and padding*/
-    padding:  0 13px;
-    padding-bottom: 3px;
-    margin: 0px 30px;
+    /*Margins and padd2ng*/
+    padding:  0 1.3vh;
+    padding-bottom: .3vh;
+    margin: 0px 4.5vh;
     /*Color*/
     color: white;
     background-color: #000000;
@@ -69,7 +71,7 @@
     border: none;
     /*Misc*/
     height: fit-content;
-    font-size: 2em;
+    font-size: 4vh;
 
 }
 
@@ -78,20 +80,21 @@
 /*fullscreen button*/
 .fullscreenButton{
     /*Margins and Padding*/
-    margin-left: 15px;
-    padding: 13px;
+    margin-left: 1.5vh;
+    padding: 1.3vh 1.5vh;
     margin-left: auto;
     /*Font*/
-    font-size: 1.2rem;
+    font-size: 2.5vh;
     font-weight: 500;
     font-style: normal;
     font-family: "IBM Plex Sans Hebrew";
     /*Misc*/
     text-align: center;
+    align-self: center;
     border-radius: 9999em;    
     border: none;
     color: white;
-    height: 50px;
+    height: min-content;
     background-color: #000000;
    
 }
@@ -113,7 +116,7 @@
     position: absolute;
     /*Dimensions*/
     width: 100%;
-    height: auto;
+    height: fit-content;
     /*Misc*/
     visibility: hidden;
     font-size: larger;
@@ -126,8 +129,9 @@
 /*all p tags in tooltip*/
 .mainPhotoContainer .tooltiptext > p{
     width: 95%;
-    font-size: .9em;
-    margin: 5px 10px;
+    font-size: 1.4vh;
+    margin: .7vh 1.4vh;
+    margin-top: 1.5vh;
     text-align: left;
 }
 
@@ -170,33 +174,34 @@
 
 
 /*Actual tag*/
-.mainPhotoContainer .tag{
+.tagContainer > .tag{
     /*Margins and padding*/
     margin-left: auto;
     margin-right: auto;
-    margin-top: 7px;
-    padding:5px 8px;
+    margin-top: 1vh;
+    padding: .8vh 1.4vh;
     /*Misc*/
     border-radius: 99em;
     background-color: #5b5b5b;
     width: max-content;
     text-align: center;
-    font-size: smaller;
+    font-size: 1.5vh;
+    font-weight: 500;
 }
 
 
 /*container for added tags*/
 .mainPhotoContainer .tagContainer{
     /*Margins and padding*/
-    padding-left: 10px;
-    padding-bottom: 5px;
-    padding-top: 2px;
+    padding: 0 1vh;
+    padding-bottom: .5vh;
+    padding-top: .2vh;
     /*Alignment*/
     justify-content: left;
     align-content: center;
     justify-items: left;
     /*Misc*/
-    gap: 10px;
+    gap: 1vh;
     width: fit-content;
     display: flex;
     flex-wrap: wrap;
@@ -243,25 +248,30 @@
 
 /*iamge container*/
 .photo, .photo > img{
-    height: 500px;
-    width: 1000px;
+    height: 65vh;
+    width: 65vw;
     align-self: center;
     position: relative;
     object-fit: cover;
 }
 
+
+
 /*holds caption and dateline span*/
 .caption{
     font-family: 'Koh Santepheap';
-    font-size:xx-large;
+    font-size: 3.4vh;
+    word-wrap: break-word;
+    text-wrap: wrap;
+    width: 100%;
     margin: 0;
 }
 
 /*holds time and date*/
 .dateline{
-    margin: 0 10px;
+    margin: 0 1.2vh;
     text-align: center;
-    font-size: medium;
+    font-size: 2.2vh;
 }
 
 
@@ -270,6 +280,46 @@
     object-fit: scale-down;
     align-self: center;
     height: 100vh;
+    width: 100vw;   
     justify-self: center;
 }
 
+
+@media (orientation: portrait) {
+    
+    .fullscreenButton{
+        /*Margins and Padding*/
+        height: min-content;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1vh;
+    }
+    .photo{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .mainPhotoContainer{ display: grid;}
+
+    .photo, .photo > img{  height: 35vh; width: 80vw;}
+
+    .arrow, .arrowLeft{margin: 2vh auto; width: min-content}
+
+    .captionContainer{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .photoContainer{ width: 80vw; }
+    .caption{font-size: smaller; }
+
+
+    .mainPhotoContainer .tag{
+        padding: .5vh 1.1vh;
+        font-size: 1.2vh;
+        margin: 0 .2vh;
+        margin-top: .3vh;
+
+    }
+
+   
+    
+}
