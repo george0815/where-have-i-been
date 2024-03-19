@@ -2,6 +2,7 @@ import { useState, React } from 'react'; //React
 import Background from './Background'; //Gets background
 import Navbar from './Navbar'; //navbar
 import Editing from './Editing'; //editing component
+import { useNavigate } from "react-router-dom";
 //CSS
 import '../styles/Mainpage.css';
 import '../styles/Fonts.css';
@@ -10,6 +11,9 @@ import '../styles/Navbar.css';
 
 //main page
 export default function Mainpage(props) {
+
+  //used for redirecting to pages
+  const navigate = useNavigate();
 
   const [currentCaption, setCurrentCaption] = useState("Phuket, Thailand") // sets initial caption at the bottom
 
@@ -29,6 +33,34 @@ export default function Mainpage(props) {
   )
 
 
+  //empty album object for adding
+  let currentAlbum = {
+    description: "",
+    location: "",
+    toDate: "",
+    fromDate: "",
+    caption: "",
+    id: "",
+    tags: []
+  }
+
+
+
+  //hides editing component and refreshes state
+  function onEditExit(){ 
+
+    setEditingSettings(
+      {
+          adding: false,
+          isAlbum: true,
+          saveButtonText: "Save",
+          currentlyEditing: false
+      }
+    )
+    //go to homepage, effectivley refreshing page
+    navigate("/"); 
+
+  ;}
 
 
   //creates guest album
@@ -58,7 +90,7 @@ export default function Mainpage(props) {
 
         {/*Contains fullscreen version of photo*/}
         <div className={editingSettings.currentlyEditing ? 'editingComponentContainer activeEditing' : 'editingComponentContainer'}>  
-            <Editing  loggedIn={props.loggedIn} editingSettings={editingSettings} onEditExit={onEditExit} currentPhoto={currentPhoto} currentAlbum={currentAlbum}/>
+            <Editing  loggedIn={props.loggedIn} editingSettings={editingSettings} onEditExit={onEditExit} currentAlbum={currentAlbum}/>
         </div>
 
         {/*Holds all the text in the main page, except for picture caption at the bottom left*/}
