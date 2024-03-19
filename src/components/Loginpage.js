@@ -86,7 +86,7 @@ export default function Loginpage(props) {
 
                   <label for="Password">Password</label>
                   <input
-                    type="text"
+                    type="password"
                     placeholder="password"
                     name="password"
                     id="password"

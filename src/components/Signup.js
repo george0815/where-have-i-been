@@ -101,7 +101,7 @@ export default function Signup(props) {
 
                   <label for="Password">Password</label>
                   <input
-                    type="text"
+                    type="password"
                     placeholder="password"
                     name="password"
                     id="password"
@@ -112,7 +112,7 @@ export default function Signup(props) {
 
                   <label for="PasswordConfirm">Confirm Password</label>
                   <input
-                    type="text"
+                    type="password"
                     placeholder="confirm password"
                     name="passwordConfirm"
                     id="passwordConfirm"

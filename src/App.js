@@ -20,7 +20,7 @@ import albumsObj from './components/Testalbums';
 function App() {
 
   // sets albums state
-  const [albums, setAlbums] = useState(null); 
+  const [albums, setAlbums] = useState([]); 
 
 
   // sets albums state
@@ -59,7 +59,7 @@ function App() {
     }
 
 
-   // localStorage.setItem('albums', JSON.stringify(albumsObj));
+   //localStorage.setItem('albums', JSON.stringify(albumsObj));
    //setAlbums(JSON.parse(localStorage.getItem("albums")));
 
 
@@ -69,7 +69,7 @@ function App() {
     <BrowserRouter>
       <Routes>
           {/*If user has albums, render albums page, if not, redner main page */}
-          <Route path="/" element={(albums !== null && albums.length >= 1) ? <Albumspage setLoggedIn={setLoggedIn} loggedIn={loggedIn}/> : <Mainpage setLoggedIn={setLoggedIn} loggedIn={loggedIn}/> }/>
+          <Route path="/" element={(albums.length >= 1 || loggedIn) ? <Albumspage setLoggedIn={setLoggedIn} loggedIn={loggedIn}/> : <Mainpage setLoggedIn={setLoggedIn} loggedIn={loggedIn}/> }/>
           <Route path="main" element={<Mainpage setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>
           <Route path="editing" element={<Editing setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>
           <Route path="albums" element={<Albumspage setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>
