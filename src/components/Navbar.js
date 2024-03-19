@@ -4,8 +4,9 @@ import {countries} from "countries-list"; //gets list of every country (used for
 import { useNavigate } from "react-router-dom";
 import {Link} from 'react-router-dom'; //gets link from react router
 //firebase
-import { doc, setDoc } from "firebase/firestore"; 
-import {db} from "../firebase"
+import { doc, setDoc} from "firebase/firestore"; 
+import { storage, db} from "../firebase";
+import {ref, deleteObject} from "firebase/storage";
 //zip and file save
 import  JSZip from 'jszip';
 //CSS
@@ -103,24 +104,69 @@ export default function Navbar(props) {
 
       //if user is deleting album
       if(props.page === 1){
+
+
+        //saves photos so that they can be deleted from the database later on
+        let photosToBeDeleted = tempAlbums.photos;
+
+        
         tempAlbums.splice(index, 1); // 2nd parameter means remove one item only
+
+        //removes from database
         if(props.loggedIn){
           await setDoc(doc(db, "data", JSON.parse(localStorage.getItem("user")).uid), {
             ...tempAlbums
           });
+
+          //deletes photos
+          photosToBeDeleted.forEach((photo)=>{
+          
+            // Create a reference to the file to delete
+            const photoRef = ref(storage, photo.id);
+            // Delete the file
+            deleteObject(photoRef).then(() => {
+              // File deleted successfully
+            }).catch((error) => {
+              window.alert(error);
+            });
+
+          })
         }
         localStorage.setItem('albums', JSON.stringify(tempAlbums));
+        //alters app state, effectively refreshing page
+        props.setAlbums(tempAlbums);
         navigate("/");
+
+
       }
+
       //if user is deleting photo
       else if(props.page === 3){
-        tempAlbums[index].photos.splice(tempAlbums[index].photos.findIndex(photo => {return JSON.parse(sessionStorage.getItem("currentPhoto")).id === photo.id}), 1);
-        //uploads doc to firebase
+
+        //get index for photo to be deleted
+        let toBeDeletedIndex = tempAlbums[index].photos.findIndex(photo => {return JSON.parse(sessionStorage.getItem("currentPhoto")).id === photo.id});
+
+
+        // Create a reference to the file to delete
+        const photoRef = ref(storage, tempAlbums[index].photos[toBeDeletedIndex].id);
+
+        //delete from array
+        tempAlbums[index].photos.splice(toBeDeletedIndex, 1);
+        
+        //delete from database
         if(props.loggedIn){
           await setDoc(doc(db, "data", JSON.parse(localStorage.getItem("user")).uid), {
             ...tempAlbums
           });
+
+          // Delete the file
+          deleteObject(photoRef).then(() => {
+            // File deleted successfully
+          }).catch((error) => {
+            window.alert(error);
+          });
         }
+
         //updates storage and refreshes page
         sessionStorage.setItem("currentAlbum", JSON.stringify(tempAlbums[index]));
         localStorage.setItem('albums', JSON.stringify(tempAlbums));

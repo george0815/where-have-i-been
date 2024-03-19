@@ -1,8 +1,7 @@
 import {React, useState, useEffect} from 'react'; //React
 //firebase
 import { doc, setDoc } from "firebase/firestore"; 
-import {db} from "../firebase"
-import { storage} from "../firebase";
+import { storage, db} from "../firebase";
 import { uploadBytesResumable, ref, getDownloadURL} from "firebase/storage";
 import exifr from 'exifr' //used to extract exif data
 import DatePicker from 'react-date-picker'; //nice date picker
@@ -85,8 +84,9 @@ export default function Editing(props) {
       exifr.parse(file)
       .then(output => {
         
+
         //if proper coords were received from the parsed exif data
-        if(output !== null && (output.latitude !== null && output.longitude !== null)){
+        if(typeof output !== 'undefined' && (typeof output.latitude !== 'undefined' && typeof  output.longitude !== 'undefined')){
 
           //convert into format to be read by API
           let coords = output.latitude + "," + output.longitude 
@@ -555,7 +555,7 @@ export default function Editing(props) {
                     <DatePicker onChange={onFromChange} value={fromDateValue}
                       className='dateAndTime'
                       type="text"
-                      placeholder = {props.isAlbum ? "from" : "date and time"}
+                      placeholder = {props.editingSettings.isAlbum ? "from" : "date and time"}
                       name="fromDate"
                       id="fromDate"
                     />    
@@ -580,7 +580,7 @@ export default function Editing(props) {
                 <textarea
                   maxLength={275}
                   rows={6}
-                  placeholder= {props.isAlbum ? "What kinds of pictures are in this album?" : "What inspired you to take this photo?"}
+                  placeholder= {props.editingSettings.isAlbum ? "What kinds of pictures are in this album?" : "What inspired you to take this photo?"}
                   name="description"
                   className='descriptionInput'
                   id="description"

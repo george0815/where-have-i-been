@@ -15,6 +15,9 @@ export default function Mainpage(props) {
   //used for redirecting to pages
   const navigate = useNavigate();
 
+  //sets up state for fullscreen
+  const [fullScreen, setFullscreen] = useState(false); 
+
   const [currentCaption, setCurrentCaption] = useState("Phuket, Thailand") // sets initial caption at the bottom
 
   //sets captions
@@ -49,6 +52,9 @@ export default function Mainpage(props) {
   //hides editing component and refreshes state
   function onEditExit(){ 
 
+    //shows navbar
+    setFullscreen(false);
+
     setEditingSettings(
       {
           adding: false,
@@ -57,18 +63,24 @@ export default function Mainpage(props) {
           currentlyEditing: false
       }
     )
+
     //go to homepage, effectivley refreshing page
-    navigate("/"); 
+    window.location.reload();
 
   ;}
 
 
   //creates guest album
-  function onClickCreateAlbumAsGuest(){ setEditingSettings(
-    
-    //ask user via alert
+  function onClickCreateAlbumAsGuest(){ 
+
+    window.alert("Note: When creating an ablum as a guest, the total size of all photos in the album must not exceed 5MB.");
 
 
+    //hides navbar
+    setFullscreen(true);
+
+
+    setEditingSettings(
     {
         adding: true,
         isAlbum: true,
@@ -83,7 +95,7 @@ export default function Mainpage(props) {
     //holds entire page
     <div className='componentContainer'>
 
-      <Navbar setLoggedIn={props.setLoggedIn}  loggedIn={props.loggedIn} page={0}/>
+      <Navbar fullScreen={fullScreen} setLoggedIn={props.setLoggedIn}  loggedIn={props.loggedIn} page={0}/>
 
       {/*Holds all elements in the main page*/}
       <div className="mainPageContainer">

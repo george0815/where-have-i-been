@@ -33,16 +33,12 @@ function App() {
 
       if (docSnap.exists()) {
 
-
-
         var arr_obj = Object.keys(docSnap.data()).map(key => (docSnap.data()[key]));
-
-
-        
+              
         //sets state
         setAlbums(arr_obj);
 
-
+        //sets local storage
         localStorage.setItem('albums', JSON.stringify(arr_obj));
 
       }
@@ -61,22 +57,23 @@ function App() {
       //sets state
       setAlbums(JSON.parse(localStorage.getItem("albums")));
     }
+
+
    // localStorage.setItem('albums', JSON.stringify(albumsObj));
+   //setAlbums(JSON.parse(localStorage.getItem("albums")));
 
-    //setAlbums(JSON.parse(localStorage.getItem("albums")));
 
-
-  }, [loggedIn])
+  }, [loggedIn], [albums])
 
   return (
     <BrowserRouter>
       <Routes>
           {/*If user has albums, render albums page, if not, redner main page */}
-          <Route path="/" element={(albums !== null && albums.length >= 1) ? <Albumspage setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/> : <Mainpage setLoggedIn={setLoggedIn} loggedIn={loggedIn}/> }/>
+          <Route path="/" element={(albums !== null && albums.length >= 1) ? <Albumspage setLoggedIn={setLoggedIn} loggedIn={loggedIn}/> : <Mainpage setLoggedIn={setLoggedIn} loggedIn={loggedIn}/> }/>
           <Route path="main" element={<Mainpage setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>
           <Route path="editing" element={<Editing setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>
           <Route path="albums" element={<Albumspage setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>
-          <Route path="album" element={<Picturespage  setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>
+          <Route path="album" element={<Picturespage setAlbums={setAlbums} setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>
           <Route path="photo" element={<Photo setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>
           <Route path="login" element={<Loginpage setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>}/>
           <Route path="signup" element={<Signup setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>

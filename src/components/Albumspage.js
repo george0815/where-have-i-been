@@ -129,7 +129,7 @@ useEffect(() => {
     <div className='componentContainer transparentBackground'>
 
       {/*navbar*/}
-      <Navbar  fullScreen={editingSettings.currentlyEditing} setLoggedIn={props.setLoggedIn} loggedIn={props.loggedIn} setSearchTag={setSearchTag} onClickAdd={onClickAdd} updateAlbums={updateAlbums} page={2} />
+      <Navbar fullScreen={editingSettings.currentlyEditing} setLoggedIn={props.setLoggedIn} loggedIn={props.loggedIn} setSearchTag={setSearchTag} onClickAdd={onClickAdd} updateAlbums={updateAlbums} page={2} />
 
        {/*Holds all elements in the main page*/}
        <div className={editingSettings.currentlyEditing ? 'albumPageContainer albumPageContainerEditing' : 'albumPageContainer'}>
