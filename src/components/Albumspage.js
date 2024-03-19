@@ -1,4 +1,4 @@
-import {React, useState} from 'react'; //React
+import {React, useState, useEffect} from 'react'; //React
 import Background from './Background'; //Gets background
 import {Link} from 'react-router-dom'; //gets link from react router
 import Navbar from './Navbar'; //navbar
@@ -7,7 +7,8 @@ import Editing from './Editing'; //editing component
 import '../styles/Fonts.css';
 import '../styles/Navbar.css';
 import '../styles/Albumspage.css';
-
+//for scaling text
+var flowtype = require('flowtype')
 
 
 
@@ -87,6 +88,37 @@ export default function Albumspage(props) {
 
   //handles album button functionality, onclick pass clicked album into session storage
   function onclickAlbum(index){  sessionStorage.setItem("currentAlbum", JSON.stringify(albumsObj[index])); }
+
+
+
+//------------------------USEEFFECT------------------------------//
+
+
+useEffect(() => {
+  //automatically resizes text
+  Array.from(document.getElementsByClassName('tagDateLocationCaption')).forEach((caption)=>{
+
+    flowtype(caption, {
+      maxWidth: '1000px', // can be a CSS value or a Number
+      minWidth: '200px',
+      min: 12.5,
+      max: 50
+    })
+
+  })
+  Array.from(document.getElementsByClassName('tagDescription')).forEach((caption)=>{
+
+    flowtype(caption, {
+      maxWidth: '1000px', // can be a CSS value or a Number
+      minWidth: '200px',
+      lineRatio: 1.45,
+      min: 12.5,
+      max: 50
+    })
+
+  })
+  
+});
 
 
   //------------------------JSX OBJECT------------------------------//

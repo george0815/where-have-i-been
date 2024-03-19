@@ -232,7 +232,7 @@
 /**************************MEDIA QUERIES**************************/
 
 
-@media (orientation: portrait) {
+@media (orientation: portrait) or (max-width: 1260px) {
 
   .pictureButton > img, .pictureButton{
     /*Dimensions*/

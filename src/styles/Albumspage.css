@@ -91,6 +91,7 @@
     display: grid;
     row-gap: 0;
     grid-template-rows: repeat(2, min-content);
+    grid-template-columns: 100%;
     /*Alignment*/
     align-items: center;
     justify-items: center;
@@ -205,14 +206,14 @@
 /**************************MEDIA QUERIES**************************/
 
 
-@media (orientation: portrait) {
+@media (orientation: portrait) or (max-width: 1260px)  {
 
   .albumButton > img, .albumButton{
     /*Dimensions*/
-    max-width: 16.5vw;
+    max-width: 14vw;
     min-width: 200px;
     min-height: 200px;
-    height: 16.5vw;
+    height: 14vw;
   }
   .albumContainer{  
     /*Display*/

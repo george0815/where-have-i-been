@@ -1,4 +1,4 @@
-import {React, useState} from 'react'; //React
+import {React, useState, useEffect} from 'react'; //React
 import Background from './Background'; //Gets background
 import {Link} from 'react-router-dom'; //gets link from react router
 import Navbar from './Navbar'; //navbar
@@ -7,7 +7,8 @@ import Editing from './Editing'; //editing component
 import '../styles/Fonts.css';
 import '../styles/Navbar.css';
 import '../styles/Picturespage.css';
-
+//for scaling text
+var flowtype = require('flowtype')
 
 
 
@@ -99,8 +100,39 @@ export default function Picturespage(props) {
     setCurrentAlbum(temp);
   }
 
-  
 
+
+  //------------------------USEEFFECT------------------------------//
+
+
+  useEffect(() => {
+    //automatically resizes text
+    Array.from(document.getElementsByClassName('toolTipCaption')).forEach((caption)=>{
+
+      flowtype(caption, {
+        maxWidth: '1000px', // can be a CSS value or a Number
+        minWidth: '200px',
+        lineRatio: 1.45,
+        min: 12.5,
+        max: 60
+      })
+
+    })
+    Array.from(document.getElementsByClassName('tagDescription')).forEach((caption)=>{
+
+      flowtype(caption, {
+        maxWidth: '1000px', // can be a CSS value or a Number
+        minWidth: '200px',
+        lineRatio: 1.45,
+        min: 12.5,
+        max: 60
+      })
+
+    })
+    
+  });
+  
+  
   //------------------------JSX OBJECT------------------------------//
   
 
@@ -126,8 +158,6 @@ export default function Picturespage(props) {
                 {/*creates each picture button from data, it pulls data from a database if the user is signed in
                 or localstorage if the user doens't have an account    */}
                 {currentAlbum.photos.map((photo, index) => (
-
-
     
                   (((photo.tags.some(tg => tg.includes(searchTagPictures)) || photo.caption.includes(searchTagPictures) || photo.location.includes(searchTagPictures) || photo.description.includes(searchTagPictures))
                   && (searchTagPictures !== "")) || (searchTagPictures === "")) && <Link to="../photo" key={photo.caption}onClick={() => {onclickPhoto(index)}}>

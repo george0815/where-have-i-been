@@ -39,6 +39,7 @@ export default function Background(props){
     //cycles through 4 images for the background pic by setting the classname
         backgrounds.map((image, index) => (
         <img
+          alt={image.name}
           id={index}
           key={index}
           className={index === currentSlide ? 'image active' : 'image'}
