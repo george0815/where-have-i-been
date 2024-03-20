@@ -2,9 +2,10 @@ import {React, useState, useEffect} from 'react'; //React
 //firebase
 import { doc, setDoc } from "firebase/firestore"; 
 import { storage, db} from "../firebase";
-import { uploadBytesResumable, ref, getDownloadURL} from "firebase/storage";
+import { uploadBytesResumable, ref, getDownloadURL, deleteObject} from "firebase/storage";
 import exifr from 'exifr' //used to extract exif data
 import DatePicker from 'react-date-picker'; //nice date picker
+import { useNavigate } from "react-router-dom";
 //api used to get an address from coordinates received from exif data
 import {
   setDefaults,
@@ -24,6 +25,7 @@ import 'react-calendar/dist/Calendar.css';
 export default function Editing(props) {
 
   //---------------------------STATE--------------------------------//
+
 
    //sets up state for value that display upload progress
   const [uploadPercent, setUploadPercent] = useState(0.0) //how much of the current file is uploaded
@@ -204,19 +206,42 @@ export default function Editing(props) {
           tempAlbums[index].photos.push(tempPhoto);
           
    
-          //overwrite albums object in local storage
-          localStorage.setItem('albums', JSON.stringify(tempAlbums));
-          sessionStorage.setItem("currentAlbum", JSON.stringify(tempAlbums[index]));
+          //check storage size
+          if (storageCheck(tempAlbums)){
+            //overwrite albums object in local storage
+            localStorage.setItem('albums', JSON.stringify(tempAlbums));
+            sessionStorage.setItem("currentAlbum", JSON.stringify(tempAlbums[index]));
 
-          //uploads doc to firebase
-          if(props.loggedIn){
-            await setDoc(doc(db, "data", JSON.parse(localStorage.getItem("user")).uid), {
-              ...tempAlbums
-            });
+            //uploads doc to firebase
+            if(props.loggedIn){
+              await setDoc(doc(db, "data", JSON.parse(localStorage.getItem("user")).uid), {
+                ...tempAlbums
+              });
+            }
+
+            //call some sort of function that hides the editing component again and resets currentalbum state
+            props.onEditExit();
           }
+          else{
 
-          //call some sort of function that hides the editing component again and resets currentalbum state
-          props.onEditExit();
+            //remove picture from database
+            if(props.loggedIn){
+              
+                // Create a reference to the file to delete
+                const photoRef = ref(storage, tempPhoto.id);
+                // Delete the file
+                deleteObject(photoRef).then(() => {
+                  // File deleted successfully
+                }).catch((error) => {
+                  window.alert(error);
+                });
+
+            }
+
+            error("Storage space exceeded, this is usually due to creating albums as a guest. You can free up more space by deleting the existing albums then recreating them while signed in.");
+          
+
+          }
 
 
   }
@@ -325,23 +350,50 @@ export default function Editing(props) {
 
         //replace data with data from inputs
         tempAlbums.push(tempAlbum);
+
+        //check storage size
+        if (storageCheck(tempAlbums)){
+          //overwrite albums object in local storage
+          localStorage.setItem('albums', JSON.stringify(tempAlbums));
+
+          //uploads doc to firebase
+          if(props.loggedIn){
+            await setDoc(doc(db, "data", JSON.parse(localStorage.getItem("user")).uid), {
+              ...tempAlbums
+            });
+          }
           
-        //overwrite albums object in local storage
-        localStorage.setItem('albums', JSON.stringify(tempAlbums));
+          //unrenders loading progress element
+          setIsUploading(false);
+          setCurrentUpload(0);
 
-        //uploads doc to firebase
-        if(props.loggedIn){
-          await setDoc(doc(db, "data", JSON.parse(localStorage.getItem("user")).uid), {
-            ...tempAlbums
-          });
+
+          //call some sort of function that hides the editing component again and resets currentalbum state
+          props.onEditExit();
         }
+        else{
+          
+          //remove pictures from database
+          if(props.loggedIn){
+            tempAlbum.photos.forEach((photo)=>{
+            
+              // Create a reference to the file to delete
+              const photoRef = ref(storage, photo.id);
+              // Delete the file
+              deleteObject(photoRef).then(() => {
+                // File deleted successfully
+              }).catch((error) => {
+                window.alert(error);
+              });
+
+            })
+          }
+
+          error("Storage space exceeded, this is usually due to creating albums as a guest. You can free up more space by deleting the existing albums then recreating them while signed in.");
         
-        //unrenders loading progress element
-        setIsUploading(false);
-
-
-        //call some sort of function that hides the editing component again and resets currentalbum state
-        props.onEditExit();
+        }
+          
+        
       }
 
       //actually calls function declared above
@@ -390,15 +442,24 @@ export default function Editing(props) {
       tempAlbums[index].description = document.getElementById("description").value;
       tempAlbums[index].tags = tags;
    
-      //overwrite albums object in local storage
-      localStorage.setItem('albums', JSON.stringify(tempAlbums));
+      //check storage size
+      if (storageCheck(tempAlbums)){
+        //overwrite albums object in local storage
+        localStorage.setItem('albums', JSON.stringify(tempAlbums));
 
-      //uploads doc to firebase
-      if(props.loggedIn){
-        await setDoc(doc(db, "data", JSON.parse(localStorage.getItem("user")).uid), {
-          ...tempAlbums
-        });
+        //overwrite currentAlbum object
+        sessionStorage.setItem("currentAlbum", JSON.stringify(tempAlbums[index]));
+
+        //uploads doc to firebase
+        if(props.loggedIn){
+          await setDoc(doc(db, "data", JSON.parse(localStorage.getItem("user")).uid), {
+            ...tempAlbums
+          });
+        }
       }
+      else{ error("Storage space exceeded, this is usually due to creating albums as a guest. You can free up more space by deleting the existing albums then recreating them while signed in."); }
+      
+
 
     }
     //if user is editing photo
@@ -415,25 +476,31 @@ export default function Editing(props) {
       tempAlbums[index].photos[photoIndex].description = document.getElementById("description").value;
       tempAlbums[index].photos[photoIndex].tags = tags;
 
-      //overwrite albums object in local storage
-      localStorage.setItem('albums', JSON.stringify(tempAlbums));
+      //check storage size
+      if (storageCheck(tempAlbums)){
+        //overwrite albums object in local storage
+        localStorage.setItem('albums', JSON.stringify(tempAlbums));
 
-      //overwrite currentAlbum object
-      sessionStorage.setItem("currentAlbum", JSON.stringify(tempAlbums[index]));
+        //overwrite currentAlbum object
+        sessionStorage.setItem("currentAlbum", JSON.stringify(tempAlbums[index]));
 
+        //overwrite current photo object in session storage
+        sessionStorage.setItem("currentPhoto", JSON.stringify(tempAlbums[index].photos[photoIndex]));
 
-      //overwrite current photo object in session storage
-      sessionStorage.setItem("currentPhoto", JSON.stringify(tempAlbums[index].photos[photoIndex]));
+        //uploads doc to firebase
+        if(props.loggedIn){
+          await setDoc(doc(db, "data", JSON.parse(localStorage.getItem("user")).uid), {
+            ...tempAlbums
+          });
+        }
 
-      //uploads doc to firebase
-      if(props.loggedIn){
-        await setDoc(doc(db, "data", JSON.parse(localStorage.getItem("user")).uid), {
-          ...tempAlbums
-        });
+        //refresh
+        props.setCurrentPhoto(tempAlbums[index].photos[photoIndex]);
       }
+      else{ error("Storage space exceeded, this is usually due to creating albums as a guest. You can free up more space by deleting the existing albums then recreating them while signed in."); }
 
-      //refresh
-      props.setCurrentPhoto(tempAlbums[index].photos[photoIndex]);
+
+      
 
     }
 
@@ -465,6 +532,39 @@ export default function Editing(props) {
   }
 
 
+
+  //CHECK SIZE OF LOCAL STORAGE BEFORE ADDING OR EDITING ANYTHING
+  function storageCheck(data){
+    
+    //get remaining size, default limit is 5MB on most browsers but since Im only checking the albums object for size Im leaving a little space for the user and logged in entries
+    const remainingSpace = (4990000 - (JSON.stringify(localStorage).length / 1) );
+
+    //get size of data to be inputted
+    const newDataSize = ((JSON.stringify(localStorage).length / 1) - (JSON.stringify(JSON.parse(localStorage.getItem("albums"))).length / 1)) + JSON.stringify(data).length / 1;
+
+    //if data exceeds limit, cancel and reset page
+    if(newDataSize >= remainingSpace){return false;}
+    else{ return true; }
+
+    
+
+  }
+  
+
+  //HANDLES ERRORS
+
+  //used for page redirects
+  const navigate = useNavigate();
+
+  function error(error){
+
+    //show alert
+    window.alert("Error: " + error + " \nPage will now refresh.");
+
+    //refreshes page
+    window.location.reload();
+
+  }
 
 
 
