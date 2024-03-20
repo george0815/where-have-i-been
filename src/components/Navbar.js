@@ -107,7 +107,7 @@ export default function Navbar(props) {
 
 
         //saves photos so that they can be deleted from the database later on
-        let photosToBeDeleted = tempAlbums.photos;
+        let photosToBeDeleted = tempAlbums[index].photos;
 
         
         tempAlbums.splice(index, 1); // 2nd parameter means remove one item only
