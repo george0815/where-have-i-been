@@ -22,8 +22,11 @@ function App() {
   // sets albums state
   const [albums, setAlbums] = useState([]); 
 
+  //used to tell albums page to refresh
+  const [refresh, setRefresh] = useState(false);
 
-  // sets albums state
+
+  // sets loggedIn state
   const [loggedIn, setLoggedIn] = useState(false); 
 
 
@@ -41,7 +44,11 @@ function App() {
         //sets local storage
         localStorage.setItem('albums', JSON.stringify(arr_obj));
 
+        console.log(JSON.parse(localStorage.getItem("albums")));
+        setRefresh(!refresh);
       }
+      setLoggedIn(true);
+
   } 
 
 
@@ -49,7 +56,6 @@ function App() {
 
     //sets loggedIn state
     if(JSON.parse(localStorage.getItem("user")) !== null){
-      setLoggedIn(true);
       getData(JSON.parse(localStorage.getItem("user")).uid);
       
     }
@@ -69,12 +75,12 @@ function App() {
     <BrowserRouter>
       <Routes>
           {/*If user has albums, render albums page, if not, redner main page */}
-          <Route path="/" element={(albums.length >= 1 || loggedIn) ? <Albumspage setLoggedIn={setLoggedIn} loggedIn={loggedIn}/> : <Mainpage setLoggedIn={setLoggedIn} loggedIn={loggedIn}/> }/>
+          <Route path="/" element={(albums.length >= 1 || loggedIn) ? <Albumspage refresh={refresh} setLoggedIn={setLoggedIn} loggedIn={loggedIn}/> : <Mainpage setLoggedIn={setLoggedIn} loggedIn={loggedIn}/> }/>
           <Route path="main" element={<Mainpage setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>
           <Route path="editing" element={<Editing setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>
-          <Route path="albums" element={<Albumspage setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>
+          <Route path="albums" element={<Albumspage refresh={refresh} setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>
           <Route path="album" element={<Picturespage setAlbums={setAlbums} setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>
-          <Route path="photo" element={<Photo setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>
+          <Route path="photo" element={<Photo setAlbums={setAlbums} setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>
           <Route path="login" element={<Loginpage setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>}/>
           <Route path="signup" element={<Signup setLoggedIn={setLoggedIn}  loggedIn={loggedIn}/>}/>
           <Route path="forgotPassword" element={<ForgotPassword setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>}/>

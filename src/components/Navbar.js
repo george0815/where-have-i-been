@@ -94,7 +94,7 @@ export default function Navbar(props) {
   async function remove(){
 
     //displays alert asking user if they want to remove  
-    if (window.confirm( + (props.page === 1) ? "Are you sure you want to delete this album?" : "Are you sure you want to delete this photo?")) {
+    if (window.confirm( + (props.page === 1) ? "Are you sure you want to delete this album?" : "Are you sure you want to delete this photo? Note: if this is the last photo in the album, the album itself will also be removed.")) {
       
       //make new temp album object from localstorage albums object
       let tempAlbums = JSON.parse(localStorage.getItem("albums"));
@@ -111,6 +111,8 @@ export default function Navbar(props) {
 
         
         tempAlbums.splice(index, 1); // 2nd parameter means remove one item only
+
+
 
         //removes from database
         if(props.loggedIn){
@@ -152,6 +154,7 @@ export default function Navbar(props) {
 
         //delete from array
         tempAlbums[index].photos.splice(toBeDeletedIndex, 1);
+
         
         //delete from database
         if(props.loggedIn){
@@ -168,9 +171,20 @@ export default function Navbar(props) {
         }
 
         //updates storage and refreshes page
-        sessionStorage.setItem("currentAlbum", JSON.stringify(tempAlbums[index]));
-        localStorage.setItem('albums', JSON.stringify(tempAlbums));
-        navigate("/album");
+
+        //if user deleted last photo in album
+        if(tempAlbums[index].photos.length === 0){
+          tempAlbums.splice(index, 1); 
+          localStorage.setItem('albums', JSON.stringify(tempAlbums));
+          props.setAlbums(tempAlbums);
+          navigate("/");
+        }
+        else{
+          sessionStorage.setItem("currentAlbum", JSON.stringify(tempAlbums[index]));
+          localStorage.setItem('albums', JSON.stringify(tempAlbums));
+          navigate("/album");
+        }
+        
       }
 
     } 

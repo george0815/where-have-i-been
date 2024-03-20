@@ -125,7 +125,7 @@ export default function Photo(props) {
     <div className='componentContainer transparentBackground'>
 
         {/*navbar*/}
-        <Navbar setLoggedIn={props.setLoggedIn}  fullScreen={fullScreen} loggedIn={props.loggedIn} page={3} onClickEdit={onClickEdit}/>
+        <Navbar setAlbums={props.setAlbums} setLoggedIn={props.setLoggedIn}  fullScreen={fullScreen} loggedIn={props.loggedIn} page={3} onClickEdit={onClickEdit}/>
 
         {/*Holds all elements in the photo page*/}
         <div className={editingSettings.currentlyEditing ? 'mainPhotoContainer mainPhotoContainerEditing' : 'mainPhotoContainer'}>

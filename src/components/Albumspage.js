@@ -120,6 +120,12 @@ useEffect(() => {
   
 });
 
+useEffect(() => {
+  
+  console.log(JSON.parse(localStorage.getItem("albums")));
+  updateAlbums();
+
+}, [props.refresh]);
 
   //------------------------JSX OBJECT------------------------------//
 
