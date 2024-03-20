@@ -182,7 +182,7 @@ export default function Editing(props) {
 
 
   //HELPER FUNCTION, ADDS PHOTO TO ALBUM
-  async function addPhotoAlbumData(src){
+  async function addPhotoAlbumData(src, id){
 
           //make new temp album object from localstorage albums object
           let tempAlbums = JSON.parse(localStorage.getItem("albums"));
@@ -192,7 +192,7 @@ export default function Editing(props) {
           //create temp photo object from input, and tempalbum
           let tempPhoto = {
             img : src,
-            id :  Date.now().toString(),
+            id :  id,
             caption : document.getElementById("caption").value,
             location : document.getElementById("location").value,
             date : Object.prototype.toString.call(fromDateValue) === '[object Date]' ? fromDateValue.toDateString() : fromDateValue,
@@ -237,7 +237,7 @@ export default function Editing(props) {
       let photoId = Date.now().toString();
       const storageRef = ref(storage, photoId);
       //get photo url then call helper function to add it into album
-      !props.loggedIn ? getBase64(files[0]).then( data => addPhotoAlbumData(data)) : getURL(storageRef, files[0]).then( data => addPhotoAlbumData(data));  
+      !props.loggedIn ? getBase64(files[0]).then( data => addPhotoAlbumData(data, photoId)) : getURL(storageRef, files[0]).then( data => addPhotoAlbumData(data, photoId));  
     }
 
 
@@ -622,7 +622,7 @@ export default function Editing(props) {
             {/*Save Button*/}
             <button className='saveButton' onClick={!props.editingSettings.adding ? onClickSave : null}>
                 {props.editingSettings.saveButtonText}
-                {props.editingSettings.adding && <input onChange={addPhotoAlbum} className="fileInput" type="file" multiple />}
+                {props.editingSettings.adding && <input accept="image/*" onChange={addPhotoAlbum} className="fileInput" type="file" multiple />}
             </button>
 
              {/*Loading progress div*/}
