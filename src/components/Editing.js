@@ -130,13 +130,14 @@ export default function Editing(props) {
             resolve(tempObj);
 
           })
-          .catch(console.error);
+          .catch(error("Unable to get location from photo metadata."));
         }
         //if no metadata, return nothing
         else{ resolve(null);}
             
       
-      });
+      }).catch(error("Unable to get metadata from photo."));
+
     });
   
   }
@@ -167,6 +168,7 @@ export default function Editing(props) {
         }, 
         (error) => {
           // Handle unsuccessful uploads
+          error(error);
         }, 
         () => {
           
@@ -233,7 +235,7 @@ export default function Editing(props) {
                 deleteObject(photoRef).then(() => {
                   // File deleted successfully
                 }).catch((error) => {
-                  window.alert(error);
+                  error(error);
                 });
 
             }
@@ -383,7 +385,7 @@ export default function Editing(props) {
               deleteObject(photoRef).then(() => {
                 // File deleted successfully
               }).catch((error) => {
-                window.alert(error);
+                error(error);
               });
 
             })
