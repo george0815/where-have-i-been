@@ -313,7 +313,7 @@
     .photoContainer{ width: 80vw; }
 
 
-    .mainPhotoContainer .tag{
+    .photoContainer .tag{
         padding: .5vh 1.1vh;
         font-size: 1.2vh;
         margin: 0 .2vh;

@@ -81,7 +81,11 @@ export default function Editing(props) {
 
   //GETS METADATA FROM FILE
   function getMetaData(file) {
+  
     return new Promise((resolve, reject) => {
+
+      window.alert("test");
+
       exifr.parse(file)
       .then(output => {
         
@@ -137,9 +141,12 @@ export default function Editing(props) {
         else{ resolve(null);}
             
       
-      }).catch(console.error);
+      })
+      .catch(console.error);
+      resolve(null);
 
     });
+  
   
   }
 

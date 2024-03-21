@@ -4,6 +4,7 @@
 .editingContainer{
     /*Display*/
     display: grid;
+    grid-template-columns: 100%;
     gap: 1vh;
     /*Alignment*/
     align-items: center;
@@ -16,7 +17,6 @@
     min-width: 400px;
     height: auto;
     max-height: 90vh;
-    min-height: 375px;
     /*Font*/
     font-family: "IBM Plex Sans Hebrew";
     font-weight: 500;
@@ -308,7 +308,7 @@ label{padding-bottom: 1.5%; font-size: 2vh;}
         box-sizing: border-box;
         width: 95vw;
         min-width: 100vw;
-        min-height: 100vh;
+        min-height: fit-content;
         padding-left: 2vh;
         padding-right: 2vh;
     }
@@ -326,6 +326,7 @@ label{padding-bottom: 1.5%; font-size: 2vh;}
 
     .editingContainer .tag{
         font-size: 1.4vh;
+        margin-top: 1vh;
         padding: .6vh 1.4vh;
     }
     
