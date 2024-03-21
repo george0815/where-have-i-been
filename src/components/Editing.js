@@ -30,7 +30,6 @@ export default function Editing(props) {
    //sets up state for value that display upload progress
   const [uploadPercent, setUploadPercent] = useState(0.0) //how much of the current file is uploaded
   const [currentUpload, setCurrentUpload] = useState(0) //amount of files currently uploaded
-  const [uploadFileName, setUploadFileName] = useState("") //name of the file being currently uploaded
   const [totalUploads, setTotalUploads] = useState(0) //total uploads for the albums
   const [isUploading, setIsUploading] = useState(false); //if client is currently uploaded
 
@@ -130,13 +129,15 @@ export default function Editing(props) {
             resolve(tempObj);
 
           })
-          .catch(error("Unable to get location from photo metadata."));
+          .catch(console.error);
+          resolve(null);
+
         }
         //if no metadata, return nothing
         else{ resolve(null);}
             
       
-      }).catch(error("Unable to get metadata from photo."));
+      }).catch(console.error);
 
     });
   
@@ -163,7 +164,6 @@ export default function Editing(props) {
 
           //updates state and thus, ui
           setUploadPercent(progress);
-          setUploadFileName(file.name);
           
         }, 
         (error) => {
@@ -221,6 +221,10 @@ export default function Editing(props) {
               });
             }
 
+            //unrenders loading progress element
+            setIsUploading(false);
+            setCurrentUpload(0);
+
             //call some sort of function that hides the editing component again and resets currentalbum state
             props.onEditExit();
           }
@@ -258,6 +262,8 @@ export default function Editing(props) {
     let fileInput = document.getElementsByClassName("fileInput")[0];
     const files = fileInput.files;
 
+    setTotalUploads(1);
+    setIsUploading(true);
 
     //if user is adding photo, 
     if(!props.editingSettings.isAlbum && props.editingSettings.adding){
@@ -310,13 +316,31 @@ export default function Editing(props) {
           filePathsPromises.push(props.loggedIn ? getURL(storageRef, file) : getBase64(file));
           metaDataPromises.push(getMetaData(file));
 
+
+          //removes file extension if there is one
+          var lastIndex = file.name.lastIndexOf('.');
+          let photoName =  "";
+          if (lastIndex !== -1) {
+            photoName = file.name.substring(0, lastIndex);
+          }
+          else{
+            photoName = file.name;
+          }
+
+
+          //trims name 
+          if (photoName.length > 25) {
+            photoName = photoName.substring(0, 25) + "...";
+          }
+
+
           //pushes photo to newly created album
           tempAlbum.photos.push(
 
             {
               id :  photoId,
               key: photoId,
-              caption : file.name,
+              caption : photoName,
               location : "",
               date : "",
               description : "",
@@ -729,7 +753,7 @@ export default function Editing(props) {
 
              {/*Loading progress div*/}
             {isUploading && <div className='loadingProgress'>
-              Uploading {uploadFileName} - {uploadPercent}% <br/>
+              Uploading - {uploadPercent}% <br/>
               {currentUpload} of {totalUploads}
             </div>}
 

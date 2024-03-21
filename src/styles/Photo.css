@@ -5,7 +5,7 @@
 
 
 /*contains caption*/
-.captionContainer{padding-top: 1.05vh;}
+.captionContainer{padding-top: 1.05vh; height: auto; width: 100%;}
 
 
 /*contains main photo, arrows, and tooltip*/
@@ -18,6 +18,8 @@
     justify-content: center;
 }
 
+/*contains photo and caption*/
+.photoContainer{ width: 65vw; }
 
 
 
@@ -309,7 +311,6 @@
         flex-wrap: wrap;
     }
     .photoContainer{ width: 80vw; }
-    .caption{font-size: smaller; }
 
 
     .mainPhotoContainer .tag{

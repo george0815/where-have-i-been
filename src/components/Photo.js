@@ -92,17 +92,7 @@ export default function Photo(props) {
 
   useEffect(() => {
     //automatically resizes text
-    Array.from(document.getElementsByClassName('caption')).forEach((caption)=>{
-
-      flowtype(caption, {
-        maxWidth: '1000px', // can be a CSS value or a Number
-        minWidth: '200px',
-        lineRatio: 1.45,
-        min: 10,
-        max: 60
-      })
-
-    })
+    
     Array.from(document.getElementsByClassName('photoTooltipDescription')).forEach((caption)=>{
 
         flowtype(caption, {

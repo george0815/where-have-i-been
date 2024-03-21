@@ -353,7 +353,8 @@ export default function Navbar(props) {
     //whole navbar
     <nav className={props.fullScreen ? 'mainNav mainNavFullscreen' : 'mainNav'} >
       {/* title*/}
-      <div className="logo">{country}</div>
+      <Link className="logo" to="/">{country}</Link>
+      
       {/* logo*/}
       <img src={logo} alt="Site logo - a silhouette of a globe"/>
 
