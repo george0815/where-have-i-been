@@ -5,7 +5,7 @@ import Editing from './Editing'; //editing component
 import { useNavigate } from "react-router-dom";
 //CSS
 import '../styles/Mainpage.css';
-import '../styles/Fonts.css';
+import '../styles/fonts.css';
 import '../styles/Navbar.css';
 
 

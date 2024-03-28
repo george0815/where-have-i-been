@@ -7,7 +7,7 @@ import {sendPasswordResetEmail} from "firebase/auth";
 import {auth} from "../firebase"
 //CSS
 import '../styles/Mainpage.css';
-import '../styles/Fonts.css';
+import '../styles/fonts.css';
 import '../styles/Forgotpassword.css';
 import '../styles/Navbar.css';
 
