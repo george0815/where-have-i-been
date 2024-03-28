@@ -14,7 +14,7 @@ import {
 } from "react-geocode";
 //CSS
 import '../styles/Mainpage.css';
-import '../styles/Fonts.css';
+import '../styles/fonts.css';
 import '../styles/Editing.css';
 import '../styles/Navbar.css';
 import 'react-date-picker/dist/DatePicker.css';

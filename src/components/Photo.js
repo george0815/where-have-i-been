@@ -3,7 +3,7 @@ import Background from './Background'; //Gets background
 import Navbar from './Navbar'; //navbar
 import Editing from './Editing'; //editing component
 //CSS
-import '../styles/Fonts.css';
+import '../styles/fonts.css';
 import '../styles/Navbar.css';
 import '../styles/Photo.css';
 //for scaling text

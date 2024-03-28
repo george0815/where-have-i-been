@@ -11,7 +11,7 @@ import {ref, deleteObject} from "firebase/storage";
 import  JSZip from 'jszip';
 //CSS
 import '../styles/Navbar.css';
-import '../styles/Fonts.css';
+import '../styles/fonts.css';
 
 
 //navbar, used in every page except the login page
