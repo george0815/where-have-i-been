@@ -84,7 +84,6 @@ export default function Editing(props) {
   
     return new Promise((resolve, reject) => {
 
-      window.alert("test");
 
       exifr.parse(file)
       .then(output => {
