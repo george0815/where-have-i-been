@@ -13,7 +13,6 @@ import Photo from './components/Photo';
 import Editing from './components/Editing';
 import Signup from './components/Signup';
 import ForgotPassword from './components/Forgotpassword';
-import albumsObj from './components/Testalbums';
 
 
 
@@ -64,9 +63,6 @@ function App() {
       setAlbums(JSON.parse(localStorage.getItem("albums")));
     }
 
-
-   //localStorage.setItem('albums', JSON.stringify(albumsObj));
-   //setAlbums(JSON.parse(localStorage.getItem("albums")));
 
 
   }, [loggedIn], [albums])

@@ -22,7 +22,7 @@ export default function Albumspage(props) {
   const [searchTag, setSearchTag] = useState("")
 
   //sets up albums state
-  const [albumsObj, setAlbumsObj] = useState(JSON.parse(localStorage.getItem("albums"))); 
+  const [albumsObj, setAlbumsObj] = useState(JSON.parse(localStorage.getItem("albums")) ? JSON.parse(localStorage.getItem("albums")) : []); 
 
   //sets up state for //sets up state for editing props
   const [editingSettings, setEditingSettings] = useState(
@@ -42,7 +42,7 @@ export default function Albumspage(props) {
   //used to update ablums after sorting, gets passed to navbar
   function updateAlbums(){
     let temp = albumsObj;
-    temp = JSON.parse(localStorage.getItem("albums"));
+    temp = JSON.parse(localStorage.getItem("albums")) ? JSON.parse(localStorage.getItem("albums")) : [] ;
     setAlbumsObj(temp);
   }
 
@@ -163,7 +163,7 @@ useEffect(() => {
                   > 
                   {/*Contains all the text that shows when the user hovers over the album button*/}
                     <div className='tooltiptext'>
-                      <p className='tagDateLocationCaption'>{album.caption}<br/><br/>{album.location}<br/> {album.date} to {album.dateTo}</p>
+                      <p className='tagDateLocationCaption'>{album.caption}<br/><br/>{album.location}<br/> {album.date} { (album.date !== "" && album.dateTo !== "") && "to"} {album.dateTo}</p>
                       <p className='tagDescription'>{album.description}</p>
                     </div>
                     <img src={album.img} alt={album.description}/> 

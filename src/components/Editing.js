@@ -73,7 +73,7 @@ export default function Editing(props) {
 
   //SETS DEFAULT SETTINGS FOR GEOLOCATE API
   setDefaults({
-    key: "AIzaSyAowkd_pNDHGK5ZVBfugs2uw3gt182uvL4", // Your API key here.
+    key: process.env.REACT_APP_GOOGLE_API_KEY, // Your API key here.
     language: "en", // Default language for responses.
     region: "es", // Default region for responses.
   });
@@ -84,17 +84,24 @@ export default function Editing(props) {
   
     return new Promise((resolve, reject) => {
 
-      window.alert("test");
+      let metaDataOutput;
+
 
       exifr.parse(file)
       .then(output => {
         
+        let geocodeResults;
 
         //if proper coords were received from the parsed exif data
         if(typeof output !== 'undefined' && (typeof output.latitude !== 'undefined' && typeof  output.longitude !== 'undefined')){
 
+          metaDataOutput = output;
+
           //convert into format to be read by API
           let coords = output.latitude + "," + output.longitude 
+
+          console.log(coords)
+
 
           //get address from coords
           geocode(RequestType.LATLNG, coords, {
@@ -103,6 +110,9 @@ export default function Editing(props) {
           })
           //return resuls
           .then(({ results }) => {
+
+            geocodeResults = results
+
             const { city, state, country } = results[0].address_components.reduce(
               (acc, component) => {
                 if (component.types.includes("locality"))
@@ -118,10 +128,13 @@ export default function Editing(props) {
 
             //create location object 
             let locationObject = {
-              city : city,
-              state : state, 
-              country : country
+              city : typeof city !==  "undefined" ? city : "",
+              state : typeof state !== "undefined" ? state : "", 
+              country : typeof country !== "undefined" ? country : ""
             }
+
+            console.log(locationObject);
+
         
             //merge location object with the rest of metadata
             let tempObj = {
@@ -129,21 +142,32 @@ export default function Editing(props) {
               ...locationObject
             }
 
+            console.log(tempObj);
+
             //resolve promise
             resolve(tempObj);
 
           })
-          .catch(console.error);
-          resolve(null);
+          .catch(console.error).then(() => {
+
+            if(geocodeResults !== 'undefined'){
+                resolve(output);
+            }
+            
+          })
 
         }
         //if no metadata, return nothing
-        else{ resolve(null);}
+        else if (typeof output !== 'undefined' && (typeof output.latitude === 'undefined' || typeof  output.longitude === 'undefined')){ 
+          
+          metaDataOutput = output;
+
+          resolve(output);
+        }
             
       
       })
-      .catch(console.error);
-      resolve(null);
+      .catch(console.error).then(()=>{if(typeof metaDataOutput === 'undefined'){resolve(null)}});
 
     });
   
@@ -369,12 +393,15 @@ export default function Editing(props) {
           }
         ));
 
+       
+        console.log(metaData);
+
         //adds metadata to photos
         tempAlbum.photos = metaData.map((data, index) => (
           {
             ...tempAlbum.photos[index],
             date : (data !== null && data.DateTimeOriginal !== null) ? data.DateTimeOriginal.toDateString() : files[index].lastModifiedDate.toDateString(),
-            location : (data !== null && data.country !== null) ? data.city + ", " + data.state + ", " + data.country : ""
+            location : (data !== null && typeof data.city !== "undefined") ? data.city + ", " + data.state + ", " + data.country : ""
           }
         ));
 
