@@ -73,7 +73,7 @@ export default function Editing(props) {
 
   //SETS DEFAULT SETTINGS FOR GEOLOCATE API
   setDefaults({
-    key: "AIzaSyAowkd_pNDHGK5ZVBfugs2uw3gt182uvL4", // Your API key here.
+    key: process.env.REACT_APP_GOOGLE_API_KEY, // Your API key here.
     language: "en", // Default language for responses.
     region: "es", // Default region for responses.
   });

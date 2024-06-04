@@ -81,10 +81,22 @@ export default function Photo(props) {
       let index = (right &&  (photoIndex + 1 !== JSON.parse(sessionStorage.getItem("currentAlbum")).photos.length))? photoIndex + 1 : (!right && (photoIndex !== 0) ? photoIndex - 1 : photoIndex);
       //sets new current photo
       let newCurrentPhoto = JSON.parse(sessionStorage.getItem("currentAlbum")).photos[index];
-      setCurrentPhoto(newCurrentPhoto);
-      setPhotoIndex(index);
-      //saves it in session storage
-      sessionStorage.setItem("currentPhoto", JSON.stringify(newCurrentPhoto));  
+      
+
+      //controls animation
+      let img = document.getElementById("realPhoto");
+      img.classList.remove("show");
+      img.classList.add("fade");
+      setTimeout(function(){
+          setCurrentPhoto(newCurrentPhoto);
+          setPhotoIndex(index);
+          //saves it in session storage
+          sessionStorage.setItem("currentPhoto", JSON.stringify(newCurrentPhoto));  
+          img.classList.remove("fade");
+          img.classList.add("show");
+      }, 500);
+
+      
   }
 
   //------------------------USEEFFECT------------------------------//
@@ -153,7 +165,7 @@ export default function Photo(props) {
 
                     </div>}
                     {/*actual photo*/}
-                    <img alt={currentPhoto.caption} src={currentPhoto.img}/> 
+                    <img id="realPhoto" alt={currentPhoto.caption} src={currentPhoto.img}/> 
                 </div>
 
                 {/*Holds the caption, date and time, and fullscreen button*/}

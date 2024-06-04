@@ -298,12 +298,19 @@
 /*iamge container*/
 .photo, .photo > img{
     height: 65vh;
+    transition: opacity 0.5s ease-in-out;
     width: 65vw;
     align-self: center;
     position: relative;
     object-fit: cover;
 }
+.fade {
+    opacity: .2;
+}
 
+.show {
+    opacity: 1;
+}
 
 
 /*holds caption and dateline span*/
