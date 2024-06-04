@@ -367,7 +367,7 @@ export default function Navbar(props) {
         {(props.page === 1 || props.page === 3) && <button onClick={remove} className="navButton">Remove</button>}
         {(props.page === 1 || props.page === 3) && <button onClick={props.onClickEdit} className="navButton">Edit</button>}
         {/*sort*/}
-        {(props.page === 1 || props.page === 2) && <select className="navButton sort" onChange={(e) => {onClickSort(e)}}>
+        {(props.page === 1 || props.page === 2) && <button className='navButton'><select className="sort" onChange={(e) => {onClickSort(e)}}>
           <option defaultValue="Sort by...">Sort by...</option>
           <option>{"date (asc)"}</option> {/*sorts by date ascending*/}
           <hr/>
@@ -378,7 +378,7 @@ export default function Navbar(props) {
           <option>description</option> {/*sorts by description*/}
           <hr/>
           <option>location</option>{/*sorts by location*/}
-        </select>}
+        </select></button>}
         {/*search button*/}
         {(props.page === 1 || props.page === 2) && <input onChange={(e) => {onTagInputChange(e)}} placeholder='search'/>}
         {/*download button*/}

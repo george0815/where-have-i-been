@@ -5,6 +5,7 @@
 .mainNav{
     /*Dimensions*/
     height:auto;
+    min-height: 85px;
     width: 100vw;
     min-width: 100vw;
     /*Misc*/
@@ -29,8 +30,6 @@
 /**************************BUTTONS**************************/
 
 
-/*makes button bigger on hover*/
-.navButton:hover{transform: scale(1.1);}
 
 
 /*navbar buttons*/
@@ -52,8 +51,47 @@
     font-family: "IBM Plex Sans Hebrew";
     height: auto;   
     background-color: #272727;
+    overflow: hidden;
+    position: relative;
+    text-decoration: none;
+    transition: 0.2s transform ease-in-out;
+    will-change: transform;
+    z-index: 0;
+
+    
+
+    
 }
 
+.navButton::after {
+    background-color: rgba(182, 182, 182, 0.729);
+    border-radius: 3rem;
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(-100%, 0) rotate(10deg);
+    transform-origin: top left;
+    transition: 0.2s transform ease-out;
+    will-change: transform;
+    z-index: -10;
+  }
+
+  
+  
+  .navButton:hover::after {
+    transform: translate(0, 0);
+  }
+  
+  .navButton:hover {
+    border: 2px solid transparent;
+    color: rgb(0, 0, 0);
+    transform: scale(1.1);
+    will-change: transform;
+  }
 
 
 /**************************MISC**************************/
@@ -93,14 +131,28 @@
 /*sorting dropdown menu*/
 .sort{
     text-align: center;
-    padding: 1.5vh 0px !important;
     appearance: none;
+    color: white;
+    background-color: transparent;
+    border: none;
     max-width: auto !important;
+    /*Font*/
+    font-size: 2.5vh;
+    font-weight: 500;
+    font-style: normal;
+    font-family: "IBM Plex Sans Hebrew";
+
+}
+option{color: black !important;}
+
+.sort:focus{
+    outline: none;
 }
 
 
 /*hides something, I dont know*/
 select::-ms-expand {display: none;}
+select:hover{color: black; border: none;}
 
 
 /*search bar*/
@@ -133,13 +185,16 @@ select::-ms-expand {display: none;}
 /**************************MEDIA QUERIES**************************/
 
 
-@media (orientation: portrait) {
+@media (orientation: portrait) or (max-width: 930px) {
 
     .navButton{
         font-size: 1.5vh;
         padding: 1vh 2vh;
         margin-top: .5vh;
         margin-bottom: .5vh;
+    }
+    .mainNav{
+        min-height: initial;
     }
     
     .mainNav input{
