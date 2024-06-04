@@ -4,8 +4,8 @@
 /*entire navbar*/
 .mainNav{
     /*Dimensions*/
-    height:auto;
-    min-height: 85px;
+    min-height: 12vh;
+    max-height: 12vh;
     width: 100vw;
     min-width: 100vw;
     /*Misc*/
@@ -193,9 +193,7 @@ select:hover{color: black; border: none;}
         margin-top: .5vh;
         margin-bottom: .5vh;
     }
-    .mainNav{
-        min-height: initial;
-    }
+    
     
     .mainNav input{
         min-width: 10vw;

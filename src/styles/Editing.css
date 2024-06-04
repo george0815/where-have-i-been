@@ -72,6 +72,13 @@
     height: 100%;
     align-self: center;
     margin-left: 2.4%;  
+
+    overflow: hidden;
+    
+    text-decoration: none;
+    transition: 0.2s transform ease-in-out;
+    will-change: transform;
+    z-index: 0;
 }
 
 
@@ -244,11 +251,42 @@ button:hover{transform: scale(1.05);}
     /*Dimensions*/
     height: auto !important;    
     /*Misc*/
-    overflow: hidden;
+
     font-size: 2vh !important;
     padding:2% 3% !important;
+
+    
 }
 
+.saveButton::after, .addTag::after {
+    background-color: rgba(182, 182, 182, 0.729);
+    border-radius: 3rem;
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(-100%, 0) rotate(10deg);
+    transform-origin: top left;
+    transition: 0.2s transform ease-out;
+    will-change: transform;
+    z-index: -10;
+  }
+
+  
+  
+  .saveButton:hover::after, .addTag:hover::after {
+    transform: translate(0, 0);
+  }
+  
+  .saveButton:hover, .addTag:hover {
+    border: 2px solid transparent;
+    color: rgb(0, 0, 0);
+    transform: scale(1.1);
+    will-change: transform;
+  }
 
 
 /*close button*/
