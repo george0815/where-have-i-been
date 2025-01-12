@@ -316,6 +316,9 @@ export default function Editing(props) {
       //make new temp album object from localstorage albums object
       let tempAlbums = JSON.parse(localStorage.getItem("albums"));
 
+      if (tempAlbums == null){tempAlbums = [];}
+
+      
       //add album data 
       let tempAlbum = {
         caption : document.getElementById("caption").value,
